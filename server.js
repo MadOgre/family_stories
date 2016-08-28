@@ -1,6 +1,7 @@
 var express = require("express");
 var Sequelize = require("sequelize");
 var cors = require("cors");
+var bp = require("body-parser");
 
 var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
 
@@ -13,6 +14,9 @@ sequelize.authenticate().then(function(){
 var app = express();
 
 app.use(cors());
+
+app.use(bp.json());
+app.use(bp.urlencoded({extended: true}));
 
 function getBodyParts(which, cb) {
   sequelize.query("call sp_default_body_parts('" + which + "')").then(function(data){
@@ -37,6 +41,19 @@ function getBodyParts(which, cb) {
       });
     });
     cb(null, result);
+  }).catch(function(err){
+    cb(err);
+  });  
+}
+
+function setUserSelection(payload, cb) {
+  sequelize.query(
+    "call sp_iu_user_default_images('" +
+    payload.user_id + "','" + 
+    payload.avatar_name + "','" +
+    payload.image_id_list + "'," +
+    (payload.replace ? "'" + payload.replace + "'" : null) + ")").then(function(){
+    cb(null, {result: "success"});
   }).catch(function(err){
     cb(err);
   });  
@@ -67,6 +84,13 @@ app.get("/getChildParts", function(req, res){
     }
     res.json(result);
   });
+});
+
+app.post("/setUserSelection", function(req, res){
+  setUserSelection(req.body, function(err, result){
+    if (err) return res.status(500).json({result: "Server Error"});
+    res.json(result);
+  })
 });
 
 
