@@ -52,11 +52,21 @@ app.get("/getAdultMaleParts", function(req, res){
 });
 
 app.get("/getAdultfemaleParts", function(req, res){
-  getBodyParts("ADULT_FEMALE");
+  getBodyParts("ADULT_FEMALE", function(err, result){
+    if (err) {
+      return res.status(500).send("<h1>Server Error</h1>");
+    }
+    res.json(result);
+  });
 });
 
-app.get("/getAdultChildParts", function(req, res){
-  getBodyParts("ADULT_MALE");
+app.get("/getChildParts", function(req, res){
+  getBodyParts("CHILD", function(err, result){
+    if (err) {
+      return res.status(500).send("<h1>Server Error</h1>");
+    }
+    res.json(result);
+  });
 });
 
 
