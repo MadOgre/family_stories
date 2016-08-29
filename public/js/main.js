@@ -28,7 +28,7 @@
         //url: '/schema.json'
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/getAdultMaleParts'
         //url: 'http://178.62.255.163:8080/FamilyStoryWebService/getAdultMaleParts'
-        url: 'http://localhost:3000/getAdultMaleParts'
+        url: '/getAdultMaleParts'
       }).then(function success(data){
       	vm.schema = data.data;
         vm.schema.forEach(function(item){
@@ -64,7 +64,7 @@
         method: 'POST',
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/setUserSelection',
         //url: 'http://178.62.255.163:8080/FamilyStoryWebService/setUserSelection',
-        url: 'http://localhost:3000/setUserSelection',
+        url: '/setUserSelection',
         headers: {
           "Content-Type": "application/json"
         },
