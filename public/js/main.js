@@ -12,7 +12,7 @@
     vm.currentAvatar = {
       name: "",
       images: ["1","4","7", "25", "28", "31"]
-    }
+    };
     vm.imageUrls = {};
     vm.currentUser = "";
     vm.currentAvatarIndex = 0;
@@ -88,19 +88,19 @@
             vm.avatarNames.push(vm.currentAvatar.name);
             vm.currentAvatar.name = "";
             vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);
-            vm.currentAvatarIndex++;
+            // vm.currentAvatarIndex++;
           } else {
             // alert("avatar is old");
             vm.results[vm.currentAvatarIndex] = Array.prototype.slice.call(vm.currentAvatar.images);
             vm.avatarNames[vm.currentAvatarIndex] = vm.currentAvatar.name;
-            if (vm.currentAvatarIndex >= vm.avatarNames.length) {
-              vm.newAvatar = true;
-              vm.currentAvatar.name = "";
-              vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);              
-            } else {
-              vm.currentAvatar.images = Array.prototype.slice.call(vm.results[vm.currentAvatarIndex]);
-              vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
-            }
+            // if (vm.currentAvatarIndex >= vm.avatarNames.length) {
+            //   vm.newAvatar = true;
+            //   vm.currentAvatar.name = "";
+            //   vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);              
+            // } else {
+            //   vm.currentAvatar.images = Array.prototype.slice.call(vm.results[vm.currentAvatarIndex]);
+            //   vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
+            // }
           }
 
 
@@ -135,8 +135,9 @@
         vm.postPerson();
         vm.newAvatar = false;
         vm.currentAvatarIndex--;
-        vm.currentAvatar.images = vm.results[vm.currentAvatarIndex];
-        vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex]
+        console.log("CAI: " + vm.currentAvatarIndex);
+        vm.currentAvatar.images = Array.prototype.slice.call(vm.results[vm.currentAvatarIndex]);
+        vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
       }
     }
 
