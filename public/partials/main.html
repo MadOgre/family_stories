@@ -1,21 +1,21 @@
 <div class="container">
-  <form ng-submit="main.postPerson('foo')">
+  <form ng-submit="main.postPerson()" id="avatarForm">
 		<div class="left-column" ng-show="main.isLoaded">
 
 		  <div class="form-group form-section">
 		    <label for="user-id-input" class="form-section-heading">User ID</label>
 		    <input type="text" class="form-control input-lg" id="user-id-input" placeholder="user001" ng-model="main.currentUser" required>
 		  </div>
+		  <p>Current Avatar: {{main.currentAvatarIndex}}</p>
+		  <p>Error: {{main.error}}</p>
+		  <p>Total Avatars: {{main.totalAvatars}}</p>
+		  <p>New Avatar: {{main.newAvatar ? "YES" : "NO"}}
 			<div class="form-section form-section-type" ng-repeat="property in main.schema">
 			  <div class="form-section-heading">{{property.image_type_label}}</div>
 				<div class="btn-group" data-toggle="buttons">
 				<label ng-repeat="value in property.values" class="btn btn-info" ng-model="main.currentAvatar.images[$parent.$index]" uib-btn-radio="value.image_id">
 					<img height="30" ng-src="{{value.image_location}}">
 				</label>
-	<!-- 					<label class="btn btn-default" ng-repeat="value in property.values">
-					  <input type="radio" name="{{property.image_type}}" ng-model="main.results[$parent.$index]" ng-value="value.image_id" />
-						<img height="30" ng-src="{{value.image_location}}">
-					</label> -->
 				</div>
 			</div>
 
@@ -28,13 +28,13 @@
 				<img class="img" src="img/background.png">
 				<img class="img" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
 				<div class="img arrows-container">
-					<div class="arrow arrow-left"><i class="fa fa-chevron-left" aria-hidden="true" ng-click="main.prevAvatar()"></i></div>
-					<div class="arrow arrow-right"><i class="fa fa-chevron-right" aria-hidden="true" ng-click="main.nextAvatar()"></i></div>
+					<div class="arrow arrow-left" ng-hide="main.currentAvatarIndex === 1"><i class="fa fa-chevron-left" aria-hidden="true" ng-click="main.prevAvatar()"></i></div>
+					<div class="arrow arrow-right" ng-hide="main.currentAvatarIndex === main.maxAvatars"><i class="fa fa-chevron-right" aria-hidden="true" ng-click="main.nextAvatar()"></i></div>
 				</div>
 			</div>
 			<div class="form-group form-section">
 		    <label for="avatar-name-input" class="form-section-heading">Avatar Name</label>
-		    <input type="text" class="form-control input-lg" id="avatar-name-input" placeholder="John Doe" ng-model="main.currentAvatar.name" required>
+		    <input type="text" class="form-control input-lg" id="avatar-name-input" placeholder="John Doe" ng-model="main.currentAvatar.name" required autofocus="true">
 		  </div>
 		  <div class="form-group form-section">
 				<input type="submit" class="btn btn-primary btn-block btn-lg" value="I'm Done">

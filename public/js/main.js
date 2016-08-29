@@ -3,25 +3,31 @@
   angular.module('app').controller('Main', ['$http', '$scope', Main]);
 
   function Main($http, $scope) {
+    function updateCurrentAvatar() {
+      vm.currentAvatar.images = results[vm.currentAvatarIndex-1].images.slice();
+      vm.currentAvatar.name = results[vm.currentAvatarIndex-1].name;      
+    }
+    function avatarModified() {
+      return vm.currentAvatar.name !== results[vm.currentAvatarIndex-1].name ||
+        JSON.stringify(vm.currentAvatar.images) !== JSON.stringify(results[vm.currentAvatarIndex-1].images);
+    }
     var vm = this;
     vm.isLoaded = false;
     vm.schema = [];
-    vm.avatarNames = [];
-    vm.avatarMaleDefaults = ["1","4","7", "25", "28", "31"];
-    vm.results = [];
+    var avatarDefaults = [];
+    var results = [];
     vm.currentAvatar = {
       name: "",
-      images: ["1","4","7", "25", "28", "31"]
+      images: []
     };
     vm.imageUrls = {};
-    vm.currentUser = "";
-    vm.currentAvatarIndex = 0;
+    vm.currentUser = "TestUser01"; //change this for production
+    vm.currentAvatarIndex = 1;
+    vm.totalAvatars = 1;
+    vm.maxAvatars = 10;
     vm.newAvatar = true;
+    vm.error = "";
 
-    vm.getImageById = function(id) {
-      return imageUrls[id];
-    };
-    
     vm.getSchema = function() {
     	$http({
         method: 'GET',
@@ -30,8 +36,13 @@
         //url: 'http://178.62.255.163:8080/FamilyStoryWebService/getAdultMaleParts'
         url: '/getAdultMaleParts'
       }).then(function success(data){
+        //save all data in vm.schema
       	vm.schema = data.data;
+
         vm.schema.forEach(function(item){
+          //save the first value for defaults
+          avatarDefaults.push(item.values[0].image_id.toString());
+          //fill the imageUrls
           item.values.forEach(function(value){
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
@@ -40,26 +51,34 @@
             };
           });
         });
-        // console.log(JSON.stringify(vm.imageUrls));
+
+        //set avatar defaults
+        for (var i = 0; i < vm.maxAvatars; ++i) {
+          results.push({
+            name: "",
+            images: avatarDefaults.slice()
+          });
+        }
+
+        //set current avatar
+        updateCurrentAvatar();
+
+        //set loaded flag
       	vm.isLoaded = true;
       }, function fail(data){
-
+        console.warn(data);
       });
     };
     vm.getSchema();
-    vm.postPerson = function(user) {
+
+    vm.postPerson = function(cb) {
       console.log("post person called");
       var response = {
-        user_id: user || vm.currentUser,
+        user_id: vm.currentUser,
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
-        replace: vm.newAvatar ? null : vm.avatarNames[vm.currentAvatarIndex]
+        replace: vm.newAvatar ? null : results[vm.currentAvatarIndex-1].name
       }
-      // vm.schema.forEach(function(item){
-      //   response.image_id_list += $('input[name=' + item.image_type + ']:checked').val() + ",";
-      // });
-      // response.image_id_list = response.image_id_list.slice(0, -1);
-      // console.log("About to send response: " + JSON.stringify(response));
       $http({
         method: 'POST',
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/setUserSelection',
@@ -72,38 +91,15 @@
       }).then(function(data){
         console.log("POST request finished");
         if (data.data.result = "SUCCESS") {
-          // alert("Saved!");
-
-          //if avatar exists
-          // var index = vm.results.find(function(item){
-          //   return item.name === vm.currentAvatar.name;
-          // });
-          // if (index === -1) {
-
-          // }
-          if (vm.newAvatar) {
-            // alert("avatar is new");
-            //avatar is new
-            vm.results.push(Array.prototype.slice.call(vm.currentAvatar.images));
-            vm.avatarNames.push(vm.currentAvatar.name);
-            vm.currentAvatar.name = "";
-            vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);
-            // vm.currentAvatarIndex++;
-          } else {
-            // alert("avatar is old");
-            vm.results[vm.currentAvatarIndex] = Array.prototype.slice.call(vm.currentAvatar.images);
-            vm.avatarNames[vm.currentAvatarIndex] = vm.currentAvatar.name;
-            // if (vm.currentAvatarIndex >= vm.avatarNames.length) {
-            //   vm.newAvatar = true;
-            //   vm.currentAvatar.name = "";
-            //   vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);              
-            // } else {
-            //   vm.currentAvatar.images = Array.prototype.slice.call(vm.results[vm.currentAvatarIndex]);
-            //   vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
-            // }
+          results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
+          results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
+          if (cb) {
+            cb(null);
           }
-
-
+        } else {
+          if (cb) {
+            cb("Save Failed");
+          }
         }
         console.log(data);
         console.log(vm.avatarNames);
@@ -111,60 +107,83 @@
       });
     }
 
+    function advanceAvatar() {
+      vm.newAvatar = false;
+      if (vm.currentAvatarIndex < vm.totalAvatars) {
+        //if current avatar is not last, simply advance
+        vm.currentAvatarIndex++;
+        updateCurrentAvatar();
+      } else {
+        //if current avatar IS last
+        //check to see whether more avatars are possible
+        if (vm.currentAvatarIndex < vm.maxAvatars) {
+          vm.currentAvatarIndex++;
+          vm.totalAvatars++;
+          updateCurrentAvatar();
+          vm.newAvatar = true;
+        }
+      }
+    }
+
+    function retractAvatar() {
+      vm.newAvatar = false;
+      if (vm.currentAvatarIndex > 1) {
+        //if currentAvatar is not first, simply retract
+        vm.currentAvatarIndex--;
+        updateCurrentAvatar();
+      }
+    }
+
     vm.nextAvatar = function() {
       console.log("FIRED RIGHT!");
-      if (vm.currentAvatarIndex < vm.avatarNames.length - 1) {
-        console.log("in the if block");
-        vm.postPerson();
-        vm.currentAvatarIndex++;
-        vm.currentAvatar.images = vm.results[vm.currentAvatarIndex];
-        vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
+      $("#avatar-name-input").focus();
+      if (vm.currentAvatar.name === "") {
+        vm.error = "Avatar name may not be blank";
+        return;
+      }
+      vm.error = "";
+      if (avatarModified()) {
+        vm.postPerson(function(){
+          advanceAvatar();
+        });
       } else {
-        console.log("in the else block");
-        vm.postPerson();
-        vm.currentAvatarIndex++;
-        vm.newAvatar = true;
-        vm.currentAvatar.images = Array.prototype.slice.call(vm.avatarMaleDefaults);
-        vm.currentAvatar.name = "";
+        advanceAvatar();
       }
     }
 
     vm.prevAvatar = function() {
-      console.log("FIRED LEFT!")
-      if (vm.currentAvatarIndex > 0) {
-        vm.postPerson();
-        vm.newAvatar = false;
-        vm.currentAvatarIndex--;
-        console.log("CAI: " + vm.currentAvatarIndex);
-        vm.currentAvatar.images = Array.prototype.slice.call(vm.results[vm.currentAvatarIndex]);
-        vm.currentAvatar.name = vm.avatarNames[vm.currentAvatarIndex];
+      console.log("FIRED LEFT!");
+      $("#avatar-name-input").focus();
+      vm.error = "";
+      if (vm.newAvatar) {
+        if (vm.currentAvatar.name !== "") {
+          vm.PostPerson(function(){
+            retractAvatar();
+          });
+        } else {
+          results[vm.currentAvatarIndex-1].images = avatarDefaults.slice();
+          if (vm.totalAvatars > 1) {
+            vm.totalAvatars--;
+          }
+          retractAvatar();
+        }
+      } else {
+        console.log("test1");
+        if (avatarModified()) {
+          console.log("test2");
+          console.log("Current Avatar Name: " + vm.currentAvatar.name); 
+          if (vm.currentAvatar.name === undefined) {
+            console.log("test3");
+            vm.error = "Avatar name may not be blank";
+            return;
+          }
+          vm.postPerson(function(){
+            retractAvatar();
+          });
+        } else {
+          retractAvatar();
+        }
       }
     }
-
-    // vm.switchImages = function(image_type, location, image_x, image_y) {
-    //   console.log("called");
-    //   console.log(image_type + ": " + location);
-    //   switch (image_type) {
-    //     case "ADULT_BODY":
-    //       $scope.bodypath = location;
-    //       $scope.bodycoords.x = image_x;
-    //       $scope.bodycoords.y = image_y;
-    //       $(".img-body").css("top", $scope.bodycoords.y);
-    //       console.log(vm.bodycoords.y);
-    //       break;
-    //     case "ADULT_FACE":
-    //       $scope.facepath = location;
-    //       $scope.facecoords.x = image_x;
-    //       $scope.facecoords.y = image_y;
-    //       $(".img-face").css("top", $scope.facecoords.y);
-    //       break;
-    //     case "ADULT_EYES":
-    //       $scope.eyespath = location;
-    //       $scope.eyescoords.x = image_x;
-    //       $scope.eyescoords.y = image_y;
-    //       $(".img-eyes").css("top", $scope.eyescoords.y);
-    //       break;  
-    //   };
-    // }
   }
 }());
