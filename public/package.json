@@ -1,20 +1,14 @@
 {
-  "name": "nodedemo",
-  "version": "1.0.0",
-  "description": "",
+  "name": "book-project",
+  "version": "0.0.1",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cors": "^2.8.0",
-    "express": "^4.14.0",
-    "mysql": "^2.11.1",
-    "sequelize": "^3.24.1"
+    "angular-ui-bootstrap": "^2.1.2"
   },
   "devDependencies": {
     "browser-sync": "^2.13.0",

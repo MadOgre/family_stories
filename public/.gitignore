@@ -55,6 +55,9 @@ jspm_packages
 .Trash-*
 
 # app temp files
+*.png
+*.jpg
+*.gif
 
 !public/img/common/*
 

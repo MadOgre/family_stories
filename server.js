@@ -87,12 +87,14 @@ app.get("/getChildParts", function(req, res){
 });
 
 app.post("/setUserSelection", function(req, res){
+  console.log("POST REQUEST INCOMING");
   setUserSelection(req.body, function(err, result){
     if (err) return res.status(500).json({result: "Server Error"});
     res.json(result);
   })
 });
 
+app.use("/", express.static(__dirname + "/public"));
 
 
 app.listen(3000);
