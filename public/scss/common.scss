@@ -119,3 +119,9 @@ body {
 .transparency {
   width: 100%;
 }
+
+.container-fluid > .row {
+  display: flex !important;
+  justify-content: center;
+  flex-wrap: wrap;
+}
