@@ -54,7 +54,8 @@ body {
   margin-bottom: 30px;
 }
 
-.btn.active, .btn:active, .btn:focus, .btn.focus {
+.btn.active, .btn:active {
+  //.btn:focus, .btn.focus
   background-color: #333333 !important;
 }
 
@@ -66,9 +67,13 @@ body {
   // right: 96px;
   left: 88px;
   .img {
-    position: absolute;
-    width: 100%;
+    
   }
+}
+
+.img {
+  position: absolute;
+  width: 100%;
 }
 
 #user-id-input {
@@ -99,3 +104,13 @@ body {
  .arrow-right {
   right: 0px;
  }
+
+ .graphic {
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.family {
+  min-height: 500px;
+}

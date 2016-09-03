@@ -3,19 +3,21 @@
   angular.module('app').controller('Main', ['$http', '$scope', Main]);
 
   function Main($http, $scope) {
+    var vm = this;
+    vm.results = [];
     function updateCurrentAvatar() {
-      vm.currentAvatar.images = results[vm.currentAvatarIndex-1].images.slice();
-      vm.currentAvatar.name = results[vm.currentAvatarIndex-1].name;      
+      vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
+      vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;      
     }
     function avatarModified() {
-      return vm.currentAvatar.name !== results[vm.currentAvatarIndex-1].name ||
-        JSON.stringify(vm.currentAvatar.images) !== JSON.stringify(results[vm.currentAvatarIndex-1].images);
+      return vm.currentAvatar.name !== vm.results[vm.currentAvatarIndex-1].name ||
+        JSON.stringify(vm.currentAvatar.images) !== JSON.stringify(vm.results[vm.currentAvatarIndex-1].images);
     }
-    var vm = this;
+
     vm.isLoaded = false;
     vm.schema = [];
     var avatarDefaults = [];
-    var results = [];
+
     vm.currentAvatar = {
       name: "",
       images: []
@@ -27,6 +29,12 @@
     vm.maxAvatars = 10;
     vm.newAvatar = true;
     vm.error = "";
+
+    vm.clearNew = function() {
+      if (vm.newAvatar) {
+        vm.prevAvatar();
+      }
+    }
 
     vm.getSchema = function() {
     	$http({
@@ -54,7 +62,7 @@
 
         //set avatar defaults
         for (var i = 0; i < vm.maxAvatars; ++i) {
-          results.push({
+          vm.results.push({
             name: "",
             images: avatarDefaults.slice()
           });
@@ -77,7 +85,7 @@
         user_id: vm.currentUser,
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
-        replace: vm.newAvatar ? null : results[vm.currentAvatarIndex-1].name
+        replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
       }
       $http({
         method: 'POST',
@@ -91,8 +99,8 @@
       }).then(function(data){
         console.log("POST request finished");
         if (data.data.result = "SUCCESS") {
-          results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
-          results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
+          vm.results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
+          vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
           if (cb) {
             cb(null);
           }
@@ -136,7 +144,9 @@
 
     vm.nextAvatar = function() {
       console.log("FIRED RIGHT!");
-      $("#avatar-name-input").focus();
+      if (vm.currentAvatarIndex === vm.totalAvatars) {
+        $("#avatar-name-input").focus();
+      }
       if (vm.currentAvatar.name === "") {
         vm.error = "Avatar name may not be blank";
         return;
@@ -153,7 +163,6 @@
 
     vm.prevAvatar = function() {
       console.log("FIRED LEFT!");
-      $("#avatar-name-input").focus();
       vm.error = "";
       if (vm.newAvatar) {
         if (vm.currentAvatar.name !== "") {
@@ -161,7 +170,7 @@
             retractAvatar();
           });
         } else {
-          results[vm.currentAvatarIndex-1].images = avatarDefaults.slice();
+          vm.results[vm.currentAvatarIndex-1].images = avatarDefaults.slice();
           if (vm.totalAvatars > 1) {
             vm.totalAvatars--;
           }

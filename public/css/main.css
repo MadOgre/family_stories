@@ -88,7 +88,7 @@ body {
 .form-section {
   margin-bottom: 30px; }
 
-.btn.active, .btn:active, .btn:focus, .btn.focus {
+.btn.active, .btn:active {
   background-color: #333333 !important; }
 
 .images-container {
@@ -97,9 +97,10 @@ body {
   height: 520px;
   top: 107px;
   left: 88px; }
-  .images-container .img {
-    position: absolute;
-    width: 100%; }
+
+.img {
+  position: absolute;
+  width: 100%; }
 
 #user-id-input {
   width: 260px; }
@@ -125,3 +126,11 @@ body {
 
 .arrow-right {
   right: 0px; }
+
+.graphic {
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 10px; }
+
+.family {
+  min-height: 500px; }
