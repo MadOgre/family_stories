@@ -55,7 +55,8 @@
 	        	<div class="row">
 	        		<div class="col-md-2" ng-repeat="value in main.results | limitTo:main.totalAvatars">
 	        			<div class="graphic">
-	        			<img class="img" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+	        			<img class="transparency" src="img/transparency.png">
+	        			<img class="img" ng-repeat="image in value.images" ng-src="{{main.imageUrls[image].location}}">
 	        			</div>
 	        		</div>
 	        	</div>

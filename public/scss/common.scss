@@ -74,6 +74,8 @@ body {
 .img {
   position: absolute;
   width: 100%;
+  left: 0;
+  top: 0;
 }
 
 #user-id-input {
@@ -107,10 +109,13 @@ body {
 
  .graphic {
   width: 100%;
-  border: 1px solid black;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .family {
-  min-height: 500px;
+}
+
+.transparency {
+  width: 100%;
 }
