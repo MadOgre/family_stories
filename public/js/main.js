@@ -166,7 +166,7 @@
       vm.error = "";
       if (vm.newAvatar) {
         if (vm.currentAvatar.name !== "") {
-          vm.PostPerson(function(){
+          vm.postPerson(function(){
             retractAvatar();
           });
         } else {
