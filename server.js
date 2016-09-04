@@ -96,5 +96,7 @@ app.post("/setUserSelection", function(req, res){
 
 app.use("/", express.static(__dirname + "/public"));
 
+app.use("/preview", express.static("/var/www/familystories/book_output"));
+
 
 app.listen(3000);

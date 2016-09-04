@@ -1,8 +1,8 @@
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', 'sharedProperties', Main]);
 
-  function Main($http, $scope) {
+  function Main($http, $scope, sharedProperties) {
     var vm = this;
     vm.results = [];
     function updateCurrentAvatar() {
@@ -193,6 +193,19 @@
           retractAvatar();
         }
       }
+    }
+
+    vm.submitPreview = function() {
+      alert("submitted!");
+      $http({
+        method: "GET",
+        url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + vm.currentUser
+      }).
+      then(function success(data){
+        alert(JSON.stringify(data.data));
+      }, function fail(data){
+        console.warn(data);
+      });
     }
   }
 }());
