@@ -18,6 +18,10 @@ app.use(cors());
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}));
 
+app.use("/", express.static(__dirname + "/public"));
+
+app.use("/preview", express.static("/var/www/familystories/book_output"));
+
 function getBodyParts(which, cb) {
   sequelize.query("call sp_default_body_parts('" + which + "')").then(function(data){
     var result = [];
@@ -94,9 +98,10 @@ app.post("/setUserSelection", function(req, res){
   })
 });
 
-app.use("/", express.static(__dirname + "/public"));
+app.get("*", function(req, res){
+  res.sendFile(__dirname + "/public/index.html");
+});
 
-app.use("/preview", express.static("/var/www/familystories/book_output"));
 
 
 app.listen(3000);

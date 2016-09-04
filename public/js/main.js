@@ -1,8 +1,8 @@
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', 'sharedProperties', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', '$location', 'sharedProperties', Main]);
 
-  function Main($http, $scope, sharedProperties) {
+  function Main($http, $scope, $location, sharedProperties) {
     var vm = this;
     vm.results = [];
     function updateCurrentAvatar() {
@@ -196,13 +196,20 @@
     }
 
     vm.submitPreview = function() {
-      alert("submitted!");
       $http({
         method: "GET",
         url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + vm.currentUser
       }).
       then(function success(data){
-        alert(JSON.stringify(data.data));
+        //alert(JSON.stringify(data.data));
+        sharedProperties.setFolderName(data.data.result);
+        //alert(sharedProperties.getFolderName());
+        $('#myModal').on('hidden.bs.modal', function (e) {
+          alert("hidden!");
+          $location.url('/getpreview');
+          $scope.$apply();
+        });
+        $("#myModal").modal('hide');
       }, function fail(data){
         console.warn(data);
       });

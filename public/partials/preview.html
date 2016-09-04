@@ -1,0 +1,7 @@
+<h1>Preview Pending...</h1>
+
+<h3>Folder Name: {{preview.folderName}}</h3>
+
+<img ng-src="{{'http://178.62.255.163:3000/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index">
+
+<!-- <div ng-repeat="image in preview.imageList(vm.numberOfImages) track by $index">test</div> -->

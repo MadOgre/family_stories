@@ -8,6 +8,11 @@
         controller: "Main",
         controllerAs: "main"
       })
+      .when("/getpreview", {
+        templateUrl: "/partials/preview.html",
+        controller: "Preview",
+        controllerAs: "preview"
+      })
       .otherwise({
         redirectTo: '/'
       });
