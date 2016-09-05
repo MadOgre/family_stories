@@ -2,6 +2,8 @@ var express = require("express");
 var Sequelize = require("sequelize");
 var cors = require("cors");
 var bp = require("body-parser");
+var session = require("express-session");
+var crypto = require("crypto");
 
 var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
 
@@ -17,6 +19,29 @@ app.use(cors());
 
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}));
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 5 * 60000
+  }
+  
+}));
+
+function setId(req, res, next){
+  if (!req.session.user_id) {
+    crypto.randomBytes(16, function(err, buffer) {
+      console.log("creating id");
+      req.session.id = buffer.toString('hex');
+      next();
+    });
+  } else {
+    console.log("retaining id");
+    next();
+  }
+};
 
 app.use("/", express.static(__dirname + "/public"));
 
@@ -98,7 +123,9 @@ app.get("/getChildParts", function(req, res){
 
 app.post("/setUserSelection", function(req, res){
   console.log("POST REQUEST INCOMING");
-  setUserSelection(req.body, function(err, result){
+  var payload = req.body;
+  payload.user_id = req.session.user_id;
+  setUserSelection(payload, function(err, result){
     if (err) return res.status(500).json({result: "Server Error"});
     res.json(result);
   })
@@ -112,7 +139,20 @@ app.get("/getproperty/:property", function(req, res){
 });
 
 app.get("*", function(req, res){
-  res.sendFile(__dirname + "/public/index.html");
+  
+  if (!req.session.user_id) {
+    crypto.randomBytes(16, function(err, buffer) {
+      console.log("creating id");
+      req.session.user_id = buffer.toString('hex');
+      console.log(JSON.stringify(req.session));
+      res.sendFile(__dirname + "/public/index.html");
+    });
+  } else {
+    console.log("retaining id");
+    console.log(JSON.stringify(req.session));
+    res.sendFile(__dirname + "/public/index.html");
+  }
+
 });
 
 
