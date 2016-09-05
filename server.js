@@ -34,16 +34,18 @@ function setId(req, res, next){
   if (!req.session.user_id) {
     crypto.randomBytes(16, function(err, buffer) {
       console.log("creating id");
-      req.session.id = buffer.toString('hex');
+      req.session.user_id = buffer.toString('hex');
+      console.log(JSON.stringify(req.session));
       next();
     });
   } else {
     console.log("retaining id");
+    console.log(JSON.stringify(req.session));
     next();
   }
 };
 
-app.use("/", express.static(__dirname + "/public"));
+app.use("/", setId, express.static(__dirname + "/public"));
 
 app.use("/preview", express.static("/var/www/familystories/book_output"));
 
@@ -138,21 +140,9 @@ app.get("/getproperty/:property", function(req, res){
   });
 });
 
-app.get("*", function(req, res){
+app.get("*", setId, function(req, res){
   
-  if (!req.session.user_id) {
-    crypto.randomBytes(16, function(err, buffer) {
-      console.log("creating id");
-      req.session.user_id = buffer.toString('hex');
-      console.log(JSON.stringify(req.session));
-      res.sendFile(__dirname + "/public/index.html");
-    });
-  } else {
-    console.log("retaining id");
-    console.log(JSON.stringify(req.session));
-    res.sendFile(__dirname + "/public/index.html");
-  }
-
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 
