@@ -140,6 +140,10 @@ app.get("/getproperty/:property", function(req, res){
   });
 });
 
+app.get("/getCurrentId", function(req, res){
+  res.json(req.session.user_id);
+});
+
 app.get("*", setId, function(req, res){
   
   res.sendFile(__dirname + "/public/index.html");

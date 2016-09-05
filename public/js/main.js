@@ -215,19 +215,24 @@
     vm.submitPreview = function() {
       $http({
         method: "GET",
-        url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + vm.currentUser + "+LOW"
-      }).
-      then(function success(data){
-        //alert(JSON.stringify(data.data));
-        sharedProperties.setFolderName(data.data.result);
-        //alert(sharedProperties.getFolderName());
-        $('#myModal').on('hidden.bs.modal', function (e) {
-          $location.url('/getpreview');
-          $scope.$apply();
+        url: "/getCurrentId"
+      }).then(function(data){
+        $http({
+          method: "GET",
+          url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
+        }).
+        then(function success(data){
+          //alert(JSON.stringify(data.data));
+          sharedProperties.setFolderName(data.data.result);
+          //alert(sharedProperties.getFolderName());
+          $('#myModal').on('hidden.bs.modal', function (e) {
+            $location.url('/getpreview');
+            $scope.$apply();
+          });
+          $("#myModal").modal('hide');
+        }, function fail(data){
+          console.warn(data);
         });
-        $("#myModal").modal('hide');
-      }, function fail(data){
-        console.warn(data);
       });
     }
   }
