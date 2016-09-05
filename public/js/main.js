@@ -36,6 +36,22 @@
       }
     }
 
+    vm.getProperties = function() {
+      $http({
+        method: 'GET',
+        url: '/getproperty/MAX_AVATARS'
+      }).then(function(data){
+        console.log(JSON.stringify(data.data));
+        sharedProperties.setMaxAvatars(data.data[0].property_value);
+        $http({
+          method: 'GET',
+          url: '/getproperty/MAX_BOOK_PAGES'          
+        }).then(function(data){
+          sharedProperties.setMaxBookPages(data.data[0].property_value);
+        });
+      })
+    }
+
     vm.getSchema = function() {
     	$http({
         method: 'GET',
@@ -78,6 +94,7 @@
       });
     };
     vm.getSchema();
+    vm.getProperties();
 
     vm.postPerson = function(cb) {
       console.log("post person called");
@@ -198,14 +215,13 @@
     vm.submitPreview = function() {
       $http({
         method: "GET",
-        url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + vm.currentUser
+        url: "http://178.62.255.163:8080/FamilyStoryWebService/publish/" + vm.currentUser + "+LOW"
       }).
       then(function success(data){
         //alert(JSON.stringify(data.data));
         sharedProperties.setFolderName(data.data.result);
         //alert(sharedProperties.getFolderName());
         $('#myModal').on('hidden.bs.modal', function (e) {
-          alert("hidden!");
           $location.url('/getpreview');
           $scope.$apply();
         });

@@ -3,6 +3,8 @@
   angular.module('app')
     .service('sharedProperties', function () {
         var folderName = '';
+        var maxAvatars = 0;
+        var maxBookPages = 0;
 
         return {
             getFolderName: function () {
@@ -10,6 +12,18 @@
             },
             setFolderName: function(value) {
                 folderName = value;
+            },
+            getMaxAvatars: function () {
+                return maxAvatars;
+            },
+            setMaxAvatars: function(value) {
+                maxAvatars = value;
+            },
+            getMaxBookPages: function () {
+                return maxBookPages;
+            },
+            setMaxBookPages: function(value) {
+                maxBookPages = value;
             }
         };
     });

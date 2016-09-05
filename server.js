@@ -63,6 +63,12 @@ function setUserSelection(payload, cb) {
   });  
 }
 
+function getSystemProperty(property, cb) {
+  sequelize.query("call sp_get_system_properties('" + property + "')").then(function(data){
+    cb(data);
+  });
+}
+
 app.get("/getAdultMaleParts", function(req, res){
   getBodyParts("ADULT_MALE", function(err, result){
     if (err) {
@@ -96,6 +102,13 @@ app.post("/setUserSelection", function(req, res){
     if (err) return res.status(500).json({result: "Server Error"});
     res.json(result);
   })
+});
+
+app.get("/getproperty/:property", function(req, res){
+  console.log("GETTING PROPERTY...");
+  getSystemProperty(req.params.property, function(value){
+    res.json(value);
+  });
 });
 
 app.get("*", function(req, res){
