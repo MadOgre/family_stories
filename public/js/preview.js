@@ -1,8 +1,8 @@
 (function(){
   "use strict";
-  angular.module("app").controller("Preview", ['sharedProperties', Preview]);
+  angular.module("app").controller("Preview", ['sharedProperties', '$http', Preview]);
 
-  function Preview(sharedProperties) {
+  function Preview(sharedProperties, $http) {
     var vm = this;
     vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
     vm.finished = function() {
@@ -36,6 +36,13 @@
       return new Array(num);
     }
     vm.folderName = sharedProperties.getFolderName();
+
+      $http({
+        method: 'GET',
+        url: '/getPaymentInfo'
+      }).then(function(data){
+        vm.paymentinfo = data.data;
+      });
   }
 
 })();

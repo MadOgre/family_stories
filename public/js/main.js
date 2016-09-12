@@ -53,6 +53,15 @@
     }
 
     vm.getSchema = function() {
+
+      $http({
+        method: 'GET',
+        url: '/getCurrentProfile'
+      }).then(function success(data){
+        vm.currentUserProfile = data.data;
+      })
+
+
     	$http({
         method: 'GET',
         //url: '/schema.json'

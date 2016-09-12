@@ -4,8 +4,23 @@ var cors = require("cors");
 var bp = require("body-parser");
 var session = require("express-session");
 var crypto = require("crypto");
+var passport = require("passport");
+var PayPalStrategy = require("passport-paypal-openidconnect").Strategy;
+var request = require("request");
+var qs = require("querystring");
 
 var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
+
+var paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
+  'client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
+  'openid_client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
+  'openid_client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
+  'openid_redirect_uri': 'http://localhost:3000/auth/callback'
+});
 
 sequelize.authenticate().then(function(){
   console.log("SUCCESS");
@@ -30,17 +45,41 @@ app.use(session({
   
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new PayPalStrategy({
+    clientID: 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
+    clientSecret: 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
+    callbackURL: "callback",
+    authorizationURL: "https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize",
+    tokenURL: "https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/tokenservice",
+    profileURL: "https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/userinfo",
+    //passReqInCallback: true
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // User.findOrCreate({ paypalId: profile.id }, function (err, user) {
+    //   return done(err, user);
+    // });
+     console.log("CALLBACK CALLED!");
+     req.session.passport.profile = profile;
+     console.log("HEADHEADHEAD: ", profile);
+    return done(null, profile);
+  }
+));
+
 function setId(req, res, next){
   if (!req.session.user_id) {
     crypto.randomBytes(16, function(err, buffer) {
       console.log("creating id");
       req.session.user_id = buffer.toString('hex');
-      console.log(JSON.stringify(req.session));
+  //    console.log(JSON.stringify(req.session));
       next();
     });
   } else {
     console.log("retaining id");
-    console.log(JSON.stringify(req.session));
+ //   console.log(JSON.stringify(req.session));
     next();
   }
 };
@@ -142,6 +181,84 @@ app.get("/getproperty/:property", function(req, res){
 
 app.get("/getCurrentId", function(req, res){
   res.json(req.session.user_id);
+});
+
+app.get("/getCurrentProfile", function(req, res){
+  res.json(req.session.profile || null);
+});
+
+// app.get("/auth", function(req, res, next){
+//   req.session.profile = "hello";
+//   next();
+// });
+
+app.get("/buy", function(req, res){
+  var payload = {
+    METHOD: "SetExpressCheckout",
+    PAYMENTREQUEST_0_CURRENCYCODE: "USD",
+    USER: "msemko-facilitator_api1.gmail.com",
+    PWD: "YEGHAJV6CYCVWV3S",
+    PAYMENTREQUEST_0_AMT: 10,
+    RETURNURL: "http://localhost:3000/confirmpurchase",
+    SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
+    VERSION: "106.0",
+    PAYMENTREQUEST_0_PAYMENTACTION: "Sale",
+    CANCELURL: "http://localhost:3000",
+    SOLUTIONTYPE: "Sole"
+  };
+  request('https://api-3t.sandbox.paypal.com/nvp?' + qs.stringify(payload), function (error, response, body) {
+    if (error) res.json(error);
+    if (!error && response.statusCode == 200) {
+      res.redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=" + qs.parse(body)["TOKEN"]);
+    }
+  })
+});
+
+app.get("/confirmpurchase", function(req, res){
+  var payload = {
+    METHOD: "GetExpressCheckoutDetails",
+    USER: "msemko-facilitator_api1.gmail.com",
+    PWD: "YEGHAJV6CYCVWV3S",
+    SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
+    VERSION: "106.0",
+    TOKEN: req.query.token
+  };
+  request("https://api-3t.sandbox.paypal.com/nvp?" + qs.stringify(payload), function(error, response, body){
+    req.session.paymentinfo = qs.parse(body);
+    res.redirect("http://localhost:3000/getpreview");
+  });  
+});
+
+app.get("/getPaymentInfo", function(req, res){
+  if (req.session.paymentinfo) {
+    res.json(req.session.paymentinfo)
+  } else {
+    res.json(null);
+  }
+});
+
+app.get("/auth", function(req, res){
+  console.log("AUTH HIT");
+  var url = paypal.openIdConnect.authorizeUrl({'scope': 'openid profile email'});
+  res.redirect(url);
+});
+
+app.get('/auth/callback', function(req, res) {
+  var code = req.query.code;
+    paypal.openIdConnect.tokeninfo.create(code, function(error, tokeninfo){
+      paypal.openIdConnect.userinfo.get(tokeninfo.access_token, function(error, userinfo){
+        //res.json(userinfo);
+        req.session.profile = userinfo;
+        res.redirect("http://localhost:3000");
+      });
+    });  
+    // console.log("PROFILE", req.session.passport);
+    // // Successful authentication, redirect home.
+    // res.redirect('/');
+  });
+
+app.get("/login", function(req, res){
+  res.cookie('user_profile' ,randomNumber, { maxAge: 900000, httpOnly: true })
 });
 
 app.get("*", setId, function(req, res){

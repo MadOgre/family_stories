@@ -8,6 +8,27 @@
       <div class="flipbook">
         <img ng-src="{{'http://178.62.255.163:3000/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
       </div>
+      <a href="http://localhost:3000/buy" class="btn btn-block btn-primary btn-large">Order Now</a>
+      <div ng-if="preview.paymentinfo">
+        <h2>Customer Info</h2>
+        <p><strong>Name: </strong>{{preview.paymentinfo.FIRSTNAME + " " + preview.paymentinfo.LASTNAME}}</p>
+        <p><strong>Email: </strong>{{preview.paymentinfo.EMAIL}}</p>
+        <hr>
+        <h2>Amounts</h2>
+        <p><strong>Subtotal: </strong>{{preview.paymentinfo.AMT | currency}}</p>
+        <p><strong>Shipping &amp; Handling: </strong>{{+preview.paymentinfo.SHIPPINGAMT + +preview.paymentinfo.HANDLINGAMT | currency}}</p>
+        <p><strong>Total: </strong>{{+preview.paymentinfo.AMT + +preview.paymentinfo.SHIPPINGAMT + +preview.paymentinfo.HANDLINGAMT | currency}}</p>
+        <hr>
+        <h2>Shipping Address</h2>
+        {{preview.paymentinfo.SHIPTONAME}}<br>
+        {{preview.paymentinfo.SHIPTOSTREET}}<br>
+        {{preview.paymentinfo.SHIPTOCITY}}<br>
+        {{preview.paymentinfo.SHIPTOSTATE}}<br>
+        {{preview.paymentinfo.SHIPTOZIP}}<br>
+        {{preview.paymentinfo.SHIPTOCOUNTRYNAME}}</p>
+        <p><strong>Address Confirmed: </strong>{{preview.paymentinfo.ADDRESSSTATUS === "Confirmed" ? "YES" : "NO"}}</p>
+        <a href="" class="btn btn-lg btn-success btn-block">Confirm Payment</a>
+      </div>
     </div>
   </div>
 </div>
