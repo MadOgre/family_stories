@@ -10,6 +10,8 @@ var crypto = require("crypto");
 var request = require("request");
 var qs = require("querystring");
 
+var config = require("./config.js");
+
 var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
 
 var paypal = require('paypal-rest-sdk');
@@ -20,7 +22,7 @@ paypal.configure({
   'client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
   'openid_client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
   'openid_client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
-  'openid_redirect_uri': 'http://localhost:3000/auth/callback'
+  'openid_redirect_uri': config.base_url + '/auth/callback'
 });
 
 sequelize.authenticate().then(function(){
@@ -200,11 +202,11 @@ app.get("/buy", function(req, res){
     USER: "msemko-facilitator_api1.gmail.com",
     PWD: "YEGHAJV6CYCVWV3S",
     PAYMENTREQUEST_0_AMT: 10,
-    RETURNURL: "http://localhost:3000/confirmpurchase",
+    RETURNURL: config.base_url + "/confirmpurchase",
     SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
     VERSION: "106.0",
     PAYMENTREQUEST_0_PAYMENTACTION: "Sale",
-    CANCELURL: "http://localhost:3000",
+    CANCELURL: config.base_url,
     SOLUTIONTYPE: "Sole"
   };
   request('https://api-3t.sandbox.paypal.com/nvp?' + qs.stringify(payload), function (error, response, body) {

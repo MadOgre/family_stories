@@ -56,4 +56,6 @@ jspm_packages
 
 # app temp files
 
+config.js
+
 !public/img/common/*
