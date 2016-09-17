@@ -1,6 +1,6 @@
-<h1>Preview Pending...</h1>
+<h1 ng-if="!preview.receipt">Preview Pending...</h1>
 
-<h3>Folder Name: {{preview.folderName}}</h3>
+<h3 ng-if="!preview.receipt">Folder Name: {{preview.folderName}}</h3>
 
 <div class="container">
   <div class="row">
@@ -8,8 +8,8 @@
       <div class="flipbook">
         <img ng-src="{{'http://178.62.255.163:3000/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
       </div>
-      <a href="http://localhost:3000/buy" class="btn btn-block btn-primary btn-large">Order Now</a>
-      <div ng-if="preview.paymentinfo">
+      <a ng-if="!preview.receipt" href="http://localhost:3000/buy" class="btn btn-block btn-primary btn-large">Order Now</a>
+      <div ng-if="preview.paymentinfo && !preview.receipt">
         <h2>Customer Info</h2>
         <p><strong>Name: </strong>{{preview.paymentinfo.FIRSTNAME + " " + preview.paymentinfo.LASTNAME}}</p>
         <p><strong>Email: </strong>{{preview.paymentinfo.EMAIL}}</p>
@@ -27,7 +27,12 @@
         {{preview.paymentinfo.SHIPTOZIP}}<br>
         {{preview.paymentinfo.SHIPTOCOUNTRYNAME}}</p>
         <p><strong>Address Confirmed: </strong>{{preview.paymentinfo.ADDRESSSTATUS === "Confirmed" ? "YES" : "NO"}}</p>
-        <a href="" class="btn btn-lg btn-success btn-block">Confirm Payment</a>
+        <a href="" ng-click="preview.finalizepayment()" class="btn btn-lg btn-success btn-block">Confirm Payment</a>
+      </div>
+      <div ng-if="preview.receipt">
+        <h2>Thank you for your purchase</h2>
+        <h3>Your order will arrive shortly</h3>
+        <h3>Your order number is: {{preview.receipt.PAYMENTINFO_0_TRANSACTIONID}}</h3>
       </div>
     </div>
   </div>

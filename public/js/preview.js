@@ -5,6 +5,7 @@
   function Preview(sharedProperties, $http) {
     var vm = this;
     vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
+    vm.receipt = null;
     vm.finished = function() {
     $('.flipbook').turn({
           // Width
@@ -31,10 +32,21 @@
     );
     $(".flipbook").turn('peel', 'tl');
     $(".flipbook").turn('peel', 'tr');
-    }
+    };
     vm.imageList = function(num) {
       return new Array(num);
-    }
+    };
+
+    vm.finalizepayment = function() {
+      $http({
+        method: 'GET',
+        url: '/finalizetransaction'
+      }).then(function(data){
+        vm.receipt = data.data;
+        console.log(JSON.stringify(data.data));
+        vm.paymentinfo = null;
+      });
+    };
     vm.folderName = sharedProperties.getFolderName();
 
       $http({
