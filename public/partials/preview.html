@@ -8,7 +8,7 @@
       <div class="flipbook">
         <img ng-src="{{'http://178.62.255.163:3000/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
       </div>
-      <a ng-if="!preview.receipt" href="http://localhost:3000/buy" class="btn btn-block btn-primary btn-large">Order Now</a>
+      <a ng-if="!preview.receipt" href="/buy" class="btn btn-block btn-primary btn-large">Order Now</a>
       <div ng-if="preview.paymentinfo && !preview.receipt">
         <h2>Customer Info</h2>
         <p><strong>Name: </strong>{{preview.paymentinfo.FIRSTNAME + " " + preview.paymentinfo.LASTNAME}}</p>
