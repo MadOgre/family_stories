@@ -13,6 +13,11 @@
         controller: "Preview",
         controllerAs: "preview"
       })
+      .when("/betaview", {
+        templateUrl: "/partials/mainV2.html",
+        controller: "Main",
+        controllerAs: "main"
+      })
       .otherwise({
         redirectTo: '/'
       });
