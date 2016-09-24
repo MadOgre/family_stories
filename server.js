@@ -111,7 +111,7 @@ function setId(req, res, next){
   }
 }
 
-//app.use("/", setId, express.static(__dirname + "/public"));
+app.use("/", setId, express.static(__dirname + "/public"));
 
 app.use("/preview", express.static("/var/www/familystories/book_output"));
 
