@@ -25,8 +25,10 @@ $susy: (
   gutters: 0
 );
 
-*{
-	box-sizing: border-box;
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 // Import SCSS Modules
@@ -41,3 +43,93 @@ $raleway: 'Raleway', tahoma, sans-serif;
 @import "fixes.scss";
 @import "common.scss";
 
+//our css
+#creationTool{
+    overflow:hidden;
+}
+#topPartWrapper {
+    overflow: hidden;
+    position: relative;
+}
+#topPartWrapper > input{
+    border: 1px solid #30a6c3;
+    color: #30a6c3;
+    font-weight: 700;
+    margin: 0 auto;
+    text-align: center;
+    width: 56.2%;
+}
+
+#topPartWrapper > a {
+    position: absolute;
+    right: 20px;
+}
+.character-wrapper{
+    overflow:hidden;
+}
+
+#tabs,#slider{
+    float: left;
+    overflow: hidden;
+    width: 50%;
+}
+
+#tabs > ul,#tabs > .tab-pane {
+    float: left;
+    width:80%;
+}
+#tabs > ul {
+    width:20%;
+    margin: 0;
+    padding: 0;
+}
+#tabs .tab-pane {
+    width:80%;
+}
+#tabs > .tab-pane.active {
+    display:block;
+}
+#tabs > .tab-pane.ng-scope {
+    display: none;
+}
+
+.bottom-btn{
+    display:inline-block;
+}
+
+.avatar-selection{
+    overflow:hidden;
+}
+.avatar-selection > li{
+    float:left;
+}
+ul{
+    list-style:none;
+}
+
+.avatar-selection .prev-btn{
+
+}
+.avatar-selection .next-btn{
+
+}
+
+#bottomPartWrapper{
+    border-top:1px solid #30a6c3;
+}
+
+.steps-menu{
+    overflow:hidden;
+}
+
+.steps-menu > li{
+    float:left;
+}
+
+#bottomPartWrapper .col-md-4 a{
+    display:block;
+}
+
+#tabs .ng-pristine.ng-untouched.ng-valid.ng-scope.ng-not-empty > input[type="radio"] {
+    display: none;
+}

@@ -1,7 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,300);
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 20px;
+  width: 100%;
+  -ms-transform-origin: 50% 0;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0; }
 
 body {
   -webkit-tap-highlight-color: transparent;
@@ -12,7 +22,7 @@ body {
   padding-top: 0.1px;
   /* collapsing margins fix */
   -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 .clearfix {
   clear: both; }
@@ -45,16 +55,17 @@ body {
 
 body {
   font-size: 16px;
-  font-family: Verdana, sans-serif; }
+  /*font-family: Verdana, sans-serif;*/
+  font-family: 'Source Sans Pro', sans-serif; }
 
 .form-section-heading {
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 10px;
+  -moz-user-select: none;
+  -ms-user-select: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none; }
+  user-select: none; }
 
 .form-section {
   margin-bottom: 30px; }
@@ -85,9 +96,9 @@ body {
 .arrow {
   position: absolute;
   top: 258px;
+  -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   cursor: pointer;
   height: 80px; }
   .arrow i {
@@ -117,12 +128,100 @@ body {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap; }
+  flex-wrap: wrap; }
 
 .preview-label {
   text-align: center; }
 
 .flipbook {
   margin: 0 auto; }
+
+/*our css*/
+::-webkit-input-placeholder {
+  opacity: 1 !important; }
+
+::-moz-placeholder {
+  opacity: 1 !important; }
+
+:-ms-input-placeholder {
+  opacity: 1 !important; }
+
+:-moz-placeholder {
+  opacity: 1 !important; }
+
+.clear-fix {
+  clear: both; }
+
+#creationTool {
+  overflow: hidden; }
+
+#topPartWrapper {
+  overflow: hidden;
+  position: relative; }
+
+#topPartWrapper > input {
+  border: 1px solid #30a6c3;
+  color: #30a6c3;
+  font-weight: 700;
+  margin: 0 auto;
+  text-align: center;
+  width: 56.2%; }
+
+#topPartWrapper > a {
+  position: absolute;
+  right: 20px; }
+
+.character-wrapper {
+  overflow: hidden; }
+
+#tabs, #slider {
+  float: left;
+  overflow: hidden;
+  width: 50%; }
+
+#tabs > ul, #tabs > .tab-pane {
+  float: left;
+  width: 80%; }
+
+#tabs > ul {
+  width: 20%;
+  margin: 0;
+  padding: 0; }
+
+#tabs .tab-pane {
+  width: 80%; }
+
+#tabs > .tab-pane.active {
+  display: block; }
+
+#tabs > .tab-pane.ng-scope {
+  display: none; }
+
+.bottom-btn {
+  display: inline-block; }
+
+.avatar-selection {
+  overflow: hidden; }
+
+.avatar-selection > li {
+  float: left; }
+
+ul {
+  list-style: none; }
+
+#bottomPartWrapper {
+  border-top: 1px solid #30a6c3; }
+
+.steps-menu {
+  overflow: hidden; }
+
+.steps-menu > li {
+  float: left; }
+
+#bottomPartWrapper .col-md-4 a {
+  display: block; }
+
+#tabs .ng-pristine.ng-untouched.ng-valid.ng-scope.ng-not-empty > input[type="radio"] {
+  display: none; }

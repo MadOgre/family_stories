@@ -40,14 +40,18 @@
 
 body {
   font-size: 16px;
-  font-family: Verdana, sans-serif;
+  /*font-family: Verdana, sans-serif;*/
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .form-section-heading {
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  user-select: none;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .form-section {
@@ -88,16 +92,21 @@ body {
 }
 
 .arrow {
-  position: absolute;
-  top: 258px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  height: 80px;
-  i {
-    line-height: 80px;
-    font-size: 60px;
-  }
- } 
+    position: absolute;
+    top: 258px;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+    height: 80px;
+
+    i {
+        line-height: 80px;
+        font-size: 60px;
+    }
+} 
 
  .arrow-left {
   left: 0px;
@@ -121,9 +130,11 @@ body {
 }
 
 .container-fluid > .row {
-  display: flex !important;
-  justify-content: center;
-  flex-wrap: wrap;
+    display: flex !important;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .preview-label {
@@ -132,4 +143,22 @@ body {
 
 .flipbook {
   margin: 0 auto;
+}
+
+/*our css*/
+::-webkit-input-placeholder { 
+  opacity: 1 !important;
+}
+::-moz-placeholder { 
+  opacity: 1 !important;
+}
+:-ms-input-placeholder {
+  opacity: 1 !important;
+}
+:-moz-placeholder { 
+  opacity: 1 !important;
+}
+
+.clear-fix{
+    clear:both;
 }
