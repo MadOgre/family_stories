@@ -19,6 +19,7 @@
     "mysql": "^2.11.1",
     "npm": "^3.10.7",
     "passport": "^0.3.2",
+    "passport-google-openidconnect": "0.0.4",
     "passport-paypal-openidconnect": "^0.1.1",
     "paypal-rest-sdk": "^1.6.9",
     "request": "^2.74.0",

@@ -5,8 +5,9 @@ var cors = require("cors");
 var bp = require("body-parser");
 var session = require("express-session");
 var crypto = require("crypto");
-//var passport = require("passport");
+var passport = require("passport");
 //var PayPalStrategy = require("passport-paypal-openidconnect").Strategy;
+var GoogleStrategy = require("passport-google-openidconnect").Strategy;
 var request = require("request");
 var qs = require("querystring");
 
@@ -48,8 +49,31 @@ app.use(session({
   
 }));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new GoogleStrategy({
+    clientID: "988801345417-5rp5jki7iefhnfgpdv7t94j1hn6vp1uo.apps.googleusercontent.com",
+    clientSecret: "-dFeF4CVjud6bs_-pmxIx6qa",
+    callbackURL: config.base_url + "/authgoogle/callback"
+  },
+  function(iss, sub, profile, accessToken, refreshToken, done) {
+    console.log("CALLED!");
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //   return done(err, user);
+    // });
+    return done(null, profile);
+    //return done(user);
+  }
+));
 
 
 // passport.use(new PayPalStrategy({
@@ -138,6 +162,12 @@ function getSystemProperty(property, cb) {
   });
 }
 
+function saveUserProfile(email, source, userName, external_id, cb) {
+  sequelize.query("call sp_iu_user('" + email + "','" + source + "','" + userName + "','" + external_id + "')").then(function(data){
+    cb(data);
+  });
+}
+
 app.get("/getAdultMaleParts", function(req, res){
   getBodyParts("ADULT_MALE", function(err, result){
     if (err) {
@@ -145,6 +175,12 @@ app.get("/getAdultMaleParts", function(req, res){
     }
     res.json(result);
   });
+});
+
+app.get("/saveuser", function(req, res){
+  saveUserProfile(req.query.email, req.query.source, req.query.userName, req.query.external_id, function(data){
+    res.json(data);
+  })
 });
 
 app.get("/getAdultfemaleParts", function(req, res){
@@ -186,9 +222,21 @@ app.get("/getCurrentId", function(req, res){
   res.json(req.session.user_id);
 });
 
-app.get("/getCurrentProfile", function(req, res){
-  res.json(req.session.profile || null);
+app.get("/getCurrentProfile", function(req, res) {
+  //res.json(req.session.profile)
+  if (req.session.profile) {
+    res.json(req.session.profile);
+  } else if (req.session.passport) {
+    var profile = req.session.passport.user._json;
+    req.session.profile = profile;
+    res.json(req.session.profile);
+  } else {
+    res.json(null);
+  }
 });
+  //res.json(req.session.profile || req);req, res){
+
+//});
 
 // app.get("/auth", function(req, res, next){
 //   req.session.profile = "hello";
@@ -273,6 +321,33 @@ app.get("/finalizetransaction", function(req, res){
   });   
 });
 
+app.get("/authgoogle", passport.authenticate('google-openidconnect', { scope: ['email', 'profile']}));
+
+app.get('/authgoogle/callback', 
+passport.authenticate('google-openidconnect', {scope: ['email', 'profile'], failureRedirect: '/login' }),
+function(req, res) {
+  //console.log("I'M HERE");
+  //console.log("SESSION: " + JSON.stringify(req.session));
+  //console.log("PASSPORT: " + JSON.stringify(req.session.passport));
+  saveUserProfile(req.session.passport.user._json.email, "Google", req.session.passport.user._json.name, req.session.passport.user._json.sub, function(){
+    res.redirect("/");
+  });
+});
+
+
+// app.get("/getCurrentProfile", function(req, res) {
+//   //res.json(req.session.profile)
+//   if (req.session.profile) {
+//     res.json(req.session.profile);
+//   } else if (req.session.passport) {
+//     var profile = req.session.passport.user._json;
+//     req.session.profile = profile;
+//     res.json(req.session.profile);
+//   } else {
+//     res.json(null);
+//   }
+// });
+
 app.get("/auth", function(req, res){
   console.log("AUTH HIT");
   var url = paypal.openIdConnect.authorizeUrl({'scope': 'openid profile email'});
@@ -280,12 +355,17 @@ app.get("/auth", function(req, res){
 });
 
 app.get('/auth/callback', function(req, res) {
+  //console.log("BACON1!");
   var code = req.query.code;
     paypal.openIdConnect.tokeninfo.create(code, function(error, tokeninfo){
       paypal.openIdConnect.userinfo.get(tokeninfo.access_token, function(error, userinfo){
         //res.json(userinfo);
         req.session.profile = userinfo;
-        res.redirect("/");
+        saveUserProfile(userinfo.email, "PayPal", userinfo.name, userinfo.user_id, function(){
+          res.redirect("/");
+        });
+        //console.log("bacon: " + JSON.stringify(userinfo));
+        
       });
     });  
     // console.log("PROFILE", req.session.passport);

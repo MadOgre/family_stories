@@ -6,7 +6,8 @@
 		    <label for="user-id-input" class="form-section-heading">User ID</label>
 		    <input type="text" class="form-control input-lg" id="user-id-input" placeholder="user001" ng-model="main.currentUser" required>
 		  </div> -->
-		  <p ng-if="!main.currentUserProfile">You are not logged in, log in now with <a href="http://localhost:3000/auth">PayPal</a></p>
+		  <p ng-if="!main.currentUserProfile">You are not logged in<br>
+		  log in now with <a href="auth" target="_self">PayPal</a> or <a href="/authgoogle" target="_self">Google</a></p>
 		  <div ng-if="main.currentUserProfile">
 		  	<p>Logged in as:</p>
 		  	<p>Name: {{main.currentUserProfile.name}}</p>
