@@ -22,8 +22,9 @@
     "passport-google-openidconnect": "0.0.4",
     "passport-paypal-openidconnect": "^0.1.1",
     "paypal-rest-sdk": "^1.6.9",
-    "request": "^2.74.0",
-    "sequelize": "^3.24.1"
+    "request": "^2.75.0",
+    "sequelize": "^3.24.1",
+    "t": "^0.5.1"
   },
   "devDependencies": {
     "browser-sync": "^2.13.0",

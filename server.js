@@ -49,6 +49,8 @@ app.use(session({
   
 }));
 
+app.use("/proxy", require("./proxy_controller.js"));
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
