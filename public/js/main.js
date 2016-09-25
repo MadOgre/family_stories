@@ -37,7 +37,33 @@
     };
 
     vm.loadSavedAvatars = function() {
-
+      $http({
+        method: 'GET',
+        url: '/testroute'
+      }).then(function(data){
+        //set avatar defaults
+        vm.totalAvatars = data.data.length;
+        console.log("DATA-LENGTH: " + data.data.length);
+        vm.results = [];
+        var i = 0;
+        for (; i < vm.totalAvatars; ++i) {
+          vm.results.push({
+            name: data.data[i].avatar_name,
+            images: data.data[i].image_id_list.split(",")
+          });
+        }
+        for (; i < vm.maxAvatars; ++i) {
+          vm.results.push({
+            name: "",
+            images: avatarDefaults.slice()
+          });
+        }
+        vm.currentAvatarIndex = 1;
+        updateCurrentAvatar();
+        if (data.data.length > 0) {
+          vm.newAvatar = false;
+        }
+      });
     };
 
     vm.getProperties = function() {
@@ -108,6 +134,7 @@
     };
     vm.getSchema();
     vm.getProperties();
+    vm.loadSavedAvatars();
 
     vm.postPerson = function(cb) {
       console.log("post person called");
