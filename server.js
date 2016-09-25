@@ -170,6 +170,14 @@ function saveUserProfile(email, source, userName, external_id, cb) {
   });
 }
 
+function getUserSavedAvatars(user_id, cb) {
+  sequelize.query("call sp_get_user_avatar('" + user_id + "')").then(function(data){
+    cb(null, data);
+  }).catch(function(err){
+    cb(err);
+  });
+}
+
 app.get("/getAdultMaleParts", function(req, res){
   getBodyParts("ADULT_MALE", function(err, result){
     if (err) {
@@ -182,7 +190,7 @@ app.get("/getAdultMaleParts", function(req, res){
 app.get("/saveuser", function(req, res){
   saveUserProfile(req.query.email, req.query.source, req.query.userName, req.query.external_id, function(data){
     res.json(data);
-  })
+  });
 });
 
 app.get("/getAdultfemaleParts", function(req, res){
@@ -378,6 +386,12 @@ app.get('/auth/callback', function(req, res) {
 // app.get("/login", function(req, res){
 //   res.cookie('user_profile' , randomNumber, { maxAge: 900000, httpOnly: true });
 // });
+
+app.get("/testroute", function(req, res){
+  getUserSavedAvatars("103669883438700107732", function(err, data){
+    res.json(data);
+  });
+});
 
 app.get("*", setId, function(req, res){
   
