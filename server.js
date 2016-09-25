@@ -164,9 +164,11 @@ function getSystemProperty(property, cb) {
   });
 }
 
-function saveUserProfile(email, source, userName, external_id, cb) {
-  sequelize.query("call sp_iu_user('" + email + "','" + source + "','" + userName + "','" + external_id + "')").then(function(data){
+function saveUserProfile(email, source, userName, external_id, dummy_id, cb) {
+  sequelize.query("call sp_iu_user('" + email + "','" + source + "','" + userName + "','" + external_id + "','" + dummy_id + "')").then(function(data){
     cb(data);
+  }).catch(function(err){
+    console.log(err);
   });
 }
 
@@ -188,7 +190,7 @@ app.get("/getAdultMaleParts", function(req, res){
 });
 
 app.get("/saveuser", function(req, res){
-  saveUserProfile(req.query.email, req.query.source, req.query.userName, req.query.external_id, function(data){
+  saveUserProfile(req.query.email, req.query.source, req.query.userName, req.query.external_id, req.session.user_id || null, function(data){
     res.json(data);
   });
 });
@@ -336,14 +338,11 @@ app.get("/authgoogle", passport.authenticate('google-openidconnect', { scope: ['
 app.get('/authgoogle/callback', 
 passport.authenticate('google-openidconnect', {scope: ['email', 'profile'], failureRedirect: '/login' }),
 function(req, res) {
-  //console.log("I'M HERE");
-  //console.log("SESSION: " + JSON.stringify(req.session));
-  //console.log("PASSPORT: " + JSON.stringify(req.session.passport));
-  saveUserProfile(req.session.passport.user._json.email, "Google", req.session.passport.user._json.name, req.session.passport.user._json.sub, function(){
+  saveUserProfile(req.session.passport.user._json.email, "Google", req.session.passport.user._json.name, req.session.passport.user._json.sub, req.session.user_id || null, function(){
+    req.session.user_id = req.session.passport.user._json.sub;
     res.redirect("/");
   });
 });
-
 
 // app.get("/getCurrentProfile", function(req, res) {
 //   //res.json(req.session.profile)
