@@ -231,7 +231,6 @@
           url: "/proxy/http://178.62.255.163:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
         }).
         then(function success(data){
-          alert("GOT FOLDER!");
           //alert(JSON.stringify(data.data));
           sharedProperties.setFolderName(data.data.result);
           //alert(sharedProperties.getFolderName());

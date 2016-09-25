@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="flipbook">
-        <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
+        <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
       </div>
       <a ng-if="!preview.receipt" href="/buy" target="_self" class="btn btn-block btn-primary btn-large">Order Now</a>
       <div ng-if="preview.paymentinfo && !preview.receipt">
