@@ -34,7 +34,11 @@
       if (vm.newAvatar) {
         vm.prevAvatar();
       }
-    }
+    };
+
+    vm.loadSavedAvatars = function() {
+
+    };
 
     vm.getProperties = function() {
       $http({
@@ -49,8 +53,8 @@
         }).then(function(data){
           sharedProperties.setMaxBookPages(data.data[0].property_value);
         });
-      })
-    }
+      });
+    };
 
     vm.getSchema = function() {
 
@@ -59,7 +63,7 @@
         url: '/getCurrentProfile'
       }).then(function success(data){
         vm.currentUserProfile = data.data;
-      })
+      });
 
 
     	$http({
@@ -112,7 +116,7 @@
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
-      }
+      };
       $http({
         method: 'POST',
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/setUserSelection',
@@ -124,7 +128,7 @@
         data: response
       }).then(function(data){
         console.log("POST request finished");
-        if (data.data.result = "SUCCESS") {
+        if (data.data.result === "SUCCESS") {
           vm.results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
           vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
           if (cb) {
@@ -139,7 +143,7 @@
         console.log(vm.avatarNames);
         console.log(vm.results);
       });
-    }
+    };
 
     function advanceAvatar() {
       vm.newAvatar = false;
@@ -185,7 +189,7 @@
       } else {
         advanceAvatar();
       }
-    }
+    };
 
     vm.prevAvatar = function() {
       console.log("FIRED LEFT!");
@@ -219,7 +223,7 @@
           retractAvatar();
         }
       }
-    }
+    };
 
     vm.submitPreview = function() {
       $http({
@@ -234,7 +238,7 @@
           //alert(JSON.stringify(data.data));
           sharedProperties.setFolderName(data.data.result);
           //alert(sharedProperties.getFolderName());
-          $('#myModal').on('hidden.bs.modal', function (e) {
+          $('#myModal').on('hidden.bs.modal', function () {
             $location.url('/getpreview');
             $scope.$apply();
           });
@@ -243,6 +247,6 @@
           console.warn(data);
         });
       });
-    }
+    };
   }
 }());
