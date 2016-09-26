@@ -387,7 +387,7 @@ app.get('/auth/callback', function(req, res) {
 // });
 
 app.get("/testroute", function(req, res){
-  getUserSavedAvatars("103669883438700107732", function(err, data){
+  getUserSavedAvatars(req.session.user_id, function(err, data){
     res.json(data);
   });
 });
