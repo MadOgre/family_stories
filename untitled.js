@@ -42,23 +42,15 @@
         url: '/testroute'
       }).then(function(data){
         //set avatar defaults
-        vm.totalAvatars = data.data.length || 1;
-        console.log("DATA-LENGTH: " + data.data.length);  
+        vm.totalAvatars = data.data.length;
+        console.log("DATA-LENGTH: " + data.data.length);
+        vm.results = [];
         var i = 0;
-        for (; i < vm.maxAvatars; ++i) {
-          vm.results[i] = {
-            name: "",
-            images: avatarDefaults.slice()
-          };
-        }
-        i = 0;
-        if (data.data.length !== 0) {
-          for (; i < vm.totalAvatars; ++i) {
-            vm.results[i] = {
-              name: data.data[i].avatar_name,
-              images: data.data[i].image_id_list.split(",")
-            };
-          }
+        for (; i < vm.totalAvatars; ++i) {
+          vm.results.push({
+            name: data.data[i].avatar_name,
+            images: data.data[i].image_id_list.split(",")
+          });
         }
         for (; i < vm.maxAvatars; ++i) {
           vm.results.push({
@@ -100,7 +92,7 @@
       });
 
 
-    	$http({
+      $http({
         method: 'GET',
         //url: '/schema.json'
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/getAdultMaleParts'
@@ -108,7 +100,7 @@
         url: '/getAdultMaleParts'
       }).then(function success(data){
         //save all data in vm.schema
-      	vm.schema = data.data;
+        vm.schema = data.data;
 
         vm.schema.forEach(function(item){
           //save the first value for defaults
@@ -135,7 +127,7 @@
         updateCurrentAvatar();
 
         //set loaded flag
-      	vm.isLoaded = true;
+        vm.isLoaded = true;
       }, function fail(data){
         console.warn(data);
       });
@@ -163,7 +155,7 @@
         data: response
       }).then(function(data){
         console.log("POST request finished");
-        if (data.data.result === "success") {
+        if (data.data.result === "SUCCESS") {
           vm.results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
           vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
           if (cb) {
