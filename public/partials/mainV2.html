@@ -14,9 +14,9 @@
         <!-- MGS: family name is not implemented yet - style as desired -->
         <section id="topPartWrapper" class="container"><!--added class-->
             <!-- family's name -->
-            <input type="text" name="" id="" placeholder="THE TOKOUSBALIDES" />
+            <input type="text" name="" id="" placeholder="FAMILY NAME" value="THE TOKOUSBALIDES" />
             <!-- help button -->
-            <a href="javascript:void(0);">?</a>
+            <a href="javascript:void(0);" class="q-circle">?</a>
         </section><!-- end id:topPartWrapper -->
         <div class="character-wrapper container"><!--added div-->
             <!-- start tab section -->
@@ -40,15 +40,17 @@
                 <div id="nameGender" class="tab-pane active">
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <h3>KID OR ADULT?</h3>
-                    <select>
-                        <option>Adult</option>
-                        <option>Kid</option>
-                    </select>
+                    <div class="select-css">
+                        <select>
+                            <option>Adult</option>
+                            <option>Kid</option>
+                        </select>
+                    </div>
                     <h3>KID'S NAME</h3>
                     <!-- MGS: this input field was bound to angular -->
-                    <input type="text" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
-                    <a href="javascript:void(0);">?</a>
-                    <div>Error message</div>
+                    <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" required autofocus="true">
+                    <a href="javascript:void(0);" class="q-circle small">?</a>
+                    <div class="error-msg">Error message</div>
                     <h3>KID'S GENDER</h3>
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <a href="javascript:void(0);" class="selected">woman</a>
@@ -58,7 +60,7 @@
                 <div class="tab-pane" ng-repeat="property in main.schema">
                     <h3>{{property.image_type_label}}</h3>
                     <label ng-repeat="value in property.values" class="" ng-model="main.currentAvatar.images[$parent.$index]">
-                        <img height="60" ng-src="{{value.image_location}}">
+                        <img height="" ng-src="{{value.image_location}}">
                         <input type="radio" value="value.image_id" name="radio_{{property.image_type}}"></input>
                     </label>
                 </div>
@@ -92,8 +94,9 @@
                 <!-- bottom buttons -->
                 <!-- MGS: The buttons are not implemented yet, in the future the submit button will redirect to the "preview" view -->
                 <div class="clear-fix"></div><!--added div-->
-                <a href="javascript:void(0);" class="bottom-btn">Clear All</a><!--added class-->
                 <a href="" ng-click="main.submitPreview()" class="bottom-btn">Save Changes</a><!--added class-->
+                <a href="javascript:void(0);" class="bottom-btn">Clear All</a><!--added class-->
+                <div class="clearfix"></div>
             </section><!-- end id:tabs -->
             <!-- end tab section -->
             <!-- MGS: The slider is tricky. Each li will actually contain several layered images, the transparency as well as each of the body parts overlaying one another (position-absolute), you can style them as if they were one image -->
@@ -119,50 +122,53 @@
                     <!-- not implemented yet but will function predictably -->
                     <li>
                         <img src="slide4.jpg" />
-                        <div>+</div>
-                        <div>YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
+                        <div class="q-circle big">+</div>
+                        <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
                     </li>
                 </ul>
                 <!-- slider navigation & input -->
                 <ul class="avatar-selection"><!--added class-->
                     <li>
-                        <a class="prev-btn" href="" ng-click="main.prevAvatar()"><</a><!--added class-->
+                        <a class="prev-btn inactive" href="" ng-click="main.prevAvatar()"></a><!--added class-->
                     </li>
                     <li>
                         <!-- MGS: Input was connected to angular -->
                         <input type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
                     </li>
                     <li>
-                        <a class="next-btn" href="" ng-click="main.nextAvatar()">></a><!--added class-->
+                        <a class="next-btn" href="" ng-click="main.nextAvatar()"></a><!--added class-->
                     </li>
                 </ul>
+                <div class="clearfix"></div>
             </section><!-- end id:slider -->
             <!-- end slider -->
+        <div class="clearfix"></div>
         </div>
         <!-- bottom part -> menu & buttons -->
         <section id="bottomPartWrapper">
             <div class="container"><!--added div-->
-                <div class="col-md-4">BACK</div><!--added div-->
+                <div class="w-col-md-4"><a href="javascript:void(0);" class="blue-btn back-btn">Back</a></div><!--added div-->
                 <!-- steps menu -->
-                <ul class="steps-menu col-md-4"><!--added class-->
+                <ul class="steps-menu w-col-md-4">
+                    <!--added class-->
                     <li class="done">
-                        <span class="avatar-label">AVATAR</span><!--changed class-->
                         <span class="circle"></span>
                         <span class="bar"></span>
+                        <span class="avatar-label">AVATAR</span><!--changed class-->
                     </li>
                     <li class="active">
-                        <span class="avatar-label">FAMILY</span>
                         <span class="circle"></span>
                         <span class="bar"></span>
+                        <span class="avatar-label">FAMILY</span>
                     </li>
                     <li class="todo">
-                        <span class="avatar-label">BOOK</span>
                         <span class="circle"></span>
                         <span class="bar"></span>
+                        <span class="avatar-label">BOOK</span>
                     </li>
                 </ul>
-                <div class="col-md-4"><!--added div-->
-                    <a href="javascript:void(0);">My characters are ready</a>
+                <div class="w-col-md-4"><!--added div-->
+                    <a href="javascript:void(0);" class="blue-btn">My characters are ready</a>
                     <a href="javascript:void(0);">SKIP TO PREVIEW THE BOOK</a>
                 </div>
             </div>

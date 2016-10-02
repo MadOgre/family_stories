@@ -109,11 +109,11 @@ body {
 } 
 
  .arrow-left {
-  left: 0px;
+  left: 0;
  }
 
  .arrow-right {
-  right: 0px;
+  right: 0;
  }
 
  .graphic {
@@ -147,18 +147,27 @@ body {
 
 /*our css*/
 ::-webkit-input-placeholder { 
-  opacity: 1 !important;
+  color:#c1c6c6;
 }
 ::-moz-placeholder { 
-  opacity: 1 !important;
+  color:#c1c6c6;
 }
 :-ms-input-placeholder {
-  opacity: 1 !important;
+  color:#c1c6c6;
 }
 :-moz-placeholder { 
-  opacity: 1 !important;
+  color:#c1c6c6;
 }
 
 .clear-fix{
     clear:both;
+}
+
+a {
+    color: #30a6c3;
+}
+
+a:hover,a:focus {
+    color: #30a6c3;
+    opacity:0.8;
 }
