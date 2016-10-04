@@ -98,6 +98,10 @@ $raleway: 'Raleway', tahoma, sans-serif;
     padding-right:11px;
 }
 
+#tabs li.active:first-child {
+    margin-top: 6px;
+}
+
 #tabs li a{
     color:#595e5f;
     font-size:14px;
@@ -116,7 +120,7 @@ a:hover, a:focus{
 #tabs .tab-pane-style {
     width: 338px;
     background-color: #eff5f7;
-    min-height: 500px;
+    min-height: 620px;
     padding:0 20px;
     position: relative;
     overflow:hidden;
