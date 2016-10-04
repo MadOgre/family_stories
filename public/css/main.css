@@ -191,7 +191,7 @@ a:hover, a:focus {
 #tabs {
   width: 470px; }
 
-#tabs > ul, #tabs > .tab-pane {
+#tabs > ul, #tabs > .tab-pane-style {
   float: left;
   width: 80%; }
 
@@ -224,7 +224,7 @@ a:hover, a:focus {
 a:hover, a:focus {
   text-decoration: none; }
 
-#tabs .tab-pane {
+#tabs .tab-pane-style {
   width: 338px;
   background-color: #eff5f7;
   min-height: 500px;
@@ -233,10 +233,10 @@ a:hover, a:focus {
   overflow: hidden;
   margin-bottom: 10px; }
 
-#tabs > .tab-pane.active {
+#tabs > .tab-pane-style.active {
   display: block; }
 
-#tabs .tab-pane h3 {
+#tabs .tab-pane-style h3 {
   margin: 20px 0 10px 0;
   padding: 0;
   color: #595e5f;
@@ -251,13 +251,13 @@ a:hover, a:focus {
   -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14); }
 
-#tabs .tab-pane select, #tabs .tab-pane input {
+#tabs .tab-pane-style select, #tabs .tab-pane-style input {
   color: #30a6c3;
   font-weight: 400;
   font-size: 18px;
   border: 0; }
 
-#tabs .tab-pane select {
+#tabs .tab-pane-style select {
   /*padding: 16px 20px;*/
   width: 113%;
   background: transparent none repeat scroll 0 0;
@@ -273,21 +273,21 @@ a:hover, a:focus {
   select {
     /*text-indent: 8px !important;*/ } }
 
-#tabs .tab-pane select option {
+#tabs .tab-pane-style select option {
   text-indent: 17px; }
 
-#tabs .tab-pane input {
+#tabs .tab-pane-style input {
   width: 100%;
   -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14); }
 
-#tabs > .tab-pane.ng-scope {
+#tabs > .tab-pane-style.ng-scope {
   display: none; }
 
-#tabs .tab-pane label input {
+#tabs .tab-pane-style label input {
   display: none; }
 
-#tabs .tab-pane label {
+#tabs .tab-pane-style label {
   width: 142px;
   height: 142px;
   background-color: #fff;
@@ -297,13 +297,13 @@ a:hover, a:focus {
   overflow: hidden;
   text-align: center; }
 
-#tabs .tab-pane label:nth-child(2n) {
+#tabs .tab-pane-style label:nth-child(2n) {
   float: left; }
 
-#tabs .tab-pane label:nth-child(2n+1) {
+#tabs .tab-pane-style label:nth-child(2n+1) {
   float: right; }
 
-#tabs .tab-pane label img {
+#tabs .tab-pane-style label img {
   max-width: 100%;
   margin: 0 auto;
   max-height: 142px; }
@@ -361,7 +361,7 @@ input#avatar-name-input {
   font-size: 20px;
   display: inline-block; }
 
-#tabs .tab-pane .q-circle.small {
+#tabs .tab-pane-style .q-circle.small {
   /*margin-top: 14px;
     position: absolute;
     right: 32px;*/
@@ -515,12 +515,12 @@ input#avatar-name-input {
     width: 47%; }
   #tabs > ul {
     width: 30%; }
-  #tabs .tab-pane {
+  #tabs .tab-pane-style {
     width: 70%; }
   #slider {
     margin-left: 2%;
     width: 43%; }
-  #tabs .tab-pane label {
+  #tabs .tab-pane-style label {
     width: 49%;
     height: auto; }
   .error-msg {
@@ -538,7 +538,7 @@ input#avatar-name-input {
     margin: 0 auto 30px auto; }
   #tabs > ul {
     width: 30%; }
-  #tabs .tab-pane {
+  #tabs .tab-pane-style {
     width: 70%; }
   #slider {
     margin-left: 0;
@@ -552,11 +552,11 @@ input#avatar-name-input {
     width: 77%; }
   #topPartWrapper > input {
     font-size: 15px; }
-  #tabs .tab-pane select, #tabs .tab-pane input {
+  #tabs .tab-pane-style select, #tabs .tab-pane-style input {
     font-size: 15px; }
   input#avatar-name-input {
     padding-left: 10px; }
-  #tabs .tab-pane select {
+  #tabs .tab-pane-style select {
     padding: 16px 10px; } }
 
 @media (max-width: 390px) {
