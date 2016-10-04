@@ -128,14 +128,14 @@
                 <!-- slider navigation & input -->
                 <ul class="avatar-selection"><!--added class-->
                     <li>
-                        <a class="prev-btn inactive" href="" ng-click="main.prevAvatar()"></a><!--added class-->
+                        <a class="prev-btn" ng-class="{inactive: main.currentAvatarIndex === 1}" href="" ng-click="main.prevAvatar()"></a><!--added class-->
                     </li>
                     <li>
                         <!-- MGS: Input was connected to angular -->
                         <input type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
                     </li>
                     <li>
-                        <a class="next-btn" href="" ng-click="main.nextAvatar()"></a><!--added class-->
+                        <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.maxAvatars}" href="" ng-click="main.nextAvatar()"></a><!--added class-->
                     </li>
                 </ul>
                 <div class="clearfix"></div>
