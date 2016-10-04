@@ -299,6 +299,7 @@ input#avatar-name-input {
     position: absolute;
     width: 88%;
     z-index: 1000;
+    display: none;
 }
 
 .error-msg:after, .error-msg:before,
@@ -333,14 +334,14 @@ input#avatar-name-input {
   margin-left: 20px;
   width: 430px;
 }
-#slider .ng-scope img{
+#slider  img{
   position:absolute;
   top:0;
   left:0;
   width:100%;
   height:auto;
 }
-#slider .ng-scope img:first-child{
+#slider img:first-child{
   position:relative;
 }
 

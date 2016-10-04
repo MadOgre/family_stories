@@ -114,19 +114,10 @@
             <section id="slider">
                 <!-- slides -->
                 <ul>
-                    <li ng-repeat="avatar in main.results | limitTo : main.totalAvatars">
+                    <li>
                         <img class="" src="img/background.png">
                         <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
                     </li>
-                    <!--         <li>
-                                    <img src="slide1.jpg" />
-                                </li>
-                                <li>
-                                    <img src="slide2.jpg" />
-                                </li>
-                                <li>
-                                    <img src="slide3.jpg" />
-                                </li> -->
                     <!-- new character -->
                     <!-- not implemented yet but will function predictably -->
                     <li>
