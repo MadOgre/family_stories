@@ -36,6 +36,7 @@
                 </ul>
                 <!-- MGS: the tabs will dynamically repeat as their data is pulled from database, similar to tab headings (see comment at line 31). The first tab - Name ang Gender is special and does not repeat, because every avatar will have a name and gender, but the rest will be dynamic. -->
                 <!-- tab content -->
+                <div class="tab-content">
                 <!-- NAME & GENDER tab -->
                 <div id="nameGender" class="tab-pane tab-pane-style active">
                     <!-- MGS: this selector not implemented yet. Style as desired -->
@@ -64,6 +65,8 @@
                         <input type="radio" value="value.image_id" name="radio_{{property.image_type}}"></input>
                     </label>
                 </div>
+
+                </div> <!-- tab content -->
 
                 <!-- SKIN tab -->
                 <!--         <div id="skin" class="tab-pane">
