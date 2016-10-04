@@ -76,7 +76,7 @@ $raleway: 'Raleway', tahoma, sans-serif;
 #tabs {
     width: 470px;
 }
-#tabs > ul,#tabs > .tab-pane {
+#tabs > ul,#tabs > .tab-content {
     float: left;
     width:80%;
 }
@@ -113,7 +113,7 @@ $raleway: 'Raleway', tahoma, sans-serif;
 a:hover, a:focus{
     text-decoration:none;
 }
-#tabs .tab-pane {
+#tabs .tab-content {
     width: 338px;
     background-color: #eff5f7;
     min-height: 500px;
@@ -122,11 +122,11 @@ a:hover, a:focus{
     overflow:hidden;
     margin-bottom:10px;
 }
-#tabs > .tab-pane.active {
+#tabs > .tab-content.active {
     display:block;
 }
 
-#tabs .tab-pane h3{
+#tabs .tab-content h3{
     margin:20px 0 10px 0;
     padding:0;
     color:#595e5f;
@@ -143,13 +143,13 @@ a:hover, a:focus{
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
 }
 
-#tabs .tab-pane select, #tabs .tab-pane input{
+#tabs .tab-content select, #tabs .tab-content input{
     color:#30a6c3;
     font-weight:400;
     font-size:18px;
     border:0;
 }
-#tabs .tab-pane select {
+#tabs .tab-content select {
     /*padding: 16px 20px;*/
     width:113%;
     background: transparent none repeat scroll 0 0;
@@ -165,25 +165,25 @@ padding-left:20px;
     select {
        /*text-indent: 8px !important;*/
     } }
-#tabs .tab-pane select option {
+#tabs .tab-content select option {
     text-indent: 17px;
 }
 
-#tabs .tab-pane input {
+#tabs .tab-content input {
     width: 100%;
     -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
     -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.14);
 }
 
-#tabs > .tab-pane.ng-scope {
+#tabs > .tab-content.ng-scope {
     display: none;
 }
 
-#tabs .tab-pane label input{
+#tabs .tab-content label input{
     display:none;
 }
-#tabs .tab-pane label{
+#tabs .tab-content label{
     width:142px;
     height:142px;
     background-color:#fff;
@@ -193,14 +193,14 @@ padding-left:20px;
     overflow:hidden;
     text-align:center;
 }
-#tabs .tab-pane label:nth-child(2n){
+#tabs .tab-content label:nth-child(2n){
     float:left;
 }
-#tabs .tab-pane label:nth-child(2n+1){
+#tabs .tab-content label:nth-child(2n+1){
     float:right;
 }
 
-#tabs .tab-pane label img{
+#tabs .tab-content label img{
     max-width:100%;
     margin:0 auto;
     max-height: 142px;
@@ -270,7 +270,7 @@ input#avatar-name-input {
     display:inline-block;
 }
 
-#tabs .tab-pane .q-circle.small{
+#tabs .tab-content .q-circle.small{
     /*margin-top: 14px;
     position: absolute;
     right: 32px;*/
@@ -440,14 +440,14 @@ input#avatar-name-input {
     #tabs > ul {
     width: 30%;
     }
-    #tabs .tab-pane {
+    #tabs .tab-content {
     width: 70%;
     }
     #slider {
     margin-left: 2%;
     width: 43%;
     }
-    #tabs .tab-pane label{
+    #tabs .tab-content label{
     width:49%;
     height:auto;
 }
@@ -470,7 +470,7 @@ input#avatar-name-input {
     #tabs > ul {
     width: 30%;
     }
-    #tabs .tab-pane {
+    #tabs .tab-content {
     width: 70%;
     }
     #slider {
@@ -490,13 +490,13 @@ input#avatar-name-input {
     #topPartWrapper > input{
         font-size:15px;
     }
-    #tabs .tab-pane select, #tabs .tab-pane input{
+    #tabs .tab-content select, #tabs .tab-content input{
         font-size: 15px;
     }
     input#avatar-name-input{
         padding-left:10px;
     }
-    #tabs .tab-pane select{
+    #tabs .tab-content select{
         padding: 16px 10px;
     }
 }

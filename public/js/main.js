@@ -4,6 +4,7 @@
 
   function Main($http, $scope, $location, sharedProperties) {
     var vm = this;
+    vm.currentTab = "0";
     vm.results = [];
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();

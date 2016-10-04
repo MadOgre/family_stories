@@ -1,6 +1,8 @@
+<!DOCTYPE html>
+
 <!-- MGS: I will be leaving comments in this format - my initials MGS followed by my comment -->
 
-<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -37,7 +39,7 @@
                 <!-- MGS: the tabs will dynamically repeat as their data is pulled from database, similar to tab headings (see comment at line 31). The first tab - Name ang Gender is special and does not repeat, because every avatar will have a name and gender, but the rest will be dynamic. -->
                 <!-- tab content -->
                 <!-- NAME & GENDER tab -->
-                <div id="nameGender" class="tab-pane active">
+                <div id="nameGender" class="tab-pane tab-content active">
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <h3>KID OR ADULT?</h3>
                     <div class="select-css">
@@ -57,7 +59,7 @@
                     <a href="javascript:void(0);">man</a>
                 </div>
                 <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
-                <div id="{{property.image_type}}" class="tab-pane" ng-repeat="property in main.schema">
+                <div id="{{property.image_type}}" class="tab-pane tab-content" ng-repeat="property in main.schema">
                     <h3>{{property.image_type_label}}</h3>
                     <label ng-repeat="value in property.values" class="" ng-model="main.currentAvatar.images[$parent.$index]">
                         <img height="" ng-src="{{value.image_location}}">
