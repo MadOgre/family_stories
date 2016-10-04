@@ -197,13 +197,12 @@ padding-left:20px;
     overflow:hidden;
     text-align:center;
 }
-#tabs .tab-pane-style label:nth-child(2n){
+#tabs .tab-pane-style div:nth-child(2n) label{
     float:left;
 }
-#tabs .tab-pane-style label:nth-child(2n+1){
+#tabs .tab-pane-style div:nth-child(2n+1) label{
     float:right;
 }
-
 #tabs .tab-pane-style label img{
     max-width:100%;
     margin:0 auto;
@@ -625,6 +624,14 @@ input#avatar-name-input {
     opacity:0;
     background:#30a6c3 url(/img/back_arrow.png) no-repeat 16px center;
     padding-left:50px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    outline: 3px solid blue;
 }
 
 
