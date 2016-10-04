@@ -17,6 +17,18 @@
     vm.isLoaded = false;
     vm.schema = [];
     var avatarDefaults = [];
+    var bodyPartUrls = {
+      adult: {
+        male: '/getAdultMaleParts',
+        female: '/getAdultFemaleParts'
+      },
+      child: {
+        male: '/getChildParts',
+        female: '/getChildParts'
+      }
+    };
+    vm.currentAvatarAge = 'adult';
+    vm.currentAvatarGender = 'male';
 
     vm.currentAvatar = {
       name: "",
@@ -105,15 +117,21 @@
         //url: '/schema.json'
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/getAdultMaleParts'
         //url: 'http://178.62.255.163:8080/FamilyStoryWebService/getAdultMaleParts'
-        url: '/getAdultMaleParts'
+        url: bodyPartUrls[vm.currentAvatarAge][vm.currentAvatarGender]
       }).then(function success(data){
         //save all data in vm.schema
       	vm.schema = data.data;
-
+        //avatarDefaults = [];
+        //vm.imageUrls = {};
+        //console.log("Avatar Defaults !!!: " + JSON.stringify(avatarDefaults));
         vm.schema.forEach(function(item){
           //save the first value for defaults
+
           avatarDefaults.push(item.values[0].image_id.toString());
+          //console.log("Avatar Defaults !!!: " + JSON.stringify(avatarDefaults));
           //fill the imageUrls
+          //vm.imageUrls = {};
+          //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
@@ -121,6 +139,7 @@
               image_y: value.image_y
             };
           });
+          //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
         });
 
         //set avatar defaults
