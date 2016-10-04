@@ -111,7 +111,7 @@
                 <ul>
                     <li ng-repeat="avatar in main.results | limitTo : main.totalAvatars">
                         <img class="" src="img/background.png">
-                        <img class="" ng-repeat="value in avatar.images" ng-src="{{main.imageUrls[value].location}}">
+                        <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
                     </li>
                     <!--         <li>
                                     <img src="slide1.jpg" />
@@ -125,7 +125,6 @@
                     <!-- new character -->
                     <!-- not implemented yet but will function predictably -->
                     <li>
-                        <img src="slide4.jpg" />
                         <div class="q-circle big">+</div>
                         <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
                     </li>
