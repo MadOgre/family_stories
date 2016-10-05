@@ -24,6 +24,9 @@
     vm.childFemaleSchema = [];
     vm.childMaleSchema = [];
     var adultMaleAvatarDefaults = [];
+    var adultFemaleAvatarDefaults = [];
+    var childMaleAvatarDefaults = [];
+    var childFemaleAvatarDefaults = [];
     var bodyPartUrls = {
       adult: {
         male: '/getAdultMaleParts',
@@ -219,7 +222,7 @@
         //avatarDefaults = [];
         //vm.imageUrls = {};
         //console.log("Avatar Defaults !!!: " + JSON.stringify(avatarDefaults));
-        vm.schema.forEach(function(item){
+        vm.adultMaleSchema.forEach(function(item){
           //save the first value for defaults
 
           adultMaleAvatarDefaults.push(item.values[0].image_id.toString());
