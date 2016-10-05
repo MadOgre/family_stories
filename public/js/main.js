@@ -62,14 +62,18 @@
       if (vm.currentAvatarGender === 'male') {
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
+          vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
         } else {
           vm.schema = vm.childMaleSchema;
+          vm.currentAvatar.images = childMaleAvatarDefaults.slice();
         }
       } else {
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultFemaleSchema;
+          vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
         } else {
           vm.schema = vm.childFemaleSchema;
+          vm.currentAvatar.images = childFemaleAvatarDefaults.slice();
         }
       }
     };
