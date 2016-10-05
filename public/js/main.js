@@ -143,6 +143,7 @@
       }).then(function success(data){
         vm.adultFemaleSchema = data.data;
         vm.adultFemaleSchema.forEach(function(item){
+          adultFemaleAvatarDefaults.push(item.values[0].image_id.toString());
           //fill the imageUrls
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
@@ -167,6 +168,7 @@
       }).then(function success(data){
         vm.childFemaleSchema = data.data;
         vm.childFemaleSchema.forEach(function(item){
+          childFemaleAvatarDefaults.push(item.values[0].image_id.toString());
           //fill the imageUrls
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
@@ -191,6 +193,7 @@
       }).then(function success(data){
         vm.childMaleSchema = data.data;
         vm.childMaleSchema.forEach(function(item){
+          childMaleAvatarDefaults.push(item.values[0].image_id.toString());
           //fill the imageUrls
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
