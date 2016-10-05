@@ -1,8 +1,9 @@
+/*global angular, $*/
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', '$location', 'sharedProperties', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', 'sharedProperties', Main]);
 
-  function Main($http, $scope, $location, sharedProperties) {
+  function Main($http, $scope, $q, $location, sharedProperties) {
     var vm = this;
     vm.results = [];
     function updateCurrentAvatar() {
@@ -16,6 +17,10 @@
 
     vm.isLoaded = false;
     vm.schema = [];
+    vm.adultMaleSchema = [];
+    vm.adultFemaleSchema = [];
+    vm.childFemaleSchema = [];
+    vm.childMaleSchema = [];
     var avatarDefaults = [];
     var bodyPartUrls = {
       adult: {
@@ -45,6 +50,22 @@
     vm.clearNew = function() {
       if (vm.newAvatar) {
         vm.prevAvatar();
+      }
+    };
+
+    vm.switchSchema = function() {
+      if (vm.currentAvatarGender === 'male') {
+        if (vm.currentAvatarAge === 'adult') {
+          vm.schema = vm.adultMaleSchema;
+        } else {
+          vm.schema = vm.childMaleSchema;
+        }
+      } else {
+        if (vm.currentAvatarAge === 'adult') {
+          vm.schema = vm.adultFemaleSchema;
+        } else {
+          vm.schema = vm.childFemaleSchema;
+        }
       }
     };
 
@@ -111,8 +132,73 @@
         vm.currentUserProfile = data.data;
       });
 
+      var loadAdultFemaleSchema = $http({
+        method: 'GET',
+        url: bodyPartUrls.adult.female
+      }).then(function success(data){
+        vm.adultFemaleSchema = data.data;
+        vm.adultFemaleSchema.forEach(function(item){
+          //fill the imageUrls
+          //vm.imageUrls = {};
+          //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
+          item.values.forEach(function(value){
+            vm.imageUrls[value.image_id] = {
+              location: value.image_location,
+              image_x: value.image_x,
+              image_y: value.image_y
+            };
+          });
+          //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
+        });       
+      }, function fail(err){
+        console.warn(err);
+      });
 
-    	$http({
+      var loadChildFemaleSchema = $http({
+        method: 'GET',
+        url: bodyPartUrls.child.female
+      }).then(function success(data){
+        vm.childFemaleSchema = data.data;
+        vm.childFemaleSchema.forEach(function(item){
+          //fill the imageUrls
+          //vm.imageUrls = {};
+          //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
+          item.values.forEach(function(value){
+            vm.imageUrls[value.image_id] = {
+              location: value.image_location,
+              image_x: value.image_x,
+              image_y: value.image_y
+            };
+          });
+          //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
+        });       
+      }, function fail(err){
+        console.warn(err);
+      });
+
+      var loadChildMaleSchema = $http({
+        method: 'GET',
+        url: bodyPartUrls.child.male
+      }).then(function success(data){
+        vm.childMaleSchema = data.data;
+        vm.childMaleSchema.forEach(function(item){
+          //fill the imageUrls
+          //vm.imageUrls = {};
+          //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
+          item.values.forEach(function(value){
+            vm.imageUrls[value.image_id] = {
+              location: value.image_location,
+              image_x: value.image_x,
+              image_y: value.image_y
+            };
+          });
+          //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
+        });       
+      }, function fail(err){
+        console.warn(err);
+      });
+
+    	var loadAdultMaleSchema = $http({
         method: 'GET',
         //url: '/schema.json'
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/getAdultMaleParts'
@@ -121,6 +207,7 @@
       }).then(function success(data){
         //save all data in vm.schema
       	vm.schema = data.data;
+        vm.adultMaleSchema = data.data;
         //avatarDefaults = [];
         //vm.imageUrls = {};
         //console.log("Avatar Defaults !!!: " + JSON.stringify(avatarDefaults));
@@ -152,11 +239,14 @@
 
         //set current avatar
         updateCurrentAvatar();
-
-        //set loaded flag
-      	vm.isLoaded = true;
       }, function fail(data){
         console.warn(data);
+      });
+
+      $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
+        vm.loaded = true;
+      }, function fail(err){
+        console.warn(err);
       });
     };
     vm.getSchema();

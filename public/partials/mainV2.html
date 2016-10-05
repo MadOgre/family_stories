@@ -43,7 +43,7 @@
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <h3>KID OR ADULT?</h3>
                     <div class="select-css">
-                        <select ng-model="main.currentAvatarAge" ng-change="main.getSchema()">
+                        <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema()">
                             <option value="adult">Adult</option>
                             <option value="child">Kid</option>
                         </select>
@@ -56,7 +56,7 @@
                     <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <div class="select-css">
-                        <select ng-model="main.currentAvatarGender" ng-change="main.getSchema()">
+                        <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema()">
                             <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
                             <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                         </select>
