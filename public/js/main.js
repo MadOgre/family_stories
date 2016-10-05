@@ -8,7 +8,9 @@
     vm.results = [];
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
-      vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;      
+      vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
+      vm.currentAvatarGender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
+      vm.currentAvatarAge = vm.imageUrls[vm.currentAvatar.images[0]].age;   
     }
     function avatarModified() {
       return vm.currentAvatar.name !== vm.results[vm.currentAvatarIndex-1].name ||
@@ -145,7 +147,9 @@
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
-              image_y: value.image_y
+              image_y: value.image_y,
+              gender: 'female',
+              age: 'adult'
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -167,7 +171,9 @@
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
-              image_y: value.image_y
+              image_y: value.image_y,
+              gender: 'female',
+              age: 'child'
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -189,7 +195,9 @@
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
-              image_y: value.image_y
+              image_y: value.image_y,
+              gender: 'male',
+              age: 'child'
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -203,7 +211,7 @@
         //url: '/schema.json'
         // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/getAdultMaleParts'
         //url: 'http://178.62.255.163:8080/FamilyStoryWebService/getAdultMaleParts'
-        url: bodyPartUrls[vm.currentAvatarAge][vm.currentAvatarGender]
+        url: bodyPartUrls.adult.male
       }).then(function success(data){
         //save all data in vm.schema
       	vm.schema = data.data;
@@ -223,7 +231,9 @@
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
-              image_y: value.image_y
+              image_y: value.image_y,
+              gender: 'male',
+              age: 'adult'
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
