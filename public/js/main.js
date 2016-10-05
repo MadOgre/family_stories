@@ -23,7 +23,7 @@
     vm.adultFemaleSchema = [];
     vm.childFemaleSchema = [];
     vm.childMaleSchema = [];
-    var avatarDefaults = [];
+    var adultMaleAvatarDefaults = [];
     var bodyPartUrls = {
       adult: {
         male: '/getAdultMaleParts',
@@ -83,7 +83,7 @@
         for (; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
             name: "",
-            images: avatarDefaults.slice()
+            images: adultMaleAvatarDefaults.slice()
           };
         }
         i = 0;
@@ -98,7 +98,7 @@
         for (; i < vm.maxAvatars; ++i) {
           vm.results.push({
             name: "",
-            images: avatarDefaults.slice()
+            images: adultMaleAvatarDefaults.slice()
           });
         }
         vm.currentAvatarIndex = 1;
@@ -222,7 +222,7 @@
         vm.schema.forEach(function(item){
           //save the first value for defaults
 
-          avatarDefaults.push(item.values[0].image_id.toString());
+          adultMaleAvatarDefaults.push(item.values[0].image_id.toString());
           //console.log("Avatar Defaults !!!: " + JSON.stringify(avatarDefaults));
           //fill the imageUrls
           //vm.imageUrls = {};
@@ -243,7 +243,7 @@
         for (var i = 0; i < vm.maxAvatars; ++i) {
           vm.results.push({
             name: "",
-            images: avatarDefaults.slice()
+            images: adultMaleAvatarDefaults.slice()
           });
         }
 
@@ -354,7 +354,7 @@
             retractAvatar();
           });
         } else {
-          vm.results[vm.currentAvatarIndex-1].images = avatarDefaults.slice();
+          vm.results[vm.currentAvatarIndex-1].images = adultMaleAvatarDefaults.slice();
           if (vm.totalAvatars > 1) {
             vm.totalAvatars--;
           }
