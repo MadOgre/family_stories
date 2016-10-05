@@ -103,10 +103,10 @@
           }
         }
         for (; i < vm.maxAvatars; ++i) {
-          vm.results.push({
+          vm.results[i] = {
             name: "",
             images: adultMaleAvatarDefaults.slice()
-          });
+          };
         }
         vm.currentAvatarIndex = 1;
         updateCurrentAvatar();
@@ -251,10 +251,10 @@
 
         //set avatar defaults
         for (var i = 0; i < vm.maxAvatars; ++i) {
-          vm.results.push({
+          vm.results[i] = {
             name: "",
             images: adultMaleAvatarDefaults.slice()
-          });
+          };
         }
 
         //set current avatar
@@ -402,11 +402,12 @@
           //alert(JSON.stringify(data.data));
           sharedProperties.setFolderName(data.data.result);
           //alert(sharedProperties.getFolderName());
-          $('#myModal').on('hidden.bs.modal', function () {
-            $location.url('/getpreview');
-            $scope.$apply();
-          });
-          $("#myModal").modal('hide');
+          $location.url('/getpreview');
+          $scope.$apply();
+          // $('#myModal').on('hidden.bs.modal', function () {
+
+          // });
+          //$("#myModal").modal('hide');
         }, function fail(data){
           console.warn(data);
         });
