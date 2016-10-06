@@ -23,6 +23,7 @@
     vm.adultFemaleSchema = [];
     vm.childFemaleSchema = [];
     vm.childMaleSchema = [];
+    vm.isPristine = true;
     var adultMaleAvatarDefaults = [];
     var adultFemaleAvatarDefaults = [];
     var childMaleAvatarDefaults = [];
@@ -323,6 +324,7 @@
           vm.totalAvatars++;
           updateCurrentAvatar();
           vm.newAvatar = true;
+          vm.isPristine = true;
         }
       }
     }

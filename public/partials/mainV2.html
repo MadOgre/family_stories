@@ -43,20 +43,20 @@
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <h3>KID OR ADULT?</h3>
                     <div class="select-css">
-                        <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema()">
-                            <option value="adult">Adult</option>
-                            <option value="child">Kid</option>
+                        <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
+                            <option  value="adult">Adult</option>
+                            <option  value="child">Kid</option>
                         </select>
                     </div>
                     <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S NAME</h3>
                     <!-- MGS: this input field was bound to angular -->
-                    <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" required autofocus="true">
+                    <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required autofocus="true">
                     <a href="javascript:void(0);" class="q-circle small">?</a>
                     <div class="error-msg">Error message</div>
                     <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
                     <!-- MGS: this selector not implemented yet. Style as desired -->
                     <div class="select-css">
-                        <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema()">
+                        <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
                             <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
                             <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                         </select>
@@ -124,8 +124,8 @@
                     </li>
                     <!-- new character -->
                     <!-- not implemented yet but will function predictably -->
-                    <li>
-                        <div class="q-circle big">+</div>
+                    <li ng-if="main.isPristine && main.newAvatar">
+                        <div class="q-circle big" ng-click="main.isPristine = false">+</div>
                         <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
                     </li>
                 </ul>
