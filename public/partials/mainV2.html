@@ -1,14 +1,22 @@
 <!-- MGS: I will be leaving comments in this format - my initials MGS followed by my comment -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet"> <!-- added the font -->
-</head>
-<body>
+    <title></title> -->
+<!--     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet"> --> <!-- added the font -->
+<!-- </head>
+<body> -->
     <!-- MGS: because I am using angular and front-end routing this file will not have a <body> tag. It will be placed inside NG-VIEW in the main template -->
     <!-- we have not included any other wrapper elements - but there might be a need for more wrapper, depending on final styling. -->
+    <p ng-if="!main.currentUserProfile">You are not logged in<br>
+          log in now with <a href="auth" target="_self">PayPal</a> or <a href="/authgoogle" target="_self">Google</a></p>
+    <div ng-if="main.currentUserProfile">
+        <p>Logged in as:</p>
+        <p>Name: {{main.currentUserProfile.name}}</p>
+        <p>Email: {{main.currentUserProfile.email}}</p>
+    </div>
+    <p ng-if="main.currentUserProfile"><a target="_self" href="logout">logout</a></p>
     <div id="creationTool">
 
         <!-- MGS: family name is not implemented yet - style as desired -->

@@ -363,6 +363,13 @@ app.get("/auth", function(req, res){
   res.redirect(url);
 });
 
+app.get("/logout", function(req, res){
+  req.session.user_id = null;
+  req.session.profile = null;
+  req.session.passport = null;
+  res.redirect("/betaview");
+});
+
 app.get('/auth/callback', function(req, res) {
   //console.log("BACON1!");
   var code = req.query.code;
@@ -370,7 +377,7 @@ app.get('/auth/callback', function(req, res) {
       paypal.openIdConnect.userinfo.get(tokeninfo.access_token, function(error, userinfo){
         //res.json(userinfo);
         req.session.profile = userinfo;
-        saveUserProfile(userinfo.email, "PayPal", userinfo.name, userinfo.user_id, function(){
+        saveUserProfile(userinfo.email, "PayPal", userinfo.name, userinfo.user_id, req.session.user_id || null, function(){
           res.redirect("/");
         });
         //console.log("bacon: " + JSON.stringify(userinfo));
