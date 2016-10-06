@@ -367,7 +367,7 @@ app.get("/logout", function(req, res){
   req.session.user_id = null;
   req.session.profile = null;
   req.session.passport = null;
-  res.redirect("/betaview");
+  res.redirect("/");
 });
 
 app.get('/auth/callback', function(req, res) {

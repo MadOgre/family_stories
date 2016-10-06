@@ -1,0 +1,80 @@
+<div class="container">
+  <form ng-submit="main.postPerson()" id="avatarForm">
+		<div class="left-column" ng-show="main.isLoaded">
+
+<!-- 		  <div class="form-group form-section">
+		    <label for="user-id-input" class="form-section-heading">User ID</label>
+		    <input type="text" class="form-control input-lg" id="user-id-input" placeholder="user001" ng-model="main.currentUser" required>
+		  </div> -->
+		  <p ng-if="!main.currentUserProfile">You are not logged in<br>
+		  log in now with <a href="auth" target="_self">PayPal</a> or <a href="/authgoogle" target="_self">Google</a></p>
+		  <div ng-if="main.currentUserProfile">
+		  	<p>Logged in as:</p>
+		  	<p>Name: {{main.currentUserProfile.name}}</p>
+		  	<p>Email: {{main.currentUserProfile.email}}</p>
+		  </div>
+		  <p>Current Avatar: {{main.currentAvatarIndex}}</p>
+		  <p>Error: {{main.error}}</p>
+		  <p>Total Avatars: {{main.totalAvatars}}</p>
+		  <p>New Avatar: {{main.newAvatar ? "YES" : "NO"}}
+			<div class="form-section form-section-type" ng-repeat="property in main.schema">
+			  <div class="form-section-heading">{{property.image_type_label}}</div>
+				<div class="btn-group" data-toggle="buttons">
+				<label ng-repeat="value in property.values" class="btn btn-info" ng-model="main.currentAvatar.images[$parent.$index]" uib-btn-radio="value.image_id">
+					<img height="30" ng-src="{{value.image_location}}">
+				</label>
+				</div>
+			</div>
+
+			
+		</div>
+		<div class="right-column">
+
+			<img width="500" src="img/Pasted.png">
+			<div class="images-container">
+				<img class="img" src="img/background.png">
+				<img class="img" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+				<div class="img arrows-container">
+					<div class="arrow arrow-left" ng-hide="main.currentAvatarIndex === 1"><i class="fa fa-chevron-left" aria-hidden="true" ng-click="main.prevAvatar()"></i></div>
+					<div class="arrow arrow-right" ng-hide="main.currentAvatarIndex === main.maxAvatars"><i class="fa fa-chevron-right" aria-hidden="true" ng-click="main.nextAvatar()"></i></div>
+				</div>
+			</div>
+			<div class="form-group form-section">
+		    <label for="avatar-name-input" class="form-section-heading">Avatar Name</label>
+		    <input type="text" class="form-control input-lg" id="avatar-name-input" placeholder="John Doe" ng-model="main.currentAvatar.name" required autofocus="true">
+		  </div>
+		  <div class="form-group form-section">
+				<button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#myModal" ng-click="main.clearNew()">I'm Done</button>
+		  </div>
+		</div>
+		<div class="clearfix"></div>
+	</form>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Preview Family</h4>
+	      </div>
+	      <div class="modal-body family">
+	        <div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col-md-2" ng-repeat="value in main.results | limitTo:main.totalAvatars">
+	        			<div class="graphic">
+	        			<img class="transparency" src="img/transparency.png">
+	        			<img class="img" ng-repeat="image in value.images" ng-src="{{main.imageUrls[image].location}}">
+	        			</div>
+	        			<h4 class="preview-label">{{value.name}}</h4>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" ng-click="main.submitPreview()">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
