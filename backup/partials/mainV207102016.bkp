@@ -1,0 +1,189 @@
+<!-- MGS: I will be leaving comments in this format - my initials MGS followed by my comment -->
+
+<!-- <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title> -->
+<!--     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet"> --> <!-- added the font -->
+<!-- </head>
+<body> -->
+    <!-- MGS: because I am using angular and front-end routing this file will not have a <body> tag. It will be placed inside NG-VIEW in the main template -->
+    <!-- we have not included any other wrapper elements - but there might be a need for more wrapper, depending on final styling. -->
+    <p ng-if="!main.currentUserProfile">You are not logged in<br>
+          log in now with <a href="auth" target="_self">PayPal</a> or <a href="/authgoogle" target="_self">Google</a></p>
+    <div ng-if="main.currentUserProfile">
+        <p>Logged in as:</p>
+        <p>Name: {{main.currentUserProfile.name}}</p>
+        <p>Email: {{main.currentUserProfile.email}}</p>
+    </div>
+    <p ng-if="main.currentUserProfile"><a target="_self" href="logout">logout</a></p>
+    <div id="creationTool">
+
+        <!-- MGS: family name is not implemented yet - style as desired -->
+        <section id="topPartWrapper" class="container"><!--added class-->
+            <!-- family's name -->
+            <input type="text" name="" id="" placeholder="FAMILY NAME" value="THE TOKOUSBALIDES" />
+            <!-- help button -->
+            <a href="javascript:void(0);" class="q-circle">?</a>
+        </section><!-- end id:topPartWrapper -->
+        <div class="character-wrapper container"><!--added div-->
+            <!-- start tab section -->
+            <section id="tabs">
+                <!-- tabs : this structure might change depending on the tab component used-->
+                <!-- tab menu -->
+                <ul>
+                    <li class="active"><a target="_self" href="#nameGender" data-toggle="tab">Name and Gender</a></li>
+
+                    <!-- MGS: the tab li elements (or whatever element they will get changed to will dynamically repeat based on the information retrieved from the database). I have commented out all but the first LI to demonstrate that -->
+                    <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
+                    <!--        <li class="active"><a data-toggle="tab" href="#nameGender">NAME & GENDER</a></li>
+                                <li><a href="#skin">SKIN</a></li>
+                                <li><a href="#hair">HAIR</a></li>
+                                <li><a href="#eyes">EYES</a></li>
+                                <li><a href="#nose">NOSE</a></li>
+                                <li><a href="#mouth">MOUTH</a></li> -->
+                </ul>
+                <!-- MGS: the tabs will dynamically repeat as their data is pulled from database, similar to tab headings (see comment at line 31). The first tab - Name ang Gender is special and does not repeat, because every avatar will have a name and gender, but the rest will be dynamic. -->
+                <!-- tab content -->
+                <div class="tab-content">
+                <!-- NAME & GENDER tab -->
+                <div id="nameGender" class="tab-pane tab-pane-style active">
+                    <!-- MGS: this selector not implemented yet. Style as desired -->
+                    <h3>KID OR ADULT?</h3>
+                    <div class="select-css">
+                        <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
+                            <option  value="adult">Adult</option>
+                            <option  value="child">Kid</option>
+                        </select>
+                    </div>
+                    <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S NAME</h3>
+                    <!-- MGS: this input field was bound to angular -->
+                    <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required autofocus="true">
+                    <a href="javascript:void(0);" class="q-circle small">?</a>
+                    <div class="error-msg">Error message</div>
+                    <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
+                    <!-- MGS: this selector not implemented yet. Style as desired -->
+                    <div class="select-css">
+                        <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
+                            <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
+                            <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
+                <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
+                    <h3>{{property.image_type_label}}</h3>
+                    <div ng-repeat="value in property.values" >
+                        <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{property.image_type}}" ng-model="main.currentAvatar.images[$parent.$index]"></input>
+                        <label for="radio_btn_{{value.image_id}}" class="" >
+                            <img height="" ng-src="{{value.image_location}}">
+                        </label>
+
+                    </div>
+                </div>
+
+
+
+                </div> <!-- tab content -->
+
+                <!-- SKIN tab -->
+                <!--         <div id="skin" class="tab-pane">
+                            SKIN tab
+                        </div> -->
+                <!-- HAIR tab -->
+                <!--         <div id="hair" class="tab-pane">
+                            <h3>COLORS</h3>
+                            <a href="javascript:void(0);" class="selected">COLOR 1</a>
+                            <a href="javascript:void(0);">COLOR 2</a>
+
+                            <h3>HAIR STYLES</h3>
+                            <a href="javascript:void(0);" class="selected">HAIR STYLE 1</a>
+                            <a href="javascript:void(0);">HAIR STYLE 2</a>
+                        </div> -->
+                <!-- EYES tab -->
+                <!--         <div id="eyes" class="tab-pane">
+                            EYES tab
+                        </div> -->
+                <!-- NOSE tab -->
+                <!--         <div id="nose" class="tab-pane">
+                            NOSE tab
+                        </div> -->
+                <!-- MOUTH tab -->
+                <!--         <div id="mouth" class="tab-pane">
+                            MOUTH tab
+                        </div> -->
+                <!-- bottom buttons -->
+                <!-- MGS: The buttons are not implemented yet, in the future the submit button will redirect to the "preview" view -->
+                <div class="clear-fix"></div><!--added div-->
+                <a href="" ng-click="main.submitPreview()" class="bottom-btn">Save Changes</a><!--added class-->
+                <a href="javascript:void(0);" class="bottom-btn">Clear All</a><!--added class-->
+                <div class="clearfix"></div>
+            </section><!-- end id:tabs -->
+            <!-- end tab section -->
+            <!-- MGS: The slider is tricky. Each li will actually contain several layered images, the transparency as well as each of the body parts overlaying one another (position-absolute), you can style them as if they were one image -->
+
+            <!-- start slider --><!-- in order to stylize the images with absolute position we need to add different class for each element, for example .eyes-img, .body-img, .hair-img etc -->
+            <section id="slider">
+                <!-- slides -->
+                <ul>
+                    <li>
+                        <img class="" src="img/background.png">
+                        <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                    </li>
+                    <!-- new character -->
+                    <!-- not implemented yet but will function predictably -->
+                    <li ng-if="main.isPristine && main.newAvatar">
+                        <div class="q-circle big" ng-click="main.isPristine = false">+</div>
+                        <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
+                    </li>
+                </ul>
+                <!-- slider navigation & input -->
+                <ul class="avatar-selection"><!--added class-->
+                    <li>
+                        <a class="prev-btn" ng-class="{inactive: main.currentAvatarIndex === 1}" href="" ng-click="main.prevAvatar()"></a><!--added class-->
+                    </li>
+                    <li>
+                        <!-- MGS: Input was connected to angular -->
+                        <input type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
+                    </li>
+                    <li>
+                        <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.maxAvatars}" href="" ng-click="main.nextAvatar()"></a><!--added class-->
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </section><!-- end id:slider -->
+            <!-- end slider -->
+        <div class="clearfix"></div>
+        </div>
+        <!-- bottom part -> menu & buttons -->
+        <section id="bottomPartWrapper">
+            <div class="container"><!--added div-->
+                <div class="w-col-md-4"><a href="javascript:void(0);" class="blue-btn back-btn">Back</a></div><!--added div-->
+                <!-- steps menu -->
+                <ul class="steps-menu w-col-md-4">
+                    <!--added class-->
+                    <li class="done">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">AVATAR</span><!--changed class-->
+                    </li>
+                    <li class="active">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">FAMILY</span>
+                    </li>
+                    <li class="todo">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">BOOK</span>
+                    </li>
+                </ul>
+                <div class="w-col-md-4"><!--added div-->
+                    <a href="javascript:void(0);" class="blue-btn">My characters are ready</a>
+                    <a href="javascript:void(0);">SKIP TO PREVIEW THE BOOK</a>
+                </div>
+            </div>
+        </section><!-- end id:bottomPartWrapper -->
+    </div><!-- end id:creationTool -->
+</body>
+</html>
