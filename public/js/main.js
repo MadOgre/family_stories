@@ -34,8 +34,8 @@
         female: '/getAdultFemaleParts'
       },
       child: {
-        male: '/getChildParts',
-        female: '/getChildParts'
+        male: '/getMaleChildParts',
+        female: '/getFemaleChildParts'
       }
     };
     vm.currentAvatarAge = 'adult';

@@ -204,8 +204,17 @@ app.get("/getAdultfemaleParts", function(req, res){
   });
 });
 
-app.get("/getChildParts", function(req, res){
-  getBodyParts("CHILD", function(err, result){
+app.get("/getMaleChildParts", function(req, res){
+  getBodyParts("CHILD_MALE", function(err, result){
+    if (err) {
+      return res.status(500).send("<h1>Server Error</h1>");
+    }
+    res.json(result);
+  });
+});
+
+app.get("/getFemaleChildParts", function(req, res){
+  getBodyParts("CHILD_FEMALE", function(err, result){
     if (err) {
       return res.status(500).send("<h1>Server Error</h1>");
     }
