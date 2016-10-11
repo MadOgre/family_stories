@@ -83,7 +83,7 @@ $raleway: 'Raleway', tahoma, sans-serif;
 #tabs > ul {
     width: 132px;
     margin: 0;
-    padding: 30px 0 0 0;
+    padding: 30px 0 30px 0;
 }
 
 #tabs li{
@@ -120,7 +120,8 @@ a:hover, a:focus{
 #tabs .tab-pane-style {
     width: 338px;
     background-color: #eff5f7;
-    min-height: 620px;
+    /*min-height: 620px;*/
+    min-height: 700px;
     padding:0 20px;
     position: relative;
     overflow:hidden;
@@ -672,3 +673,29 @@ input[type="radio"]:checked + label {
         margin-top:30px;
     }
 }
+
+/*display none*/
+.banner {
+    display: none;
+}
+
+p.ng-scope {
+    display: none;
+}
+
+#slider .new-char-txt{
+    display:none;
+}
+
+.character-wrapper.container {
+    padding-bottom: 150px;
+}
+
+// .tab-content {
+//     height: 90% !important;
+// }
+
+// .tab-pane-style {
+//     height: 90% !important;
+// }
+
