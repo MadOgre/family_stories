@@ -337,6 +337,12 @@
         updateCurrentAvatar();
       }
     }
+    
+    vm.rightArrowClick = function() {
+      if (vm.currentAvatarIndex !== vm.totalAvatars) {
+        vm.nextAvatar();
+      }
+    };
 
     vm.nextAvatar = function() {
       console.log("FIRED RIGHT!");
