@@ -422,6 +422,12 @@
       });
     };
 
+    vm.saveChanges = function() {
+      vm.postPerson(function(){
+        alert("Changes saved!");
+      });
+    };
+
     vm.deleteUserAvatars = function() {
       $http({
         method: "GET",
