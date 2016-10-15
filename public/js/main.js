@@ -1,9 +1,9 @@
 /*global angular, $*/
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', 'sharedProperties', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', Main]);
 
-  function Main($http, $scope, $q, $location, sharedProperties) {
+  function Main($http, $scope, $q, $location, $window, sharedProperties) {
     var vm = this;
     vm.results = [];
     function updateCurrentAvatar() {
@@ -419,6 +419,17 @@
         }, function fail(data){
           console.warn(data);
         });
+      });
+    };
+
+    vm.deleteUserAvatars = function() {
+      $http({
+        method: "GET",
+        url: "/deleteUserAvatars"
+      }).then(function success(){
+        $window.location.reload();
+      }, function fail(err){
+        alert("there was an error deleting avatars");
       });
     };
   }
