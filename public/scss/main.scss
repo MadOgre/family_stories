@@ -715,3 +715,18 @@ input[type="radio"]:checked + label {
 // .tab-pane-style {
 //     height: 90% !important;
 // }
+
+.color-thumbs {
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+#tabs .tab-pane-style label.color-thumb {
+    width: 50px;
+    height: 50px;
+    border: 2px double gray;
+    border-radius: 50%;
+    float: left;
+    margin: 0px 10px 0px 10px;
+}
