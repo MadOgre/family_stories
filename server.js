@@ -172,6 +172,14 @@ function saveUserProfile(email, source, userName, external_id, dummy_id, cb) {
   });
 }
 
+function deleteUserAvatars(user_id, cb) {
+  sequelize.query("call sp_clear_avatars('" + user_id + "'," + "null)").then(function(data){
+    cb(data);
+  }).catch(function(err){
+    console.log(err);
+  });
+}
+
 function getUserSavedAvatars(user_id, cb) {
   sequelize.query("call sp_get_user_avatar('" + user_id + "')").then(function(data){
     cb(null, data);
@@ -219,6 +227,12 @@ app.get("/getFemaleChildParts", function(req, res){
       return res.status(500).send("<h1>Server Error</h1>");
     }
     res.json(result);
+  });
+});
+
+app.get("/deleteUserAvatars", function(req, res){
+  deleteUserAvatars(req.session.user_id, function(data){
+    res.json({result: "success"});
   });
 });
 
@@ -387,6 +401,7 @@ app.get('/auth/callback', function(req, res) {
         //res.json(userinfo);
         req.session.profile = userinfo;
         saveUserProfile(userinfo.email, "PayPal", userinfo.name, userinfo.user_id, req.session.user_id || null, function(){
+          req.session.user_id = userinfo.user_id;
           res.redirect("/");
         });
         //console.log("bacon: " + JSON.stringify(userinfo));

@@ -1,9 +1,9 @@
 /*global angular, $*/
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', 'sharedProperties', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', Main]);
 
-  function Main($http, $scope, $q, $location, sharedProperties) {
+  function Main($http, $scope, $q, $location, $window, sharedProperties) {
     var vm = this;
     vm.results = [];
     function updateCurrentAvatar() {
@@ -337,6 +337,12 @@
         updateCurrentAvatar();
       }
     }
+    
+    vm.rightArrowClick = function() {
+      if (vm.currentAvatarIndex !== vm.totalAvatars) {
+        vm.nextAvatar();
+      }
+    };
 
     vm.nextAvatar = function() {
       console.log("FIRED RIGHT!");
@@ -404,15 +410,39 @@
           //alert(JSON.stringify(data.data));
           sharedProperties.setFolderName(data.data.result);
           //alert(sharedProperties.getFolderName());
-          $location.url('/getpreview');
-          $scope.$apply();
-          // $('#myModal').on('hidden.bs.modal', function () {
-
-          // });
-          //$("#myModal").modal('hide');
+          //$location.url('/getpreview');
+          //$scope.$apply();
+          $('#myModal').on('hidden.bs.modal', function () {
+            $location.url('/getpreview');
+            $scope.$apply();
+          });
+          $("#myModal").modal('hide');
         }, function fail(data){
           console.warn(data);
         });
+      });
+    };
+
+    vm.saveChanges = function() {
+      vm.postPerson(function(){
+        alert("Changes saved!");
+      });
+    };
+
+    vm.deleteAvatarsConfirm = function() {
+      if (confirm("You are about to clear all created avatars")) {
+        vm.deleteUserAvatars();
+      }
+    };
+
+    vm.deleteUserAvatars = function() {
+      $http({
+        method: "GET",
+        url: "/deleteUserAvatars"
+      }).then(function success(){
+        $window.location.reload();
+      }, function fail(err){
+        alert("there was an error deleting avatars");
       });
     };
   }

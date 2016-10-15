@@ -115,8 +115,8 @@
                 <!-- bottom buttons -->
                 <!-- MGS: The buttons are not implemented yet, in the future the submit button will redirect to the "preview" view -->
                 <div class="clear-fix"></div><!--added div-->
-                <a href="" ng-click="main.submitPreview()" class="bottom-btn">Save Changes</a><!--added class-->
-                <a href="javascript:void(0);" class="bottom-btn">Clear All</a><!--added class-->
+                <a href="" ng-click="main.saveChanges()" class="bottom-btn">Save Changes</a><!--added class-->
+                <a ng-click="main.deleteAvatarsConfirm()" href="" target="_self" class="bottom-btn">Clear All</a><!--added class-->
                 <div class="clearfix"></div>
             </section><!-- end id:tabs -->
             <!-- end tab section -->
@@ -132,8 +132,9 @@
                     </li>
                     <!-- new character -->
                     <!-- not implemented yet but will function predictably -->
-                    <li ng-if="main.isPristine && main.newAvatar">
-                        <div class="q-circle big" ng-click="main.isPristine = false">+</div>
+                    {{main.currentAvatarIndex}}
+                    <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
+                        <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
                         <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
                     </li>
                 </ul>
@@ -147,7 +148,7 @@
                         <input type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
                     </li>
                     <li>
-                        <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.maxAvatars}" href="" ng-click="main.nextAvatar()"></a><!--added class-->
+                        <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -179,11 +180,37 @@
                     </li>
                 </ul>
                 <div class="w-col-md-4"><!--added div-->
-                    <a href="javascript:void(0);" class="blue-btn">My characters are ready</a>
+                    <a href="" target="_self" data-toggle="modal" data-target="#myModal" ng-click="main.clearNew()" class="blue-btn">My characters are ready</a>
                     <a href="javascript:void(0);">SKIP TO PREVIEW THE BOOK</a>
                 </div>
             </div>
         </section><!-- end id:bottomPartWrapper -->
     </div><!-- end id:creationTool -->
-</body>
-</html>
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Preview Family</h4>
+        </div>
+        <div class="modal-body family">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2" ng-repeat="value in main.results | limitTo:main.totalAvatars">
+                <div class="graphic">
+                <img class="transparency" src="img/transparency.png">
+                <img class="img" ng-repeat="image in value.images" ng-src="{{main.imageUrls[image].location}}">
+                </div>
+                <h4 class="preview-label">{{value.name}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" ng-click="main.submitPreview()">Go to Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
