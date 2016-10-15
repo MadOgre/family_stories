@@ -401,6 +401,7 @@ app.get('/auth/callback', function(req, res) {
         //res.json(userinfo);
         req.session.profile = userinfo;
         saveUserProfile(userinfo.email, "PayPal", userinfo.name, userinfo.user_id, req.session.user_id || null, function(){
+          req.session.user_id = userinfo.user_id;
           res.redirect("/");
         });
         //console.log("bacon: " + JSON.stringify(userinfo));
