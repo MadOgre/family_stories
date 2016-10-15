@@ -4,6 +4,8 @@
     "image_type_label": "Adult Face",
     "values": [
       {
+        "color_name": "BLUE",
+        "color_code": "0000FF",
         "image_id": "1",
         "image_name": "ADULT_FACE_1",
         "image_location": "https://s3.amazonaws.com/familystories/face_1.png",
