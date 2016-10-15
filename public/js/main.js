@@ -429,6 +429,12 @@
       });
     };
 
+    vm.deleteAvatarsConfirm = function() {
+      if (confirm("You are about to clear all created avatars")) {
+        vm.deleteUserAvatars();
+      }
+    };
+
     vm.deleteUserAvatars = function() {
       $http({
         method: "GET",
