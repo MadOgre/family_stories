@@ -357,14 +357,10 @@
       if (avatarModified()) {
         vm.postPerson(function(){
           advanceAvatar();
-          vm.switchSchema();
         });
       } else {
         advanceAvatar();
-        vm.switchSchema();
       }
-      //console.log("Switching Schema!");
-      //vm.switchSchema();
     };
 
     vm.prevAvatar = function() {
@@ -394,15 +390,11 @@
           }
           vm.postPerson(function(){
             retractAvatar();
-            vm.switchSchema();
           });
         } else {
           retractAvatar();
-          vm.switchSchema();
         }
       }
-      //console.log("Switching Schema!");
-      //vm.switchSchema();
     };
 
     vm.submitPreview = function() {
