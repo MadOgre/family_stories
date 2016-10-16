@@ -423,9 +423,30 @@ app.get("/testroute", function(req, res){
   });
 });
 
-app.get("*", setId, function(req, res){
+function preventAccess(req,res,next) {
+  if (!req.session.admin) {
+    res.redirect("/admin_login");
+  } else {
+    next();
+  }
+}
+
+app.get("/admin_login", function(req, res){
+  res.sendFile(__dirname + "/public/admin_login.html");
+});
+
+app.post("/admin_login", function(req, res){
+  if (req.body.password === "warcraft") {
+    req.session.admin = true;
+    res.redirect("/");
+  } else {
+    res.redirect("/admin_login");
+  }
+});
+
+app.get("*", preventAccess, setId, function(req, res){
   
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/index_hidden.html");
 });
 
 
