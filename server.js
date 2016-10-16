@@ -113,6 +113,23 @@ function setId(req, res, next){
   }
 }
 
+app.post("/admin_login", function(req, res){
+  if (req.body.password === "warcraft") {
+    req.session.admin = true;
+    res.sendFile(__dirname + "/index_hidden.html");
+  } else {
+    res.redirect("/admin_login");
+  }
+});
+
+app.get("/admin_login", function(req, res){
+  if (req.session.admin === true) {
+    res.sendFile(__dirname + "/index_hidden.html");
+  } else {
+    res.sendFile(__dirname + "/index.html");
+  }
+});
+
 app.use("/", setId, express.static(__dirname + "/public"));
 
 app.use("/preview", express.static("/var/www/familystories/book_output"));
@@ -431,21 +448,24 @@ function preventAccess(req,res,next) {
   }
 }
 
-app.get("/admin_login", function(req, res){
-  res.sendFile(__dirname + "/public/index.html");
-});
+// app.get("/admin_login", function(req, res){
+//   if (req.session.admin === true) {
+//     res.sendFile(__dirname + "/index.html");
+//   } else {
+//     res.sendFile(__dirname + "/public/index.html");
+//   }
+// });
 
-app.post("/admin_login", function(req, res){
-  if (req.body.password === "warcraft") {
-    req.session.admin = true;
-    res.sendFile(__dirname + "/index_hidden.html");
-  } else {
-    res.redirect("/admin_login");
-  }
-});
+// app.post("/admin_login", function(req, res){
+//   if (req.body.password === "warcraft") {
+//     req.session.admin = true;
+//     res.sendFile(__dirname + "/index_hidden.html");
+//   } else {
+//     res.redirect("/admin_login");
+//   }
+// });
 
 app.get("*", preventAccess, setId, function(req, res){
-  
   res.sendFile(__dirname + "/index_hidden.html");
 });
 
