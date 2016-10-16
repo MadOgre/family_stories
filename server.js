@@ -438,7 +438,7 @@ app.get("/admin_login", function(req, res){
 app.post("/admin_login", function(req, res){
   if (req.body.password === "warcraft") {
     req.session.admin = true;
-    res.redirect("/");
+    res.sendFile(__dirname + "/index_hidden.html");
   } else {
     res.redirect("/admin_login");
   }
