@@ -304,10 +304,10 @@ a:hover, a:focus {
   overflow: hidden;
   text-align: center; }
 
-#tabs .tab-pane-style div:nth-child(2n) label {
+#tabs .tab-pane-style div:nth-child(2n) label.body-part-label {
   float: left; }
 
-#tabs .tab-pane-style div:nth-child(2n+1) label {
+#tabs .tab-pane-style div:nth-child(2n+1) label.body-part-label {
   float: right; }
 
 #tabs .tab-pane-style label img {
@@ -730,7 +730,6 @@ input[type="radio"]:checked + label {
   padding-bottom: 150px; }
 
 .color-thumbs {
-  padding: 10px;
   background-color: white;
   margin-bottom: 20px; }
 
@@ -741,4 +740,4 @@ input[type="radio"]:checked + label {
   -webkit-border-radius: 50%;
           border-radius: 50%;
   float: left;
-  margin: 0px 10px 0px 10px; }
+  margin: 10px 10px 10px 10px; }

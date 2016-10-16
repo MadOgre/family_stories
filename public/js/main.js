@@ -9,8 +9,8 @@
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
-      vm.currentAvatarGender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
-      vm.currentAvatarAge = vm.imageUrls[vm.currentAvatar.images[0]].age;   
+      vm.currentAvatarGender = vm.currentAvatar.images[0] ? vm.imageUrls[vm.currentAvatar.images[0]].gender : "";
+      vm.currentAvatarAge = vm.currentAvatar.images[0] ? vm.imageUrls[vm.currentAvatar.images[0]].age : "";   
     }
     function avatarModified() {
       return vm.currentAvatar.name !== vm.results[vm.currentAvatarIndex-1].name ||
