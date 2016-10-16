@@ -432,7 +432,7 @@ function preventAccess(req,res,next) {
 }
 
 app.get("/admin_login", function(req, res){
-  res.sendFile(__dirname + "/public/admin_login.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/admin_login", function(req, res){
