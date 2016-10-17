@@ -65,17 +65,21 @@
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
+          $('#nameGender').addClass("active");
         } else {
           vm.schema = vm.childMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childMaleAvatarDefaults.slice();
+          $('#nameGender').addClass("active");
         }
       } else {
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
+          $('#nameGender').addClass("active");
         } else {
           vm.schema = vm.childFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childFemaleAvatarDefaults.slice();
+          $('#nameGender').addClass("active");
         }
       }
     };
