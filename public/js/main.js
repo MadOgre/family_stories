@@ -11,6 +11,10 @@
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
       vm.currentAvatarGender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
       vm.currentAvatarAge = vm.imageUrls[vm.currentAvatar.images[0]].age;
+      vm.colorCodes = [];
+      for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
+        vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
+      }
       vm.switchSchema("noreset");
     }
     function avatarModified() {
@@ -167,7 +171,10 @@
               image_x: value.image_x,
               image_y: value.image_y,
               gender: 'female',
-              age: 'adult'
+              age: 'adult',
+              color_name: value.color_name,
+              color_code: value.color_code,
+              image_type: item.image_type
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -192,7 +199,10 @@
               image_x: value.image_x,
               image_y: value.image_y,
               gender: 'female',
-              age: 'child'
+              age: 'child',
+              color_name: value.color_name,
+              color_code: value.color_code,
+              image_type: item.image_type
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -217,7 +227,10 @@
               image_x: value.image_x,
               image_y: value.image_y,
               gender: 'male',
-              age: 'child'
+              age: 'child',
+              color_name: value.color_name,
+              color_code: value.color_code,
+              image_type: item.image_type
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
@@ -253,7 +266,10 @@
               image_x: value.image_x,
               image_y: value.image_y,
               gender: 'male',
-              age: 'adult'
+              age: 'adult',
+              color_name: value.color_name,
+              color_code: value.color_code,
+              image_type: item.image_type
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
