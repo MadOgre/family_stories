@@ -8,6 +8,7 @@ var crypto = require("crypto");
 var passport = require("passport");
 //var PayPalStrategy = require("passport-paypal-openidconnect").Strategy;
 var GoogleStrategy = require("passport-google-openidconnect").Strategy;
+var FacebookStrategy = require("passport-facebook").Strategy;
 var request = require("request");
 var qs = require("querystring");
 
@@ -74,6 +75,18 @@ passport.use(new GoogleStrategy({
     // });
     return done(null, profile);
     //return done(user);
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: "540342506155802",
+    clientSecret: "afc9f01373ba3c42d09117b4bc1cf971",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(null, profile);
+    // });
   }
 ));
 
