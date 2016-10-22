@@ -81,7 +81,8 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: "540342506155802",
     clientSecret: "afc9f01373ba3c42d09117b4bc1cf971",
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
     // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
@@ -387,6 +388,19 @@ app.get("/finalizetransaction", function(req, res){
     //res.redirect("http://localhost:3000/getpreview");
   });   
 });
+
+app.get('/authfacebook',
+  passport.authenticate('facebook', { scope: ['email']}));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { scope: ['email'], failureRedirect: '/login' }),
+  function(req, res) {
+    console.log("FACEBOOK USER: " + JSON.stringify(req.session.passport.user));
+    saveUserProfile(req.session.passport.user._json.email, "facebook", req.session.passport.user._json.name, req.session.passport.user._json.id, req.session.user_id || null, function(){
+      req.session.user_id = req.session.passport.user._json.id;
+      res.redirect("/");
+    });
+  });
 
 app.get("/authgoogle", passport.authenticate('google-openidconnect', { scope: ['email', 'profile']}));
 
