@@ -83,7 +83,7 @@
 <!--                         <div class="color-thumb" ng-style="{'background-color': 'blue'}"></div>
                         <div class="color-thumb" ng-style="{'background-color': 'red'}"></div> -->
                         <div class="clearfix"></div>
-                        {{main.colorCode}}
+                        {{JSON.stringify(main.colorCodes)}}
                     </div>
                     <div ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}" >
                         <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{property.image_type}}" ng-model="main.currentAvatar.images[$parent.$index]"></input>

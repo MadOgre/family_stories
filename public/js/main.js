@@ -6,13 +6,15 @@
   function Main($http, $scope, $q, $location, $window, sharedProperties) {
     var vm = this;
     vm.results = [];
+    vm.colorCodes = {};
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
       vm.currentAvatarGender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
       vm.currentAvatarAge = vm.imageUrls[vm.currentAvatar.images[0]].age;
-      vm.colorCodes = [];
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
+        console.log("CHANGE TRIGGERED!");
+        console.log(vm.imageUrls[vm.currentAvatar.images[i_img]].color_code);
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
       vm.switchSchema("noreset");
@@ -90,6 +92,10 @@
           $("#tabs>ul>li:first-child").addClass("active");
         }
       }
+      for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
+        vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
+      }
+      console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
     };
 
     vm.loadSavedAvatars = function() {
@@ -297,6 +303,7 @@
         console.warn(err);
       });
     };
+
     vm.getSchema(function(){
       vm.getProperties(function(){
         vm.loadSavedAvatars();
