@@ -130,7 +130,7 @@
       });
     };
 
-    vm.getProperties = function() {
+    vm.getProperties = function(cb) {
       $http({
         method: 'GET',
         url: '/getproperty/MAX_AVATARS'
@@ -142,11 +142,12 @@
           url: '/getproperty/MAX_BOOK_PAGES'          
         }).then(function(data){
           sharedProperties.setMaxBookPages(data.data[0].property_value);
+          cb(null);
         });
       });
     };
 
-    vm.getSchema = function() {
+    vm.getSchema = function(cb) {
 
       $http({
         method: 'GET',
@@ -291,13 +292,18 @@
 
       $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
         vm.loaded = true;
+        cb(null);
       }, function fail(err){
         console.warn(err);
       });
     };
-    vm.getSchema();
-    vm.getProperties();
-    vm.loadSavedAvatars();
+    vm.getSchema(function(){
+      vm.getProperties(function(){
+        vm.loadSavedAvatars();
+      });
+    });
+    
+    
 
     vm.postPerson = function(cb) {
       console.log("post person called");
