@@ -22,11 +22,59 @@
         if (property.endsWith("body")) {
           body_property = property;
         }
+        colorSync(property);
       }
       // console.log("NOSE PROPERTY: " + nose_property);
       // console.log("BODY PROPERTY: " + body_property);
       vm.colorCodes[nose_property] = vm.colorCodes[body_property];
     }, true);
+
+    function colorSync(prop) {
+      vm.currentAvatar.images = vm.currentAvatar.images.map(function(imageId){
+        if (!vm.imageUrls[imageId] || vm.imageUrls[imageId].image_type !== prop) {
+          return imageId;
+        } else {
+          //console.log("GET ID OF COLOR: " + getIdOfColor(prop, imageId, vm.colorCodes[prop]));
+          return getIdOfColor(prop, imageId, vm.colorCodes[prop]);
+        }
+      });
+    }
+
+    function getIdOfColor(prop, id, colorCode) {
+      for (var i_item = 0; i_item < vm.schema.length; ++i_item) {
+        if (vm.schema[i_item].image_type === prop) {
+          for (var i_val = 0; i_val < vm.schema[i_item].values.length; ++i_val) {
+            if (vm.schema[i_item].values[i_val].image_id === id) {
+              //console.log("ID FOUND !");
+              for (var i_val2 = 0; i_val2 < vm.schema[i_item].values.length; ++i_val2) {
+                //console.log("CHECING " + vm.schema[i_item].values[i_val].image_name + " AGAINST " + vm.schema[i_item].values[i_val].image_name);
+                //console.log("CHECING " + vm.schema[i_item].values[i_val2].color_code + " AGAINST " + colorCode);
+                if (vm.schema[i_item].values[i_val].image_name === vm.schema[i_item].values[i_val2].image_name && vm.schema[i_item].values[i_val2].color_code === colorCode) {
+                  return vm.schema[i_item].values[i_val2].image_id;
+                }                                
+              }
+            }
+          }
+          
+        }
+      }
+      // vm.schema.forEach(function(item){
+      //   if (item.image_type === prop) {
+      //     item.values.forEach(function(value){
+      //       if (value.image_id === id) {
+              
+      //         item.values.forEach(function(value2){
+
+      //           if (value.image_name === value2.image_name && value2.color_code === colorCode) {
+      //             return value2.image_id;
+      //           }
+      //         });
+      //       }
+      //     });
+      //   }
+      // });
+    }
+
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
@@ -201,7 +249,8 @@
               age: 'adult',
               color_name: value.color_name,
               color_code: value.color_code,
-              image_type: item.image_type
+              image_type: item.image_type,
+              image_name: value.image_name
             };
           });
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
