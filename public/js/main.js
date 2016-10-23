@@ -7,6 +7,26 @@
     var vm = this;
     vm.results = [];
     vm.colorCodes = {};
+    // $scope.$watch(, function (newVal) {
+    //   console.log('Name changed to ' + newVal);
+    // });
+    $scope.$watch(angular.bind(this, function () {
+      return this.colorCodes;
+    }), function(v){
+      var body_property = "";
+      var nose_property = "";
+      for (var property in v) {
+        if (property.endsWith("nose")) {
+          nose_property = property;
+        }
+        if (property.endsWith("body")) {
+          body_property = property;
+        }
+      }
+      // console.log("NOSE PROPERTY: " + nose_property);
+      // console.log("BODY PROPERTY: " + body_property);
+      vm.colorCodes[nose_property] = vm.colorCodes[body_property];
+    }, true);
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
