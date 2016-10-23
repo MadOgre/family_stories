@@ -169,7 +169,8 @@ function getBodyParts(which, cb) {
         image_x: item.image_x,
         image_y: item.image_y,
         color_name: item.color_name,
-        color_code: item.color_code
+        color_code: item.color_code,
+        icon_location: item.icon_location
       });
     });
     cb(null, result);
