@@ -124,7 +124,8 @@
     vm.currentUser = "TestUser01"; //change this for production
     vm.currentAvatarIndex = 1;
     vm.totalAvatars = 1;
-    vm.maxAvatars = 10;
+    vm.maxAvatars = 2;
+    vm.maxChildren = 2;
     vm.newAvatar = true;
     vm.error = "";
 
@@ -210,13 +211,21 @@
         url: '/getproperty/MAX_AVATARS'
       }).then(function(data){
         console.log(JSON.stringify(data.data));
+        vm.maxAvatars = +(data.data[0].property_value);
         sharedProperties.setMaxAvatars(data.data[0].property_value);
         $http({
           method: 'GET',
           url: '/getproperty/MAX_BOOK_PAGES'          
         }).then(function(data){
           sharedProperties.setMaxBookPages(data.data[0].property_value);
-          cb(null);
+          $http({
+            method: 'GET',
+            url: '/getproperty/MAX_CHILDREN'          
+          }).then(function(data){
+            vm.maxChildren = +(data.data[0].property_value);
+            sharedProperties.setMaxChildren(data.data[0].property_value);
+            cb(null);
+          });
         });
       });
     };

@@ -5,6 +5,7 @@
         var folderName = '';
         var maxAvatars = 0;
         var maxBookPages = 0;
+        var maxChildren = 0;
 
         return {
             getFolderName: function () {
@@ -24,6 +25,12 @@
             },
             setMaxBookPages: function(value) {
                 maxBookPages = value;
+            },
+            getMaxChildren: function () {
+                return maxChildren;
+            },
+            setMaxChildren: function(value) {
+                maxChildren = value;
             }
         };
     });
