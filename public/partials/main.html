@@ -84,7 +84,7 @@
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
                         <h3>{{property.image_type_label}}</h3>
-                        <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose')">
+                        <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
                             <div ng-repeat="value in property.values | unique: 'color_code'">
                                 <input id="radio_btn_color_{{value.image_id}}_{{value.color_name}}" type="radio" ng-value="value.color_code" name="radio_color_{{property.image_type}}" ng-bind="main.imageUrls[main.currentAvatar.images[$parent.$index]].color_code" ng-model="main.colorCodes[property.image_type]"></input>
                                 <label class="color-thumb" ng-style="{'background-color': value.color_code}" for="radio_btn_color_{{value.image_id}}_{{value.color_name}}"></label>
