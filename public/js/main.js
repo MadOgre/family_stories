@@ -124,8 +124,9 @@
     vm.currentUser = "TestUser01"; //change this for production
     vm.currentAvatarIndex = 1;
     vm.totalAvatars = 1;
-    vm.maxAvatars = 2;
-    vm.maxChildren = 2;
+    vm.totalChildren = 0;
+    vm.maxAvatars = 2; //must be set to at least 2 to prevent errors
+    vm.maxChildren = 1;
     vm.newAvatar = true;
     vm.error = "";
 
@@ -441,6 +442,9 @@
         if (vm.currentAvatarIndex < vm.maxAvatars) {
           vm.currentAvatarIndex++;
           vm.totalAvatars++;
+          // if (vm.currentAvatarGender === 'child') {
+          //   vm.totalChildren++;
+          // } 
           updateCurrentAvatar();
           vm.newAvatar = true;
           vm.isPristine = true;
