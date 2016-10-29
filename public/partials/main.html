@@ -69,7 +69,7 @@
                         </div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
-                        <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required autofocus="true">
+                        <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex. DADDY'">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
