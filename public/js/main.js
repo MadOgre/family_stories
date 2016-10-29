@@ -383,6 +383,9 @@
 
     vm.postPerson = function(cb) {
       console.log("post person called");
+      vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }).join(' ');
       var response = {
         user_id: vm.currentUser,
         avatar_name: vm.currentAvatar.name,
