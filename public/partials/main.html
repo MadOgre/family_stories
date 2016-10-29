@@ -60,19 +60,19 @@
                     <!-- NAME & GENDER tab -->
                     <div id="nameGender" class="tab-pane tab-pane-style active">
                         <!-- MGS: this selector not implemented yet. Style as desired -->
-                        <h3>KID OR ADULT?</h3>
+                        <h3>CHILD OR ADULT?</h3>
                         <div class="select-css">
                             <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
                                 <option value="adult">Adult</option>
-                                <option value="child">Kid</option>
+                                <option value="child">Child</option>
                             </select>
                         </div>
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S NAME</h3>
+                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
                         <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex. DADDY'">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
+                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
                         <!-- MGS: this selector not implemented yet. Style as desired -->
                         <div class="select-css">
                             <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
