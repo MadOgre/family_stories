@@ -307,7 +307,6 @@ a:hover, a:focus {
   text-decoration: none; }
 
 #tabs .tab-pane-style {
-  width: 60%;
   background-color: #fcfcfa;
   padding: 0 20px;
   position: relative;
@@ -372,12 +371,11 @@ a:hover, a:focus {
   display: none; }
 
 #tabs .tab-pane-style label {
-  width: 142px;
-  height: 142px;
+  width: 45%;
+  height: 130px;
   background-color: #fff;
   cursor: pointer;
   margin: 0 0 14px 0;
-  line-height: 142px;
   overflow: hidden;
   text-align: center; }
 
