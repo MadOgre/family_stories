@@ -60,19 +60,19 @@
                     <!-- NAME & GENDER tab -->
                     <div id="nameGender" class="tab-pane tab-pane-style active">
                         <!-- MGS: this selector not implemented yet. Style as desired -->
-                        <h3>KID OR ADULT?</h3>
+                        <h3>CHILD OR ADULT?</h3>
                         <div class="select-css">
-                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
+                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false; main.updateChildCount(main.currentAvatarAge, '{{main.currentAvatarAge}}')">
                                 <option value="adult">Adult</option>
-                                <option value="child">Kid</option>
+                                <option ng-disabled="main.totalChildren >= main.maxChildren" value="child">Child</option>
                             </select>
                         </div>
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S NAME</h3>
+                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
-                        <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required autofocus="true">
+                        <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex. DADDY'">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'KID'}}'S GENDER</h3>
+                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
                         <!-- MGS: this selector not implemented yet. Style as desired -->
                         <div class="select-css">
                             <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
@@ -84,7 +84,7 @@
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
                         <h3>{{property.image_type_label}}</h3>
-                        <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose')">
+                        <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
                             <div ng-repeat="value in property.values | unique: 'color_code'">
                                 <input id="radio_btn_color_{{value.image_id}}_{{value.color_name}}" type="radio" ng-value="value.color_code" name="radio_color_{{property.image_type}}" ng-bind="main.imageUrls[main.currentAvatar.images[$parent.$index]].color_code" ng-model="main.colorCodes[property.image_type]"></input>
                                 <label class="color-thumb" ng-style="{'background-color': value.color_code}" for="radio_btn_color_{{value.image_id}}_{{value.color_name}}"></label>
@@ -157,10 +157,10 @@
                 <li>
                     <!-- MGS: Input was connected to angular -->
                     <input style="display:none;" type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
-                    <div style="display:block;" class="salutation-wrapper">Hey <span class="name-salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
+                    <div style="display:block;" class="salutation-wrapper" ng-show="main.currentAvatar.name !== ''">Hey <span ng-bind="main.currentAvatar.name"name-salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
                 </li>
                 <li>
-                    <a style="display:none;" class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
+                    <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
                 </li>
             </ul>
             <div class="clearfix"></div>

@@ -29,6 +29,17 @@
       vm.colorCodes[nose_property] = vm.colorCodes[body_property];
     }, true);
 
+    // $scope.$watch(angular.bind(this, function () {
+    //   return this.currentAvatarAge;
+    // }), function(newVal, oldVal){
+    //   alert("triggered");
+    //   if (newVal === 'adult' && oldVal === 'child') {
+    //     vm.totalChildren--;
+    //   } else if (oldVal === 'adult' && newVal === 'child') {
+    //     vm.totalChildren++;
+    //   }
+    // }, true);
+
     function colorSync(prop) {
       vm.currentAvatar.images = vm.currentAvatar.images.map(function(imageId){
         if (!vm.imageUrls[imageId] || vm.imageUrls[imageId].image_type !== prop) {
@@ -124,7 +135,9 @@
     vm.currentUser = "TestUser01"; //change this for production
     vm.currentAvatarIndex = 1;
     vm.totalAvatars = 1;
-    vm.maxAvatars = 10;
+    vm.totalChildren = 0;
+    vm.maxAvatars = 2; //must be set to at least 2 to prevent errors
+    vm.maxChildren = 1;
     vm.newAvatar = true;
     vm.error = "";
 
@@ -210,13 +223,21 @@
         url: '/getproperty/MAX_AVATARS'
       }).then(function(data){
         console.log(JSON.stringify(data.data));
+        vm.maxAvatars = +(data.data[0].property_value);
         sharedProperties.setMaxAvatars(data.data[0].property_value);
         $http({
           method: 'GET',
           url: '/getproperty/MAX_BOOK_PAGES'          
         }).then(function(data){
           sharedProperties.setMaxBookPages(data.data[0].property_value);
-          cb(null);
+          $http({
+            method: 'GET',
+            url: '/getproperty/MAX_CHILDREN'          
+          }).then(function(data){
+            vm.maxChildren = +(data.data[0].property_value);
+            sharedProperties.setMaxChildren(data.data[0].property_value);
+            cb(null);
+          });
         });
       });
     };
@@ -383,6 +404,9 @@
 
     vm.postPerson = function(cb) {
       console.log("post person called");
+      vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }).join(' ');
       var response = {
         user_id: vm.currentUser,
         avatar_name: vm.currentAvatar.name,
@@ -429,6 +453,9 @@
         if (vm.currentAvatarIndex < vm.maxAvatars) {
           vm.currentAvatarIndex++;
           vm.totalAvatars++;
+          // if (vm.currentAvatarGender === 'child') {
+          //   vm.totalChildren++;
+          // } 
           updateCurrentAvatar();
           vm.newAvatar = true;
           vm.isPristine = true;
@@ -551,6 +578,15 @@
       }, function fail(err){
         alert("there was an error deleting avatars");
       });
+    };
+
+    vm.updateChildCount = function(newVal, oldVal) {
+      //alert("OLDVAL: " + oldVal + " NEWVAL: " + newVal);
+      if (newVal === 'adult' && oldVal === 'child') {
+        vm.totalChildren--;
+      } else if (oldVal === 'adult' && newVal === 'child') {
+        vm.totalChildren++;
+      }      
     };
   }
 }());
