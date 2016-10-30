@@ -211,12 +211,13 @@ a:hover, a:focus{
     text-decoration:none;
 }
 #tabs .tab-pane-style {
-    width:330px;
+    width: 60%;
     background-color: #fcfcfa;
     padding:0 20px;
     position: relative;
     overflow:hidden;
     margin-bottom:10px;
+    box-sizing: border-box;
 }
 #tabs > .tab-pane-style.active {
     display:block;
@@ -809,9 +810,11 @@ input[type="radio"]:checked + label.color-thumb {
     }
 
     #tabs > ul,.tabs-btn-wrapper .tab-btn-clear {
+    box-sizing: border-box;
     width: 40%;
 }
     #tabs .tab-pane-style,.tabs-btn-wrapper .tab-btn-save {
+    box-sizing: border-box;
     width: 60%;
 }
 
@@ -822,6 +825,7 @@ input[type="radio"]:checked + label.color-thumb {
     height: auto;
     max-width: 142px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 #tabs .tab-pane-style div:nth-child(2n+1) label.body-part-label {
