@@ -29,17 +29,6 @@
       vm.colorCodes[nose_property] = vm.colorCodes[body_property];
     }, true);
 
-    // $scope.$watch(angular.bind(this, function () {
-    //   return this.currentAvatarAge;
-    // }), function(newVal, oldVal){
-    //   alert("triggered");
-    //   if (newVal === 'adult' && oldVal === 'child') {
-    //     vm.totalChildren--;
-    //   } else if (oldVal === 'adult' && newVal === 'child') {
-    //     vm.totalChildren++;
-    //   }
-    // }, true);
-
     function colorSync(prop) {
       vm.currentAvatar.images = vm.currentAvatar.images.map(function(imageId){
         if (!vm.imageUrls[imageId] || vm.imageUrls[imageId].image_type !== prop) {
@@ -152,11 +141,15 @@
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         } else {
           vm.schema = vm.childMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childMaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         }
@@ -164,11 +157,15 @@
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         } else {
           vm.schema = vm.childFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childFemaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         }
@@ -557,9 +554,11 @@
       });
     };
 
-    vm.saveChanges = function() {
+    vm.saveChanges = function(al) {
       vm.postPerson(function(){
-        alert("Changes saved!");
+        if (al === 'alert') {
+          alert("Changes saved!");
+        }
       });
     };
 
@@ -578,15 +577,6 @@
       }, function fail(err){
         alert("there was an error deleting avatars");
       });
-    };
-
-    vm.updateChildCount = function(newVal, oldVal) {
-      //alert("OLDVAL: " + oldVal + " NEWVAL: " + newVal);
-      if (newVal === 'adult' && oldVal === 'child') {
-        vm.totalChildren--;
-      } else if (oldVal === 'adult' && newVal === 'child') {
-        vm.totalChildren++;
-      }      
     };
   }
 }());

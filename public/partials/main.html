@@ -62,9 +62,9 @@
                         <!-- MGS: this selector not implemented yet. Style as desired -->
                         <h3>CHILD OR ADULT?</h3>
                         <div class="select-css">
-                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false; main.updateChildCount(main.currentAvatarAge, '{{main.currentAvatarAge}}')">
+                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
                                 <option value="adult">Adult</option>
-                                <option ng-disabled="main.totalChildren >= main.maxChildren" value="child">Child</option>
+                                <option value="child">Child</option>
                             </select>
                         </div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
@@ -119,7 +119,7 @@
                     <a ng-click="main.deleteAvatarsConfirm()" href="" target="_self">Clear All</a><!--added class-->
                 </div>
                 <div class="tab-btn-save">
-                    <a href="" ng-click="main.saveChanges()">Save Changes</a><!--added class-->
+                    <a href="" ng-click="main.saveChanges('alert');">Save Changes</a><!--added class-->
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
                 <li>
                     <!-- MGS: Input was connected to angular -->
                     <input style="display:none;" type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
-                    <div style="display:block;" class="salutation-wrapper" ng-show="main.currentAvatar.name !== ''">Hey <span ng-bind="main.currentAvatar.name"name-salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
+                    <div style="display:block;" class="salutation-wrapper" ng-class="{ghost: !main.currentAvatar.name || main.currentAvatar.name === ''}">Hey <span ng-bind="main.currentAvatar.name" name="salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
                 </li>
                 <li>
                     <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
@@ -194,7 +194,7 @@
             </ul>
             <div class="w-col-md-4">
                 <!--added div-->
-                <a href="" target="_self" data-toggle="modal" data-target="#myModal" class="footer-btn">My characters are ready</a>
+                <a href="" target="_self" ng-click="main.saveChanges()" data-toggle="modal" data-target="#myModal" class="footer-btn">My characters are ready</a>
                 <a href="javascript:void(0);" class="skip-btn">SKIP TO PREVIEW THE BOOK</a>
             </div>
         </div>
