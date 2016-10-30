@@ -62,9 +62,9 @@
                         <!-- MGS: this selector not implemented yet. Style as desired -->
                         <h3>CHILD OR ADULT?</h3>
                         <div class="select-css">
-                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
+                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false; main.updateChildCount(main.currentAvatarAge, '{{main.currentAvatarAge}}')">
                                 <option value="adult">Adult</option>
-                                <option value="child">Child</option>
+                                <option ng-disabled="main.totalChildren >= main.maxChildren" value="child">Child</option>
                             </select>
                         </div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>

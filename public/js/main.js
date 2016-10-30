@@ -29,6 +29,17 @@
       vm.colorCodes[nose_property] = vm.colorCodes[body_property];
     }, true);
 
+    // $scope.$watch(angular.bind(this, function () {
+    //   return this.currentAvatarAge;
+    // }), function(newVal, oldVal){
+    //   alert("triggered");
+    //   if (newVal === 'adult' && oldVal === 'child') {
+    //     vm.totalChildren--;
+    //   } else if (oldVal === 'adult' && newVal === 'child') {
+    //     vm.totalChildren++;
+    //   }
+    // }, true);
+
     function colorSync(prop) {
       vm.currentAvatar.images = vm.currentAvatar.images.map(function(imageId){
         if (!vm.imageUrls[imageId] || vm.imageUrls[imageId].image_type !== prop) {
@@ -567,6 +578,15 @@
       }, function fail(err){
         alert("there was an error deleting avatars");
       });
+    };
+
+    vm.updateChildCount = function(newVal, oldVal) {
+      //alert("OLDVAL: " + oldVal + " NEWVAL: " + newVal);
+      if (newVal === 'adult' && oldVal === 'child') {
+        vm.totalChildren--;
+      } else if (oldVal === 'adult' && newVal === 'child') {
+        vm.totalChildren++;
+      }      
     };
   }
 }());
