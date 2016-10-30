@@ -119,7 +119,7 @@
                     <a ng-click="main.deleteAvatarsConfirm()" href="" target="_self">Clear All</a><!--added class-->
                 </div>
                 <div class="tab-btn-save">
-                    <a href="" ng-click="main.saveChanges()">Save Changes</a><!--added class-->
+                    <a href="" ng-click="main.saveChanges('alert');">Save Changes</a><!--added class-->
                 </div>
             </div>
         </div>
@@ -194,7 +194,7 @@
             </ul>
             <div class="w-col-md-4">
                 <!--added div-->
-                <a href="" target="_self" data-toggle="modal" data-target="#myModal" class="footer-btn">My characters are ready</a>
+                <a href="" target="_self" ng-click="main.saveChanges()" data-toggle="modal" data-target="#myModal" class="footer-btn">My characters are ready</a>
                 <a href="javascript:void(0);" class="skip-btn">SKIP TO PREVIEW THE BOOK</a>
             </div>
         </div>

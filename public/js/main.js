@@ -565,9 +565,11 @@
       });
     };
 
-    vm.saveChanges = function() {
+    vm.saveChanges = function(al) {
       vm.postPerson(function(){
-        alert("Changes saved!");
+        if (al === 'alert') {
+          alert("Changes saved!");
+        }
       });
     };
 
