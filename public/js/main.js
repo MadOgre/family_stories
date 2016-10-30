@@ -152,11 +152,15 @@
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         } else {
           vm.schema = vm.childMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childMaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         }
@@ -164,11 +168,15 @@
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         } else {
           vm.schema = vm.childFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childFemaleAvatarDefaults.slice();
+          $(".tab-pane").removeClass("active");
+          $("#tabs>ul>li").removeClass("active");
           $('#nameGender').addClass("active");
           $("#tabs>ul>li:first-child").addClass("active");
         }
