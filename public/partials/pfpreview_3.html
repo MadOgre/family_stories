@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="creationTool">
+
+        <section id="topPartWrapper">
+            <div class="container">
+                <img src="/img/logo.png" class="logo" alt="" />
+                <ul class="header-menu">
+                    <li><a href="javascript:void(0);">Home</a></li>
+                    <li><a href="javascript:void(0);">Profile</a></li>
+                    <li><a href="javascript:void(0);">Settings</a></li>
+                    <li><a href="javascript:void(0);">About</a></li>
+                </ul>
+            </div>
+        </section><!-- end id:topPartWrapper -->
+        <div class="character-wrapper container pfpreview message-page">
+            <div class="header-info">
+                <div class="input-container">
+                    <a class="pencil" href="javascript:void(0);"></a>
+                    <!-- family's name -->
+                    <input type="text" name="" id="" placeholder="FAMILY NAME" value="TIMOS' BOOK" />
+                </div>
+                <!-- help button -->
+                <a href="javascript:void(0);" class="q-circle">?</a>
+            </div>
+
+            <div class="flip-book-info">
+                <div class="text-container">
+                    <strong>Congratulations!</strong> <br />You are few clicks away from your <strong>first Book!</strong>
+                </div>
+                <div class="flipbook">
+                    <div class="page-wrapper">
+
+                        <div class="page"><img src="/img/book_back.png" alt="" /></div>
+                        <div class="page">
+                            <div class="form-container">
+                                <img src="../img/form_bg.png" />
+                                <h2>Write a special message</h2>
+                                <h3>We will print it in the first page</h3>
+                                <textarea placeholder="Write something beautiful..."></textarea>
+                            </div>
+                        </div>
+                        <!--Placeholder, required for responsive layout (height). Please do not remove-->
+                        <img src="/img/book_page1.png" alt="" class="flipbook-placeholder" />
+                        <!--Placeholder, required for responsive layout (height). Please do not remove-->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- bottom part -> menu & buttons -->
+        <section id="bottomPartWrapper">
+            <div class="container">
+                <div class="w-col-md-4"><a href="javascript:void(0);" class="footer-btn edit-btn">Edit Avatar</a></div>
+                <!-- steps menu -->
+                <ul class="steps-menu w-col-md-4">
+                    <li class="done">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">AVATAR</span>
+                    </li>
+                    <li class="active">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">FAMILY</span>
+                    </li>
+                    <li class="todo">
+                        <span class="circle"></span>
+                        <span class="bar"></span>
+                        <span class="avatar-label">BOOK</span>
+                    </li>
+                </ul>
+                <div class="w-col-md-4">
+                    <a href="javascript:void(0);" class="footer-btn">Buy the Book</a>
+                </div>
+            </div>
+        </section><!-- end id:bottomPartWrapper -->
+    </div><!-- end id:creationTool -->
+</body>
+    </html>

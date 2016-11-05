@@ -47,7 +47,7 @@
 
                     <!-- MGS: the tab li elements (or whatever element they will get changed to will dynamically repeat based on the information retrieved from the database). I have commented out all but the first LI to demonstrate that -->
                     <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
-                    <!--<li class="active"><a data-toggle="tab" href="#nameGender">NAME & GENDER</a></li>
+                    <!--        <li class="active"><a data-toggle="tab" href="#nameGender">NAME & GENDER</a></li>
                     <li><a href="#skin">SKIN</a></li>
                     <li><a href="#hair">HAIR</a></li>
                     <li><a href="#eyes">EYES</a></li>
@@ -80,8 +80,6 @@
                                 <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
-                        <h3>KID'S BIRTHDAY</h3>
-                        <input type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                     </div>
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
