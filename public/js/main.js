@@ -511,7 +511,7 @@
       }).then(function(data){
         $http({
           method: "GET",
-          url: "/proxy/http://178.62.255.163:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
+          url: "/proxy/http://159.203.168.10:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
         }).
         then(function success(data){
           //alert(JSON.stringify(data.data));
