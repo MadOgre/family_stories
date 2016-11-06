@@ -472,6 +472,7 @@ app.get("/testroute", function(req, res){
 
 function preventAccess(req,res,next) {
   if (!req.session.admin) {
+    console.log("NOT ADMIN!");
     res.redirect("/admin_login");
   } else {
     next();
