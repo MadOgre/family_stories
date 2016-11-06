@@ -15,8 +15,8 @@
       })
       .when("/previewbook", {
         templateUrl: "/partials/pfpreview_2.html",
-        controller: "Main",
-        controllerAs: "main"
+        controller: "Preview",
+        controllerAs: "preview"
       })
       .when("/dedication", {
         templateUrl: "/partials/pfpreview_3.html",

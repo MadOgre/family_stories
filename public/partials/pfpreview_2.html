@@ -12,13 +12,16 @@
         <div class="text-container">
             <strong>Congratulations!</strong> <br />You are few clicks away from your <strong>first Book!</strong>
         </div>
-        <div class="flipbook">
+        <!-- flipbook class has been changed to flipbook-style, the flipbook class is necessary for the plugin to work and must contain images - see below MIKE -->
+        <div class="flipbook-style">
             <div class="page-wrapper">
-
-                <div class="page"><img src="/img/book_page1.png" alt="" /></div>
+                <div class="flipbook">
+                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(preview.numberOfImages) track by $index" ng-init="$last && preview.finished()">
+                </div>
+<!--                 <div class="page"><img src="/img/book_page1.png" alt="" /></div>
                 <div class="page"><img src="/img/book_page2.png" alt="" /></div>
                 <div class="page"><img src="/img/book_page1.png" alt="" /></div>
-                <div class="page"><img src="/img/book_page2.png" alt="" /></div>
+                <div class="page"><img src="/img/book_page2.png" alt="" /></div> -->
                 <!--Placeholder, required for responsive layout (height). Please do not remove-->
                 <img src="/img/book_page1.png" alt="" class="flipbook-placeholder" />
                 <!--Placeholder, required for responsive layout (height). Please do not remove-->

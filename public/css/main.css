@@ -1099,23 +1099,23 @@ input[type="radio"]:checked + label.color-thumb {
 .flip-book-info strong {
   font-weight: 400; }
 
-.flipbook {
+.flipbook-style {
   margin: auto;
   max-width: 1008px;
   position: relative;
   width: 100%;
   z-index: 200; }
 
-.flipbook .flipbook-placeholder {
+.flipbook-style .flipbook-placeholder {
   width: 50%;
   height: auto;
   opacity: 0; }
 
-.flipbook .page-wrapper {
+.flipbook-style .page-wrapper {
   overflow: hidden;
   z-index: 200; }
 
-.flipbook .page {
+.flipbook-style .page {
   position: absolute;
   width: 50%;
   height: 100%;
@@ -1124,15 +1124,15 @@ input[type="radio"]:checked + label.color-thumb {
   bottom: auto;
   z-index: 200; }
 
-.flipbook .page:nth-child(2n+1) {
+.flipbook-style .page:nth-child(2n+1) {
   left: 0;
   right: auto; }
 
-.flipbook .page:nth-child(2n) {
+.flipbook-style .page:nth-child(2n) {
   left: auto;
   right: 0; }
 
-.flipbook .page img {
+.flipbook-style .page img {
   width: 100%;
   vertical-align: middle; }
 
