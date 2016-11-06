@@ -237,6 +237,16 @@ app.get("/saveuser", function(req, res){
   });
 });
 
+app.get("/getFolderName", function(req, res, next){
+  if (!req.session.user_id) {
+    return res.json({});
+  }
+  request("http://159.203.168.10:8080/FamilyStoryWebService/publish/" + req.session.user_id + "+LOW", function(err, responce, body){
+    if (err) return next(err);
+    return res.json(body);
+  });
+});
+
 app.get("/getAdultfemaleParts", function(req, res){
   getBodyParts("ADULT_FEMALE", function(err, result){
     if (err) {
