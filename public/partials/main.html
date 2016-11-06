@@ -20,21 +20,8 @@
     </div>
     <p ng-if="main.currentUserProfile"><a target="_self" href="logout">logout</a></p>
 </div>
-<div id="creationTool">
-
     <!-- MGS: family name is not implemented yet - style as desired -->
-    <section id="topPartWrapper">
-        <!--added class-->
-        <div class="container">
-            <img src="/img/logo.png" class="logo" alt="" />
-            <ul class="header-menu">
-                <li><a href="javascript:void(0);">Home</a></li>
-                <li><a href="javascript:void(0);">Profile</a></li>
-                <li><a href="javascript:void(0);">Settings</a></li>
-                <li><a href="javascript:void(0);">About</a></li>
-            </ul>
-        </div>
-    </section><!-- end id:topPartWrapper -->
+
     <div class="character-wrapper container">
         <!--added div-->
         <div class="tab-wrapper">
@@ -201,32 +188,4 @@
             </div>
         </div>
     </section><!-- end id:bottomPartWrapper -->
-</div><!-- end id:creationTool -->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Preview Family</h4>
-            </div>
-            <div class="modal-body family">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-2" ng-repeat="value in main.results | limitTo:main.totalAvatars">
-                            <div class="graphic">
-                                <img class="transparency" src="img/transparency.png">
-                                <img class="img" ng-repeat="image in value.images" ng-src="{{main.imageUrls[image].location}}">
-                            </div>
-                            <h4 class="preview-label">{{value.name}}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" ng-click="main.submitPreview()">Go to Preview</button>
-            </div>
-        </div>
-    </div>
-</div>
+
