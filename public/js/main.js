@@ -529,6 +529,7 @@
     };
 
     vm.submitPreview = function() {
+      alert("submitted!");
       $http({
         method: "GET",
         url: "/getCurrentId"
@@ -538,13 +539,13 @@
           url: "/proxy/http://159.203.168.10:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
         }).
         then(function success(data){
-          //alert(JSON.stringify(data.data));
+          alert(JSON.stringify(data.data));
           sharedProperties.setFolderName(data.data.result);
           //alert(sharedProperties.getFolderName());
           //$location.url('/getpreview');
           //$scope.$apply();
           // $('#myModal').on('hidden.bs.modal', function () {
-            $location.url('/getpreview');
+            $location.url('/previewbook');
             // $scope.$apply();
           // });
           // $("#myModal").modal('hide');
