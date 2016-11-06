@@ -543,11 +543,11 @@
           //alert(sharedProperties.getFolderName());
           //$location.url('/getpreview');
           //$scope.$apply();
-          $('#myModal').on('hidden.bs.modal', function () {
+          // $('#myModal').on('hidden.bs.modal', function () {
             $location.url('/getpreview');
-            $scope.$apply();
-          });
-          $("#myModal").modal('hide');
+            // $scope.$apply();
+          // });
+          // $("#myModal").modal('hide');
         }, function fail(data){
           console.warn(data);
         });
