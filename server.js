@@ -140,7 +140,7 @@ app.get("/admin_login", function(req, res){
   if (req.session.admin === true) {
     res.sendFile(__dirname + "/index_hidden.html");
   } else {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/comingsoon.html");
   }
 });
 
