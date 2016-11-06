@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<base href="/">
-<!-- 	  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+  <!-- 	  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
   <script type="text/javascript">
     ShopifyApp.init({
       apiKey: '3476efb4a6d3e512814fed0fed881fc0',
@@ -40,14 +40,28 @@
 	<script src="js/main.js"></script>
 </head>
 <body>
-<div class="total-wrapper">
-		<div class="banner-wrapper">
-			<div class="banner">
-					<h1>Build A Book</h1>
-			</div>
-		</div>
-		<ng-view></ng-view>
-	</div>
+  <div class="total-wrapper">
+  		<div class="banner-wrapper">
+  			<div class="banner">
+  					<h1>Build A Book</h1>
+  			</div>
+  		</div>
+      <div id="creationTool">
+
+          <section id="topPartWrapper">
+            <div class="container">
+                <img src="/img/logo.png" class="logo" alt="" />
+                <ul class="header-menu">
+                    <li><a href="javascript:void(0);">Home</a></li>
+                    <li><a href="javascript:void(0);">Profile</a></li>
+                    <li><a href="javascript:void(0);">Settings</a></li>
+                    <li><a href="javascript:void(0);">About</a></li>
+                </ul>
+            </div>
+          </section><!-- end id:topPartWrapper -->
+      </div>
+  		<ng-view></ng-view>
+  </div>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="libs/turnjs/turn.min.js"></script>
