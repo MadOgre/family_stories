@@ -26,7 +26,7 @@
           
           // Auto center this flipbook
           display: 'double',
-          autoCenter: true
+          // autoCenter: true
 
       }
     );

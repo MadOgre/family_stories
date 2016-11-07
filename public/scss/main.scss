@@ -1173,6 +1173,7 @@ input[type="radio"]:checked + label.color-thumb {
     width:50%;
     height:auto;
     opacity:0;
+    display: none;
 }
 
 .flipbook-style .page-wrapper{
