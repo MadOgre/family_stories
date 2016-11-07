@@ -1,18 +1,26 @@
 (function(){
   "use strict";
   angular.module('app')
-    .service('sharedProperties', function () {
+    .service('sharedProperties', ['$http', function ($http) {
         var folderName = '';
         var maxAvatars = 0;
         var maxBookPages = 0;
         var maxChildren = 0;
 
         return {
-            getFolderName: function () {
-                return folderName;
+            setFolderName: function () {
+                //return folderName;
+                $http({
+                    method: "GET",
+                    url: "/setFolderName"
+                  }).then(function success(data){
+                      folderName = JSON.parse(data.data).result;
+                    }, function fail(data){
+                      console.warn(data);
+                    });
             },
-            setFolderName: function(value) {
-                folderName = value;
+            getFolderName: function() {
+                return folderName;
             },
             getMaxAvatars: function () {
                 return maxAvatars;
@@ -33,5 +41,5 @@
                 maxChildren = value;
             }
         };
-    });
+    }]);
 })();

@@ -529,18 +529,14 @@
     };
 
     vm.submitPreview = function() {
-      alert("submitted!");
+      //alert("submitted!");
       $http({
         method: "GET",
-        url: "/getCurrentId"
-      }).then(function(data){
-        $http({
-          method: "GET",
-          url: "/proxy/http://159.203.168.10:8080/FamilyStoryWebService/publish/" + data.data + "+LOW"
-        }).
-        then(function success(data){
-          alert(JSON.stringify(data.data));
-          sharedProperties.setFolderName(data.data.result);
+        url: "/setFolderName"
+      }).then(function success(data){
+          // alert(JSON.stringify(data.data));
+          //alert(JSON.parse(data.data).result);
+          //sharedProperties.setFolderName(JSON.parse(data.data).result);
           //alert(sharedProperties.getFolderName());
           //$location.url('/getpreview');
           //$scope.$apply();
@@ -552,7 +548,6 @@
         }, function fail(data){
           console.warn(data);
         });
-      });
     };
 
     vm.saveChanges = function(al) {
