@@ -47,8 +47,20 @@
         vm.paymentinfo = null;
       });
     };
+
     vm.folderName = sharedProperties.getFolderName();
 
+    // $http({
+    //     method: 'GET',
+    //     url: '/getFolderName'
+    //   }).then(function(data){
+    //     vm.folderName = data.result;
+    //     alert(vm.folderName);
+    //   });
+
+    
+
+    alert(vm.folderName);
       $http({
         method: 'GET',
         url: '/getPaymentInfo'

@@ -532,11 +532,11 @@
       //alert("submitted!");
       $http({
         method: "GET",
-        url: "/getFolderName"
+        url: "/setFolderName"
       }).then(function success(data){
           // alert(JSON.stringify(data.data));
-          // alert(JSON.parse(data.data).result);
-          sharedProperties.setFolderName(JSON.parse(data.data).result);
+          //alert(JSON.parse(data.data).result);
+          //sharedProperties.setFolderName(JSON.parse(data.data).result);
           //alert(sharedProperties.getFolderName());
           //$location.url('/getpreview');
           //$scope.$apply();

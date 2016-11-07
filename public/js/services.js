@@ -8,20 +8,19 @@
         var maxChildren = 0;
 
         return {
-            getFolderName: function () {
+            setFolderName: function () {
                 //return folderName;
                 $http({
                     method: "GET",
-                    url: "/getFolderName"
+                    url: "/setFolderName"
                   }).then(function success(data){
                       folderName = JSON.parse(data.data).result;
-                      return folderName;
                     }, function fail(data){
                       console.warn(data);
                     });
             },
-            setFolderName: function(value) {
-                folderName = value;
+            getFolderName: function() {
+                return folderName;
             },
             getMaxAvatars: function () {
                 return maxAvatars;
