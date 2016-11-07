@@ -249,6 +249,18 @@ app.get("/setFolderName", function(req, res, next){
   });
 });
 
+app.get("/setPreviewFolderName", function(req, res, next){
+  if (!req.session.user_id) {
+    return res.json({});
+  }
+  request("http://159.203.168.10:8080/FamilyStoryWebService/publish/" + req.session.user_id + "+PREVIEW", function(err, responce, body){
+    if (err) return next(err);
+    req.session.foldername = body;
+    console.log("FOLDERNAME: " + req.session.foldername);
+    return res.json(body);
+  });
+});
+
 app.get("/getFolderName", function(req, res){
   res.json(req.session.foldername);
 });
