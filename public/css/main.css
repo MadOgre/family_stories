@@ -276,6 +276,9 @@ body {
   overflow-x: hidden;
   overflow-y: scroll; }
 
+.tab-content {
+  overflow-y: hidden; }
+
 #tabs > ul, #tabs > .tab-pane-style {
   float: left;
   width: 80%; }
