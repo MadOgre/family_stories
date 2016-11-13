@@ -408,6 +408,8 @@
         user_id: vm.currentUser,
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
+        avatar_index: vm.currentAvatarIndex,
+        avatar_age: vm.currentAvatarAge,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
       };
       $http({

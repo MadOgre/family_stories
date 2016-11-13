@@ -11,6 +11,8 @@ var GoogleStrategy = require("passport-google-openidconnect").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
 var request = require("request");
 var qs = require("querystring");
+let stripe = require("stripe")("sk_test_eExGRjpjgm5wzQFl3WMno3e8");
+let geoip = require("geoip-lite");
 
 var config = require("./config.js");
 
@@ -136,6 +138,71 @@ app.post("/admin_login", function(req, res){
   }
 });
 
+
+    // payload.user_id + "','" + 
+    // payload.user_email + "','" +
+    // payload.user_addr_ln_1 + "','" +
+    // payload.user_addr_ln_2 + "','" +
+    // payload.user_city + "','" +
+    // payload.user_zip + "','" +
+    // payload.user_province + "','" +
+    // payload.user_country + "','" +
+    // payload.user_order_id + "','" +
+
+app.post("/charge", (req, res, next) => {
+  let token = req.body.stripeToken;
+  console.log("CHARGED!");
+  stripe.charges.create({
+    amount: 2000, // Amount in cents HAS TO BE SET MANUALLY!
+    currency: "usd",
+    source: token,
+    description: "Book purchase",
+    receipt_email: req.body.stripeEmail
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      return next(new Error("the card has been declined"));
+    }
+    var payload = {
+      user_id: req.session.user_id,
+      user_email: charge.receipt_email,
+      user_addr_ln_1: charge.source.address_line1,
+      user_addr_ln_2: charge.source.address_line2,
+      user_city: charge.source.address_city,
+      user_zip: charge.source.address_zip,
+      user_province: charge.source.address_state,
+      user_country: charge.source.address_country,
+      user_order_id: charge.id
+    };
+    placeOrderStripe(payload, function(err, data){
+      if (err) throw(new Error("Failed to save order"));
+      if (data.result === "success") {
+        res.send("Payment has been processed");
+      } else {
+        res.send("Something went wrong check the code");
+      }
+    });
+  });
+});
+
+app.get("/getCurrencyAndPrice", function(req, res, next){
+  let geo = geoip.lookup(req.ip);
+  getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
+    if (err) next(err);
+    res.json(data);
+  });
+});
+
+function getCurrencyAndPrice(countryCode, cb) {
+  sequelize.query(
+    "call sp_get_currency_price('" +
+    countryCode + "')"
+    ).then(function(data){
+    cb(null, data);
+  }).catch(function(err){
+    cb(err);
+  });    
+}
+
 app.get("/admin_login", function(req, res){
   if (req.session.admin === true) {
     res.sendFile(__dirname + "/index_hidden.html");
@@ -184,8 +251,31 @@ function setUserSelection(payload, cb) {
     "call sp_iu_user_default_images('" +
     payload.user_id + "','" + 
     payload.avatar_name + "','" +
-    payload.image_id_list + "'," +
+    payload.image_id_list + "','" +
+    payload.avatar_index + "','" +
+    payload.avatar_age + "'," + // the quote is missing for a reason!!
     (payload.replace ? "'" + payload.replace + "'" : null) + ")").then(function(){
+    cb(null, {result: "success"});
+  }).catch(function(err){
+    cb(err);
+  });  
+}
+
+//this calls a stored procedure on successful pay
+function placeOrderStripe(payload, cb) {
+  sequelize.query(
+    "call sp_iu_order('" +
+    payload.user_id + "','" + 
+    payload.user_email + "','" +
+    payload.user_addr_ln_1 + "','" +
+    payload.user_addr_ln_2 + "','" +
+    payload.user_city + "','" +
+    payload.user_zip + "','" +
+    payload.user_province + "','" +
+    payload.user_country + "','" +
+    payload.user_order_id + "','" +
+    "stripe')"
+    ).then(function(){
     cb(null, {result: "success"});
   }).catch(function(err){
     cb(err);
@@ -242,6 +332,18 @@ app.get("/setFolderName", function(req, res, next){
     return res.json({});
   }
   request("http://159.203.168.10:8080/FamilyStoryWebService/publish/" + req.session.user_id + "+LOW", function(err, responce, body){
+    if (err) return next(err);
+    req.session.foldername = body;
+    console.log("FOLDERNAME: " + req.session.foldername);
+    return res.json(body);
+  });
+});
+
+app.get("/setPreviewFolderName", function(req, res, next){
+  if (!req.session.user_id) {
+    return res.json({});
+  }
+  request("http://159.203.168.10:8080/FamilyStoryWebService/publish/" + req.session.user_id + "+PREVIEW", function(err, responce, body){
     if (err) return next(err);
     req.session.foldername = body;
     console.log("FOLDERNAME: " + req.session.foldername);
@@ -514,6 +616,11 @@ function preventAccess(req,res,next) {
 
 app.get("*", preventAccess, setId, function(req, res){
   res.sendFile(__dirname + "/index_hidden.html");
+});
+
+app.use(function(err, req, res, next){
+  res.status(500).send("<h1>500 Internal Server Error</h1><br><h3>" + err.message + "</h3>");
+  next();
 });
 
 

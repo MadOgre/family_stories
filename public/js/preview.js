@@ -1,20 +1,32 @@
 (function(){
   "use strict";
-  angular.module("app").controller("Preview", ['sharedProperties', '$http', Preview]);
+  angular.module("app").controller("Preview", ['sharedProperties', '$http', '$location', Preview]);
 
-  function Preview(sharedProperties, $http) {
+  function Preview(sharedProperties, $http, $location) {
 
     var vm = this;
     vm.folderName = "";
+    vm.previewFolderName = "";
     vm.loaded = false;
+    vm.folder2loaded = false;
     //vm.folderName = sharedProperties.getFolderName();
                     $http({
                     method: "GET",
                     url: "/setFolderName"
-                  }).then(function success(data){
+                    }).then(function success(data){
                       vm.folderName = JSON.parse(data.data).result;
                       //alert(vm.folderName);
                       vm.loaded = true;
+                    }, function fail(data){
+                      console.warn(data);
+                    });
+                      $http({
+                    method: "GET",
+                    url: "/setPreviewFolderName"
+                    }).then(function success(data){
+                      vm.previewFolderName = JSON.parse(data.data).result;
+                      //alert(vm.folderName);
+                      vm.folder2loaded = true;
                     }, function fail(data){
                       console.warn(data);
                     });
@@ -23,6 +35,30 @@
     //note by MGS7664 must correct this later, number of pages currently hardcoded
     vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
     vm.receipt = null;
+
+    vm.submitPreview = function() {
+      //alert("submitted!");
+      $http({
+        method: "GET",
+        url: "/setFolderName"
+      }).then(function success(data){
+          // alert(JSON.stringify(data.data));
+          //alert(JSON.parse(data.data).result);
+          //sharedProperties.setFolderName(JSON.parse(data.data).result);
+          //alert(sharedProperties.getFolderName());
+          //$location.url('/getpreview');
+          //$scope.$apply();
+          // $('#myModal').on('hidden.bs.modal', function () {
+            $location.url('/previewbook');
+            // $scope.$apply();
+          // });
+          // $("#myModal").modal('hide');
+        }, function fail(data){
+          console.warn(data);
+        });
+    };
+
+
     vm.finished = function() {
     $('.flipbook').turn({
           // Width

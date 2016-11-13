@@ -10,8 +10,8 @@
       })
       .when("/previewfamily", {
         templateUrl: "/partials/pfpreview_1.html",
-        controller: "Main",
-        controllerAs: "main"
+        controller: "Preview",
+        controllerAs: "preview"
       })
       .when("/previewbook", {
         templateUrl: "/partials/pfpreview_2.html",
@@ -20,8 +20,8 @@
       })
       .when("/dedication", {
         templateUrl: "/partials/pfpreview_3.html",
-        controller: "Main",
-        controllerAs: "main"
+        controller: "Preview",
+        controllerAs: "preview"
       })
       .when("/oldmain", {
         templateUrl: "/partials/old_main.html",
