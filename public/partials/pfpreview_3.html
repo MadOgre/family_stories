@@ -56,7 +56,22 @@
             </li>
         </ul>
         <div class="w-col-md-4">
-            <a target="_self" href="javascript:alert('This will be linked to payment')" ng-click="alert('This will be linked to payment')" class="footer-btn">Buy the Book</a>
+<!--             <a target="_self" href="javascript:alert('This will be linked to payment')" ng-click="alert('This will be linked to payment')" class="footer-btn">Buy the Book</a> -->
+  <form action="/charge" method="POST">
+<script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="pk_test_9ivWptW7MxIEijAidlMGhOta"
+  data-amount="2000"
+  data-name="Family Stories"
+  data-description="Custom Book"
+  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+  data-locale="auto"
+  data-shipping-address="true" 
+  data-billing-address="false"
+  data-label="Buy the Book"
+  data-panel-label="Buy the Book">
+</script>
+</form>
         </div>
     </div>
 </section><!-- end id:bottomPartWrapper -->
