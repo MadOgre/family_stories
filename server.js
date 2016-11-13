@@ -11,6 +11,7 @@ var GoogleStrategy = require("passport-google-openidconnect").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
 var request = require("request");
 var qs = require("querystring");
+let stripe = require("stripe")("sk_test_eExGRjpjgm5wzQFl3WMno3e8");
 
 var config = require("./config.js");
 
@@ -134,6 +135,21 @@ app.post("/admin_login", function(req, res){
   } else {
     res.redirect("/admin_login");
   }
+});
+
+app.post("/charge", (req, res, next) => {
+  let token = req.body.stripeToken;
+  stripe.charges.create({
+    amount: 2000, // Amount in cents HAS TO BE SET MANUALLY!
+    currency: "usd",
+    source: token,
+    description: "Example charge"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      return next(new Error("the card has been declined"));
+    }
+    res.json(charge);
+  });
 });
 
 app.get("/admin_login", function(req, res){
