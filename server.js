@@ -139,11 +139,13 @@ app.post("/admin_login", function(req, res){
 
 app.post("/charge", (req, res, next) => {
   let token = req.body.stripeToken;
+  console.log("CHARGED!");
   stripe.charges.create({
     amount: 2000, // Amount in cents HAS TO BE SET MANUALLY!
     currency: "usd",
     source: token,
-    description: "Example charge"
+    description: "Book purchase",
+    receipt_email: req.body.stripeEmail
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       return next(new Error("the card has been declined"));
