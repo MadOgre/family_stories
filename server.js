@@ -186,6 +186,8 @@ app.post("/charge", (req, res, next) => {
 
 app.get("/getCurrencyAndPrice", function(req, res, next){
   let geo = geoip.lookup(req.ip);
+  console.log(req.ip);
+  console.log(geo.country);
   getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
     if (err) next(err);
     res.json(data);
