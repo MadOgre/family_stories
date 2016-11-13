@@ -12,6 +12,7 @@ var FacebookStrategy = require("passport-facebook").Strategy;
 var request = require("request");
 var qs = require("querystring");
 let stripe = require("stripe")("sk_test_eExGRjpjgm5wzQFl3WMno3e8");
+let geoip = require("geoip-lite");
 
 var config = require("./config.js");
 
@@ -183,8 +184,9 @@ app.post("/charge", (req, res, next) => {
   });
 });
 
-app.get("/getCurrencyAndPrice/:code", function(req, res, next){
-  getCurrencyAndPrice(req.params.code, function(err, data){
+app.get("/getCurrencyAndPrice", function(req, res, next){
+  let geo = geoip.lookup(req.ip);
+  getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
     if (err) next(err);
     res.json(data);
   });
