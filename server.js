@@ -37,6 +37,8 @@ sequelize.authenticate().then(function(){
 
 var app = express();
 
+app.set("trust proxy", true);
+
 app.use(cors());
 
 app.use(bp.json());
