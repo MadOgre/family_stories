@@ -137,6 +137,17 @@ app.post("/admin_login", function(req, res){
   }
 });
 
+
+    // payload.user_id + "','" + 
+    // payload.user_email + "','" +
+    // payload.user_addr_ln_1 + "','" +
+    // payload.user_addr_ln_2 + "','" +
+    // payload.user_city + "','" +
+    // payload.user_zip + "','" +
+    // payload.user_province + "','" +
+    // payload.user_country + "','" +
+    // payload.user_order_id + "','" +
+
 app.post("/charge", (req, res, next) => {
   let token = req.body.stripeToken;
   console.log("CHARGED!");
@@ -150,7 +161,25 @@ app.post("/charge", (req, res, next) => {
     if (err && err.type === 'StripeCardError') {
       return next(new Error("the card has been declined"));
     }
-    res.json(charge);
+    var payload = {
+      user_id: req.session.user_id,
+      user_email: charge.receipt_email,
+      user_addr_ln_1: charge.source.address_line1,
+      user_addr_ln_2: charge.source.address_line2,
+      user_city: charge.source.address_city,
+      user_zip: charge.source.address_zip,
+      user_province: charge.source.address_state,
+      user_country: charge.source.address_country,
+      user_order_id: charge.id
+    };
+    placeOrderStripe(payload, function(err, data){
+      if (err) throw(new Error("Failed to save order"));
+      if (data.result === "success") {
+        res.send("Payment has been processed");
+      } else {
+        res.send("Something went wrong check the code");
+      }
+    })
   });
 });
 
@@ -204,6 +233,27 @@ function setUserSelection(payload, cb) {
     payload.avatar_name + "','" +
     payload.image_id_list + "'," +
     (payload.replace ? "'" + payload.replace + "'" : null) + ")").then(function(){
+    cb(null, {result: "success"});
+  }).catch(function(err){
+    cb(err);
+  });  
+}
+
+//this calls a stored procedure on successful pay
+function placeOrderStripe(payload, cb) {
+  sequelize.query(
+    "call sp_iu_order('" +
+    payload.user_id + "','" + 
+    payload.user_email + "','" +
+    payload.user_addr_ln_1 + "','" +
+    payload.user_addr_ln_2 + "','" +
+    payload.user_city + "','" +
+    payload.user_zip + "','" +
+    payload.user_province + "','" +
+    payload.user_country + "','" +
+    payload.user_order_id + "','" +
+    "stripe')"
+    ).then(function(){
     cb(null, {result: "success"});
   }).catch(function(err){
     cb(err);
