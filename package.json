@@ -25,6 +25,7 @@
     "paypal-rest-sdk": "^1.6.9",
     "request": "^2.75.0",
     "sequelize": "^3.24.1",
+    "stripe": "^4.12.0",
     "t": "^0.5.1"
   },
   "devDependencies": {
