@@ -597,6 +597,11 @@ app.get("*", preventAccess, setId, function(req, res){
   res.sendFile(__dirname + "/index_hidden.html");
 });
 
+app.use(function(err, req, res, next){
+  res.status(500).send("<h1>500 Internal Server Error</h1><br><h3>" + err.message + "</h3>");
+  next();
+});
+
 
 
 app.listen(3000);
