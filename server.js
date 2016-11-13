@@ -179,9 +179,27 @@ app.post("/charge", (req, res, next) => {
       } else {
         res.send("Something went wrong check the code");
       }
-    })
+    });
   });
 });
+
+app.get("/getCurrencyAndPrice/:code", function(req, res, next){
+  getCurrencyAndPrice(req.params.code, function(err, data){
+    if (err) next(err);
+    res.json(data);
+  });
+});
+
+function getCurrencyAndPrice(countryCode, cb) {
+  sequelize.query(
+    "call sp_get_currency_price('" +
+    countryCode + "')"
+    ).then(function(data){
+    cb(null, data);
+  }).catch(function(err){
+    cb(err);
+  });    
+}
 
 app.get("/admin_login", function(req, res){
   if (req.session.admin === true) {
