@@ -153,10 +153,13 @@ app.post("/admin_login", function(req, res){
 
 app.post("/charge", (req, res, next) => {
   let token = req.body.stripeToken;
-  console.log("CHARGED!");
+  console.log("ABOUT TO CHARGE!");
+  console.log("Currency: " + req.session.currency);
+  console.log("Price: " + req.session.price); 
+  console.log("admin: " + req.session.admin);
   stripe.charges.create({
-    amount: 2000, // Amount in cents HAS TO BE SET MANUALLY!
-    currency: "usd",
+    amount: req.session.price, // Amount in cents HAS TO BE SET MANUALLY!
+    currency: req.session.currency.toLowerCase(),
     source: token,
     description: "Book purchase",
     receipt_email: req.body.stripeEmail
@@ -187,11 +190,17 @@ app.post("/charge", (req, res, next) => {
 });
 
 app.get("/getCurrencyAndPrice", function(req, res, next){
+  console.log("CURRENCY ROUTE HIT!");
   let geo = geoip.lookup(req.ip);
   console.log(req.ip);
   console.log(geo.country);
   getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
     if (err) next(err);
+    req.session.currency = data[0].currency_code;
+    req.session.price = data[0].price;
+    console.log("Currency: " + req.session.currency);
+    console.log("Price: " + req.session.price);
+    console.log("admin: " + req.session.admin);
     res.json(data);
   });
 });
