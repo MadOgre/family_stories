@@ -192,8 +192,8 @@ app.post("/charge", (req, res, next) => {
 app.get("/getCurrencyAndPrice", function(req, res, next){
   console.log("CURRENCY ROUTE HIT!");
   let geo = geoip.lookup(req.ip);
-  console.log(req.ip);
-  console.log(geo.country);
+  //console.log(req.ip);
+  //console.log(geo.country);
   getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
     if (err) next(err);
     req.session.currency = data[0].currency_code;
