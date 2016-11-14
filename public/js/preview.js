@@ -9,8 +9,9 @@
     vm.previewFolderName = "";
     vm.loaded = false;
     vm.folder2loaded = false;
-    vm.currency = "USD";
-    vm.price = 3000; //price is in cents by default
+    vm.priceandcurrencyloaded = false;
+    vm.currency = "";
+    vm.price = 987; //price is in cents by default
     //vm.folderName = sharedProperties.getFolderName();
                     $http({
                     method: "GET",
@@ -37,11 +38,12 @@
                     url: "/getCurrencyAndPrice"
                     }).then(function success(data){
                       vm.currency = data.data[0].currency_code;
-                      console.log("CURRENCY: " + vm.currency);
-                      alert(vm.currency);
+                      //console.log("CURRENCY: " + vm.currency);
+                      //alert(vm.currency);
                       vm.price = data.data[0].price;
-                      console.log("PRICE: " + vm.currency);
-                      alert(vm.price);
+                      //console.log("PRICE: " + vm.currency);
+                      //alert(vm.price);
+                      vm.priceandcurrencyloaded = true;
                     }, function fail(data){
                       console.warn(data);
                     });
