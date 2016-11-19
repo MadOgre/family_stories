@@ -553,6 +553,14 @@
     };
 
     vm.saveChanges = function(al) {
+      if (vm.currentAvatarIndex === vm.totalAvatars) {
+        $("#avatar-name-input").focus();
+      }
+      if (vm.currentAvatar.name === "") {
+        vm.error = "Avatar name may not be blank";
+        alert("Must enter a name for the current avatar");
+        return;
+      }
       vm.postPerson(function(){
         if (al === 'alert') {
           alert("Changes saved!");
