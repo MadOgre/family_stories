@@ -49,6 +49,24 @@ $rubik: 'Rubik', sans-serif;
 body{
     background-color:#eceadd;
 }
+
+.loading-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 550;
+    background-color: rgba(0,255,0,0.4);
+}
+
+.loading-message {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+}
+
 //our css
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #3c7c99;
