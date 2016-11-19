@@ -186,11 +186,12 @@ body{
     background-color: #fcfcfa;
     max-height: 535px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .tab-content {
-    overflow-y: hidden;
+    overflow-y: scroll;
+    max-height: 535px;
 }
 
 #tabs > ul,#tabs > .tab-pane-style {
