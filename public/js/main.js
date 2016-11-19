@@ -1,9 +1,9 @@
 /*global angular, $*/
 (function() {
   'use strict';
-  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', Main]);
+  angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', 'preloader', Main]);
 
-  function Main($http, $scope, $q, $location, $window, sharedProperties) {
+  function Main($http, $scope, $q, $location, $window, sharedProperties, preloader) {
     var vm = this;
     vm.results = [];
     vm.colorCodes = {};
@@ -259,6 +259,7 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
+            preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -288,6 +289,7 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
+            preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -316,6 +318,7 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
+            preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -355,6 +358,7 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
+            preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
