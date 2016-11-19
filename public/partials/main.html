@@ -24,7 +24,7 @@
 
     <div class="character-wrapper container">
         <!--added div-->
-        <div class="loading-overlay">
+        <div ng-if="!main.loaded" class="loading-overlay">
             <h1 class="loading-message">LOADING...</h1>
         </div>
         <div class="tab-wrapper">
