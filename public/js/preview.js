@@ -10,7 +10,15 @@
     vm.loaded = false;
     vm.folder2loaded = false;
     vm.priceandcurrencyloaded = false;
+    vm.maxBookPages = 0;
     vm.currency = "";
+        $http({
+          method: 'GET',
+          url: '/getproperty/MAX_BOOK_PAGES'          
+        }).then(function(data){
+          //sharedProperties.setMaxBookPages(data.data[0].property_value);
+          vm.maxBookPages = +(data.data[0].property_value);
+        });
     vm.price = 987; //price is in cents by default
     //vm.folderName = sharedProperties.getFolderName();
                     $http({
@@ -50,7 +58,9 @@
     //alert(vm.folderName);
 
     //note by MGS7664 must correct this later, number of pages currently hardcoded
-    vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
+
+    //vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
+        // alert(vm.numberOfImages);
     vm.receipt = null;
 
     vm.submitPreview = function() {
@@ -103,8 +113,9 @@
     $(".flipbook").turn('peel', 'tl');
     $(".flipbook").turn('peel', 'tr');
     };
-    vm.imageList = function(num) {
-      return new Array(num);
+    vm.imageList = function() {
+      //alert(vm.numberOfImages);
+      return new Array(vm.maxBookPages);
     };
 
     vm.finalizepayment = function() {

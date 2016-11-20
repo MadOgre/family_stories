@@ -16,7 +16,7 @@
         <div class="flipbook-style" ng-show="preview.loaded && preview.folder2loaded">
             <div class="page-wrapper">
                 <div class="flipbook">
-                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList(4) track by $index" ng-init="$last && preview.finished()">
+                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList() track by $index" ng-init="$last && preview.finished()">
                 </div>
 <!--                 <div class="page"><img src="/img/book_page1.png" alt="" /></div>
                 <div class="page"><img src="/img/book_page2.png" alt="" /></div>

@@ -224,17 +224,11 @@
         sharedProperties.setMaxAvatars(data.data[0].property_value);
         $http({
           method: 'GET',
-          url: '/getproperty/MAX_BOOK_PAGES'          
+          url: '/getproperty/MAX_CHILDREN'          
         }).then(function(data){
-          sharedProperties.setMaxBookPages(data.data[0].property_value);
-          $http({
-            method: 'GET',
-            url: '/getproperty/MAX_CHILDREN'          
-          }).then(function(data){
-            vm.maxChildren = +(data.data[0].property_value);
-            sharedProperties.setMaxChildren(data.data[0].property_value);
-            cb(null);
-          });
+          vm.maxChildren = +(data.data[0].property_value);
+          sharedProperties.setMaxChildren(data.data[0].property_value);
+          cb(null);
         });
       });
     };

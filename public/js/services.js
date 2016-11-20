@@ -158,10 +158,10 @@
     .service('sharedProperties', ['$http', function ($http) {
         var folderName = '';
         var maxAvatars = 0;
-        var maxBookPages = 0;
         var maxChildren = 0;
 
         return {
+            maxBookPages: 0,
             setFolderName: function () {
                 //return folderName;
                 $http({
@@ -183,10 +183,10 @@
                 maxAvatars = value;
             },
             getMaxBookPages: function () {
-                return maxBookPages;
+                return this.maxBookPages;
             },
             setMaxBookPages: function(value) {
-                maxBookPages = value;
+                this.maxBookPages = value;
             },
             getMaxChildren: function () {
                 return maxChildren;
