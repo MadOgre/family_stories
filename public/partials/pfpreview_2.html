@@ -28,7 +28,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
         <!-- flipbook class has been changed to flipbook-style, the flipbook class is necessary for the plugin to work and must contain images - see below MIKE -->
         <div class="flipbook-style" ng-show="preview.loaded && preview.folder2loaded">
             <div class="page-wrapper">
-                <div class="flipbook">
+                <div id="flipbook" class="flipbook">
                     <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList() track by $index" ng-init="$last && preview.finished()">
                 </div>
 <!--                 <div class="page"><img src="/img/book_page1.png" alt="" /></div>
