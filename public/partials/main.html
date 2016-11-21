@@ -8,6 +8,25 @@
 <body> -->
 <!-- MGS: because I am using angular and front-end routing this file will not have a <body> tag. It will be placed inside NG-VIEW in the main template -->
 <!-- we have not included any other wrapper elements - but there might be a need for more wrapper, depending on final styling. -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '181237689004618');
+fbq('track', 'PageView');
+fbq('track', 'Lead');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+
 <div class="login-info-container">
     <p ng-if="!main.currentUserProfile">
         You are not logged in<br>

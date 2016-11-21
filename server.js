@@ -188,7 +188,7 @@ app.post("/charge", (req, res, next) => {
       placeOrderStripe(payload, function(err, data){
         if (err) throw(new Error("Failed to save order"));
         if (data.result === "success") {
-          res.send("Payment has been processed");
+          res.sendFile(__dirname + "/checkout_complete.html");
         } else {
           res.send("Something went wrong check the code");
         }

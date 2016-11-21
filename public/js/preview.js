@@ -94,7 +94,7 @@
           
           // Height
 
-          height:526,
+          height:480,
 
           // Elevation
 
