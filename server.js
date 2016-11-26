@@ -47,11 +47,7 @@ app.use(bp.urlencoded({extended: true}));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 5 * 60000
-  }
-  
+  saveUninitialized: true
 }));
 
 app.use("/proxy", require("./proxy_controller.js"));
