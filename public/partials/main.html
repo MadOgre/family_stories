@@ -148,8 +148,18 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             <!-- slides -->
             <ul>
                 <li>
-                    <img class="" src="img/background.png">
-                    <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                    <ul>
+                        <li style="background-color: red; width: 100px; height: 100%; position: absolute; top: 0">
+                            prev avatar
+                        </li>
+                        <li style="z-index: 100; position: relative">
+                            <img class="" src="img/background.png">
+                            <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                        </li>
+                        <li style="background-color: green; width: 100px; height: 100%; position: absolute; top: 0; right: 0; z-index: 50">
+                            next avatar
+                        </li>
+                    </ul>
                 </li>
                 <!-- new character -->
                 <!-- not implemented yet but will function predictably -->
