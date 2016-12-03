@@ -148,17 +148,17 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             <!-- slides -->
             <ul>
                 <li>
-                    <ul>
-                        <li style="background-color: red; width: 100px; height: 100%; position: absolute; top: 0">
+                    <ul class="avatar-image-bundle">
+<!--                         <li style="background-color: red; width: 100px; height: 100%; position: absolute; top: 0">
                             prev avatar
-                        </li>
-                        <li style="z-index: 100; position: relative">
+                        </li> -->
+                        <li>
                             <img class="" src="img/background.png">
                             <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
                         </li>
-                        <li style="background-color: green; width: 100px; height: 100%; position: absolute; top: 0; right: 0; z-index: 50">
+<!--                         <li style="background-color: green; width: 100px; height: 100%; position: absolute; top: 0; right: 0; z-index: 50">
                             next avatar
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <!-- new character -->
@@ -173,7 +173,13 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             <ul class="avatar-selection">
                 <!--added class-->
                 <li>
-                    <a class="prev-btn" ng-class="{inactive: main.currentAvatarIndex === 1}" href="" ng-click="main.prevAvatar()"></a><!--added class-->
+                    <a class="prev-btn" ng-class="{inactive: main.currentAvatarIndex === 1}" href="" ng-click="main.prevAvatar()">
+                            <img class="" src="img/background.png">
+                            <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+
+
+
+                    </a><!--added class-->
                 </li>
                 <li>
                     <!-- MGS: Input was connected to angular -->
@@ -181,7 +187,13 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     <div style="display:block;" class="salutation-wrapper" ng-class="{ghost: !main.currentAvatar.name || main.currentAvatar.name === ''}">Hey <span ng-bind="main.currentAvatar.name" name="salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
                 </li>
                 <li>
-                    <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
+                    <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()">
+                        
+                            <img class="" src="img/background.png">
+                            <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+
+                        
+                    </a><!--added class-->
                 </li>
             </ul>
             <div class="clearfix"></div>
