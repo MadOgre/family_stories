@@ -146,23 +146,60 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                 <a href="javascript:void(0);" class="q-circle">?</a>
             </div>
             <!-- slides -->
-            <ul>
-                <li>
-                    <img class="" src="img/background.png">
-                    <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
-                </li>
-                <!-- new character -->
-                <!-- not implemented yet but will function predictably -->
-                {{main.currentAvatarIndex}}
-                <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
-                    <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
-                    <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
-                </li>
-            </ul>
+            <div class="carousel-demo" style="width: 100%;">
+                <ul rn-carousel rn-carousel-transition="hexagon" rn-carousel-controls class="carousel3">
+                   <li>
+                        <ul>
+                            <li>
+                                <img class="" src="img/background.png">
+                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                            </li>
+                            <!-- new character -->
+                            <!-- not implemented yet but will function predictably -->
+                            {{main.currentAvatarIndex}}
+                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
+                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
+                                <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
+                            </li>
+                        </ul>
+                   </li> 
+                   <li>
+                        <ul>
+                            <li>
+                                <img class="" src="img/background.png">
+                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                            </li>
+                            <!-- new character -->
+                            <!-- not implemented yet but will function predictably -->
+                            {{main.currentAvatarIndex}}
+                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
+                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
+                                <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
+                            </li>
+                        </ul>
+                   </li> 
+                   <li>
+                        <ul>
+                            <li>
+                                <img class="" src="img/background.png">
+                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                            </li>
+                            <!-- new character -->
+                            <!-- not implemented yet but will function predictably -->
+                            {{main.currentAvatarIndex}}
+                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
+                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
+                                <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
+                            </li>
+                        </ul>
+                   </li> 
+                </ul>
+            </div>
+
             <!-- slider navigation & input -->
             <ul class="avatar-selection">
                 <!--added class-->
-                <li>
+                <li style="visibility: hidden;">
                     <a class="prev-btn" ng-class="{inactive: main.currentAvatarIndex === 1}" href="" ng-click="main.prevAvatar()"></a><!--added class-->
                 </li>
                 <li>
@@ -170,7 +207,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     <input style="display:none;" type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
                     <div style="display:block;" class="salutation-wrapper" ng-class="{ghost: !main.currentAvatar.name || main.currentAvatar.name === ''}">Hey <span ng-bind="main.currentAvatar.name" name="salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
                 </li>
-                <li>
+                <li style="visibility: hidden;">
                     <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->
                 </li>
             </ul>

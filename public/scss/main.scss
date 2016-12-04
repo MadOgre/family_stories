@@ -1437,3 +1437,34 @@ font-size:20px;
         top:8%;
     }
 }
+
+
+.rn-carousel-control.rn-carousel-control-prev:before, 
+.rn-carousel-control.rn-carousel-control-next:before
+ {
+    content: "" !important;
+}
+
+.rn-carousel-control.rn-carousel-control-prev {
+    display: block;
+    background:url(/img/left_arrow.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: -16px;
+    top: 200px;
+}
+
+.rn-carousel-control.rn-carousel-control-next {
+    display: block;
+    background:url(/img/right_arrow.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    right: -16px;
+    top: 200px;
+}
+
+.carousel3.ng-scope {
+    width: 300px;
+}
