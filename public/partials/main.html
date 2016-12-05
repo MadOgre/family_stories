@@ -147,12 +147,12 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             </div>
             <!-- slides -->
             <div class="carousel-demo" style="width: 100%;">
-                <ul rn-carousel rn-carousel-transition="hexagon" rn-carousel-controls class="carousel3">
+                <ul rn-carousel rn-carousel-transition="hexagon" rn-carousel-controls rn-carousel-index="main.carousel_index" class="carousel3">
                    <li>
                         <ul>
                             <li>
                                 <img class="" src="img/background.png">
-                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                                <img class="" ng-repeat="value in main.results[0].images" ng-src="{{main.imageUrls[value].location}}">
                             </li>
                             <!-- new character -->
                             <!-- not implemented yet but will function predictably -->
@@ -167,7 +167,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                         <ul>
                             <li>
                                 <img class="" src="img/background.png">
-                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                                <img class="" ng-repeat="value in main.results[1].images" ng-src="{{main.imageUrls[value].location}}">
                             </li>
                             <!-- new character -->
                             <!-- not implemented yet but will function predictably -->
@@ -182,7 +182,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                         <ul>
                             <li>
                                 <img class="" src="img/background.png">
-                                <img class="" ng-repeat="value in main.currentAvatar.images" ng-src="{{main.imageUrls[value].location}}">
+                                <img class="" ng-repeat="value in main.results[2].images" ng-src="{{main.imageUrls[value].location}}">
                             </li>
                             <!-- new character -->
                             <!-- not implemented yet but will function predictably -->

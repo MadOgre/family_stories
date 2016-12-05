@@ -10,6 +10,15 @@
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
+
+    $scope.$watch(angular.bind(this, function () {
+      return this.currentAvatar;
+    }), function(v){
+      console.log("Current Index: " + vm.currentAvatarIndex);
+      vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
+      //$scope.$apply();
+    }, true);
+
     $scope.$watch(angular.bind(this, function () {
       return this.colorCodes;
     }), function(v){
