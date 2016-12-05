@@ -12,6 +12,17 @@
     // });
 
     $scope.$watch(angular.bind(this, function () {
+      return this.carousel_index;
+    }), function(v){
+      console.log("SPINNING!");
+      vm.postPerson(function(){
+        vm.currentAvatarIndex = v+1;
+        updateCurrentAvatar();       
+      });
+
+    }, true);    
+
+    $scope.$watch(angular.bind(this, function () {
       return this.currentAvatar;
     }), function(v){
       console.log("Current Index: " + vm.currentAvatarIndex);
