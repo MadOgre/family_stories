@@ -162,6 +162,12 @@
                 gradients: true,
                 acceleration: true
             });
+            var me2 = this;
+            setTimeout(function(){
+            var size = me2.resize();
+            //alert(JSON.stringify(size));
+            $(me2.el).turn('size', size.width, size.height);
+          },2000);
             // hide the body overflow
             document.body.className = 'hide-overflow';
         }

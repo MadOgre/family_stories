@@ -7,7 +7,7 @@ $mgray: #969696;
 $dgray: #333;
 
 .hide-overflow {
-    overflow: hidden;
+    overflow: scroll;
 }
 
 // Gallery Image Size
@@ -583,27 +583,50 @@ input#avatar-name-input {
     position:relative;
 }
 #slider .prev-btn, #slider .next-btn{
-    display: inline-block;
-    height: 60px;
+    display: block;
+    height: 60%;
+    width: 60%;
     position: absolute;
-    top: 47%;
-    width: 31px;
+    top: 15%;
+    z-index: 50;
+
+}
+
+.avatar-image-bundle img {
+    z-index: 100;
+}
+
+#slider .prev-btn {
+    left: 0;
+    img {
+        top: 0;
+        left: -26px;
+        height: 100%;
+    }
 }
 
 #slider .next-btn {
-    background:url(/img/right_arrow.png) no-repeat center;
+    right: 0;
+    img {
+        top: 0;
+        height: 100%;
+    }
 }
-#slider .next-btn.inactive {
-    background:url(/img/right_arrow_inactive.png) no-repeat center;
-    cursor:not-allowed;
-}
-#slider .prev-btn {
-    background:url(/img/left_arrow.png) no-repeat center;
-}
-#slider .prev-btn.inactive {
-    background:url(/img/left_arrow_inactive.png) no-repeat center;
-    cursor:not-allowed;
-}
+
+// #slider .next-btn {
+//     background:url(/img/right_arrow.png) no-repeat center;
+// }
+// #slider .next-btn.inactive {
+//     background:url(/img/right_arrow_inactive.png) no-repeat center;
+//     cursor:not-allowed;
+// }
+// #slider .prev-btn {
+//     background:url(/img/left_arrow.png) no-repeat center;
+// }
+// #slider .prev-btn.inactive {
+//     background:url(/img/left_arrow_inactive.png) no-repeat center;
+//     cursor:not-allowed;
+// }
 
 .salutation-wrapper{
     color:#3c7c99;
@@ -1415,6 +1438,10 @@ font-size:20px;
     width: 95%;
 }
 
+.q-circle.big {
+    z-index: 150;
+}
+
 @media (max-width: 670px){
     .message-page .page{
         width:100%;
@@ -1436,4 +1463,35 @@ font-size:20px;
     .form-container h3{
         top:8%;
     }
+}
+
+
+.rn-carousel-control.rn-carousel-control-prev:before, 
+.rn-carousel-control.rn-carousel-control-next:before
+ {
+    content: "" !important;
+}
+
+.rn-carousel-control.rn-carousel-control-prev {
+    display: block;
+    background:url(/img/left_arrow.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    left: -16px;
+    top: 200px;
+}
+
+.rn-carousel-control.rn-carousel-control-next {
+    display: block;
+    background:url(/img/right_arrow.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    right: -16px;
+    top: 200px;
+}
+
+.carousel3.ng-scope {
+    width: 300px;
 }
