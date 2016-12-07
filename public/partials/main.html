@@ -107,12 +107,14 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             <div class="clearfix"></div>
                             {{JSON.stringify(main.colorCodes)}}
                         </div>
-                        <div ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}">
-                            <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{property.image_type}}" ng-model="main.currentAvatar.images[$parent.$index]"></input>
-                            <label for="radio_btn_{{value.image_id}}" class="body-part-label">
-                                <img height="" ng-src="{{value.icon_location}}">
-                            </label>
 
+                        <div class="img_wrapper">
+                            <div ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}">
+                                <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{property.image_type}}" ng-model="main.currentAvatar.images[$parent.$index]"></input>
+                                <label for="radio_btn_{{value.image_id}}" class="body-part-label">
+                                    <img height="" ng-src="{{value.icon_location}}">
+                                </label>
+                            </div>
                         </div>
                     </div>
 
