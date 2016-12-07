@@ -25,127 +25,43 @@ a{
 /*       header                         */
 /****************************************/
 header {
-    background-color: #fff;
-    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-
-    position: relative;
-    text-align: center;
-    z-index: 300;
-    width:100%;
-}
-header img{
-    display:block;
-    width:100%;
-}
-
-header .logo {
-    float: left;
-    margin:7.5px 30px;
-    position:relative;
-    max-width:147px;
-    height:auto;
-}
-
-header .header-menu {
-    position:relative;
-    margin: 28px 0;
-}
-
-header .header-menu a {
-    color: #3c7c99;
-}
-
-.bordered-btn {
-    text-transform: uppercase;
-    text-align: center;
-    border: 1px solid #f4bab5;
-    color: #e95b4d;
-    font-weight: 500;
-    font-size: 12px;
-    padding: 12px 30px;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
-}
-header .bordered-btn{
-    float:right;
-    position:relative;
-    margin: 18px 30px 18px 30px;
-}
-@media (max-width: 800px){
-    header .bordered-btn{
-    margin: 18px 20px 18px 20px;
+    background-color: #fff; -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);  position: relative; text-align: center; z-index: 300; width:100%;
+    img { display:block; width:100%; }
+    .logo { float: left; margin:7.5px 30px; position:relative; max-width:147px; height:auto; }
+    .header-menu { position:relative; margin: 28px 0; }
+    .header-menu a { color: #3c7c99; }
+    .bordered-btn { 
+        float:right; position:relative; margin: 18px 30px 18px 30px; text-transform: uppercase; text-align: center; border: 1px solid #f4bab5; color: #e95b4d; font-weight: 500; font-size: 12px; padding: 12px 30px; -moz-border-radius: 25px; -webkit-border-radius: 25px; border-radius: 25px; }
+        &:hover, &:focus { color:#f4bab5; }
+    .header-right-block{ float:right; }
+    .lang{ 
+        float:right; 
+        ul{ 
+            position:relative; padding:0; margin:0; 
+            ul{ position:absolute; z-index:400; top:81px; display:none; }
+        }
+        li{ 
+            position:relative; background-color:#f0f0f0; width:80px; height:80px; text-align:center; 
+            a { display:block; width:42px; height:42px; margin:auto; top: 50%; -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); -webkit-transform: translateY(-50%); transform: translateY(-50%); position:relative; }
+            img{ border-color:#e6e6e6; }
+            li{ 
+                background-color:#3c7c99; 
+                img{ border-color:#36708a; }
+            }
+            &::hover ul{ display:block; }
+        }
+        img { border: 4px solid; -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%; }
     }
 }
-.bordered-btn:hover,.bordered-btn:focus{
-    color:#f4bab5;
-}
-.header-right-block{
-    float:right;
-}
-header .lang{
-    float:right;
-    
-}
-header .lang ul{
-    position:relative;
-    padding:0;
-    margin:0;
-}
-header .lang li{
-    position:relative;
-    background-color:#f0f0f0;
-    width:80px;
-    height:80px;
-    text-align:center;
-}
-header .lang li a{
-    display:block;
-    width:42px;
-    height:42px;
-    margin:auto;
-    
-    top: 50%;
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    position:relative;
-}
-header .lang img {
-    border: 4px solid;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+.burger-menu-symbol{ display:none; }
+
+@media (max-width: 800px){
+    header {
+        .bordered-btn{ margin: 18px 20px 18px 20px; }
+    }
 }
 
-header .lang li img{
-    border-color:#e6e6e6;
-}
 
-header .lang li li img{
-    border-color:#36708a;
-}
-header .lang li li{
-    background-color:#3c7c99;
-}
-header .lang ul ul{
-    position:absolute;
-    z-index:400;
-    top:81px;
-    display:none;
-}
-
-header .lang ul li:hover ul{
-    display:block;
-}
-
-.burger-menu-symbol{
-    display:none;
-}
 @media (max-width: 749px){
     /*header{
         overflow:hidden;
