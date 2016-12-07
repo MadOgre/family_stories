@@ -1524,6 +1524,24 @@ header .user-avatar img {
     height: 100% !important;
     max-width: 1179px; }
 
+.promo1 .rn-carousel-controls {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  max-width: 1179px;
+  top: 0px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+      -ms-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%); }
+  .promo1 .rn-carousel-controls .rn-carousel-control-prev {
+    left: 0px !important; }
+  .promo1 .rn-carousel-controls .rn-carousel-control-next {
+    right: 0px !important; }
+
+.promo1 .slider-txt-container {
+  pointer-events: none; }
+
 body {
   background-color: #eceadd; }
 
