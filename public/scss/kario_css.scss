@@ -1,0 +1,25 @@
+//CSS style on-demand
+
+
+//Home Promo styles
+    
+
+
+	.promo1{
+
+		ul {
+
+			li {
+
+				.carousel-demo {
+
+					ul {
+						li {
+							overflow: hidden;
+							img { transform: translate(-50%, 0%); position: absolute; left: 50%; height: 100% !important; max-width: 1179px; }
+						}
+					}
+				}
+			}
+		}
+	}
