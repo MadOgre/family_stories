@@ -63,9 +63,6 @@ header {
 
 
 @media (max-width: 749px){
-    /*header{
-        overflow:hidden;
-    }*/
     header:after,header::after{
         content:'';
         clear:both;
@@ -83,22 +80,22 @@ header {
     bottom:0;
 }
     .header-info-block {
-    background-color:rgba(69,130,158,0.98);
-    height: 100vh;
-    position: absolute;
-    text-align: center;
-    top: 120px;
-    width: 100%;
-    z-index: 500;
+        background-color:rgba(69,130,158,0.98);
+        height: 100vh;
+        position: absolute;
+        text-align: center;
+        top: 120px;
+        width: 100%;
+        z-index: 500;
 
-    display:none;
-}
+        display:none;
+    }
     header .logo {
         display: inline-block;
-    float: none;
-    max-width: 184px;
-    margin: 20px 0;
-    position: relative;
+        float: none;
+        max-width: 184px;
+        margin: 20px 0;
+        position: relative;
     }
     .header-right-block{
         float: none;

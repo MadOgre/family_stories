@@ -29,3 +29,25 @@
 		}
 		.slider-txt-container { pointer-events: none; }
 	}
+
+
+	//Character Tab Styles
+	@media (max-width: 749px){ 
+		
+		.character-wrapper {
+
+			.tab-wrapper {
+			
+				#tabs {
+					ul {
+						width: 100% !important; 
+						li { float: left; }
+					}
+				}
+			}
+		}	
+	
+
+	}
+
+

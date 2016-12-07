@@ -293,9 +293,6 @@ header .lang ul li:hover ul {
   display: none; }
 
 @media (max-width: 749px) {
-  /*header{
-        overflow:hidden;
-    }*/
   header:after, header::after {
     content: '';
     clear: both; }
@@ -1541,6 +1538,12 @@ header .user-avatar img {
 
 .promo1 .slider-txt-container {
   pointer-events: none; }
+
+@media (max-width: 749px) {
+  .character-wrapper .tab-wrapper #tabs ul {
+    width: 100% !important; }
+    .character-wrapper .tab-wrapper #tabs ul li {
+      float: left; } }
 
 body {
   background-color: #eceadd; }
