@@ -22,4 +22,10 @@
 				}
 			}
 		}
+		.rn-carousel-controls { 
+			width: 100%; height: 100vh; position: absolute; max-width: 1179px; top: 0px; left: 50%; transform: translate(-50%, 0%); 
+			.rn-carousel-control-prev { left: 0px !important; }
+			.rn-carousel-control-next { right: 0px !important; }
+		}
+		.slider-txt-container { pointer-events: none; }
 	}
