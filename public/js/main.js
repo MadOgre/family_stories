@@ -31,19 +31,46 @@
             }, 200);
     }
     vm.runUI = function(){
-      //Slick Slider
-      $('#tabs ul').slick({
-        dots: false,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 3,
-        swipeToSlide: true,
-        centerMode: true,
-        variableWidth: true,
-        touchThreshold: 2
-      });
-      //setTimeout(function(){ vm.loaded = true; }, 100 );  
+
+      vm.resizeMobile();
+      $($window).resize(
+          function() {
+            vm.resizeMobile();
+          }
+        );
+
       vm.loaded = true;    
+    }
+
+    vm.resizeMobile = function() {
+      if ($('.slick-initialized').length < 1)  {
+        //Slick Slider settings
+        var attr_carousel = $('#tabs ul').slick({
+          responsive: [
+            {
+              breakpoint: 749,
+              settings: {
+                dots: false,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 3,
+                swipeToSlide: true,
+                centerMode: true,
+                variableWidth: true,
+                touchThreshold: 2
+              }
+            },
+            {
+              breakpoint: 750,
+              settings: "unslick"
+            }
+          ]
+        });
+      }
+        console.log($(window).width());
+      if ($(window).width() > 749) {
+          $('.slick-initialized').slick('unslick');
+      }
     }
 
     vm.getHelperArray = function(qty) {
