@@ -42,7 +42,7 @@
 				#tabs {
 					ul {
 						width: 100% !important; 
-						li { float: left; }
+						li { min-width: 75px}
 					}
 				}
 			}

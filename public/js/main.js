@@ -33,13 +33,17 @@
     vm.runUI = function(){
       //Slick Slider
       $('#tabs ul').slick({
-        dots: true,
+        dots: false,
         infinite: false,
         speed: 300,
-        slidesToShow: 1,
+        slidesToShow: 3,
+        swipeToSlide: true,
         centerMode: true,
-        variableWidth: true
+        variableWidth: true,
+        touchThreshold: 2
       });
+      //setTimeout(function(){ vm.loaded = true; }, 100 );  
+      vm.loaded = true;    
     }
 
     vm.getHelperArray = function(qty) {
@@ -509,7 +513,7 @@
       });
 
       $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
-        vm.loaded = true;
+        //vm.loaded = true;
         cb(null);
       }, function fail(err){
         console.warn(err);

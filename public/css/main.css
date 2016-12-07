@@ -1655,7 +1655,7 @@ header .user-avatar img {
   .character-wrapper .tab-wrapper #tabs ul {
     width: 100% !important; }
     .character-wrapper .tab-wrapper #tabs ul li {
-      float: left; } }
+      min-width: 75px; } }
 
 body {
   background-color: #eceadd; }
