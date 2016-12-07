@@ -45,7 +45,7 @@
     vm.resizeMobile = function() {
       if ($('.slick-initialized').length < 1)  {
         //Slick Slider settings
-        var attr_carousel = $('#tabs ul').slick({
+        $('#tabs ul, .img_wrapper').slick({
           responsive: [
             {
               breakpoint: 749,
@@ -66,10 +66,16 @@
             }
           ]
         });
+        $('.tabs-btn-wrapper').insertAfter( $('#slider') );
+        $('#slider').insertAfter('.tab-content');
       }
         console.log($(window).width());
       if ($(window).width() > 749) {
           $('.slick-initialized').slick('unslick');
+          $('.img_wrapper').slick('unslick');
+          $('.tabs-btn-wrapper').insertAfter( $('#tabs') )
+          $('#slider').insertAfter('.tab-wrapper');
+
       }
     }
 

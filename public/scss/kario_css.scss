@@ -40,7 +40,7 @@
 			.tab-wrapper {
 			
 				#tabs {
-
+					height: 290px; overflow: visible;
 					ul {
 						width: 100% !important; 
 						li { min-width: 75px}
@@ -54,8 +54,13 @@
 				}
 			}
 		}	
-	
-
+		#slider {
+			margin-top: 130px !important; pointer-events: none;
+			img:first-child {
+	  		position: absolute !important;
+	  	}
+	  	.rn-carousel-control { pointer-events: all; }
+  	}
 	}
 
 
