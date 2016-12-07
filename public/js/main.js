@@ -30,6 +30,17 @@
               $scope.$digest();
             }, 200);
     }
+    vm.runUI = function(){
+      //Slick Slider
+      $('#tabs ul').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true
+      });
+    }
 
     vm.getHelperArray = function(qty) {
       var result = [];
@@ -508,6 +519,7 @@
     vm.getSchema(function(){
       vm.getProperties(function(){
         vm.loadSavedAvatars(false);
+        vm.runUI();
       });
     });
 
