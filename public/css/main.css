@@ -1513,6 +1513,17 @@ header .user-avatar img {
 #myModal {
   display: none; }
 
+.promo1 ul li .carousel-demo ul li {
+  overflow: hidden; }
+  .promo1 ul li .carousel-demo ul li img {
+    -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
+    position: absolute;
+    left: 50%;
+    height: 100% !important;
+    max-width: 1179px; }
+
 body {
   background-color: #eceadd; }
 
