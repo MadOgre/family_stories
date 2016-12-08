@@ -1692,6 +1692,9 @@ header .user-avatar img {
         width: 70px;
         border-right: 1px solid;
         float: left; }
+      .character-wrapper .tab-wrapper #tabs .tab-content .img_wrapper {
+        width: 50vw;
+        float: left; }
       .character-wrapper .tab-wrapper #tabs .tab-content .ng-scope {
         float: left; }
   #slider {
