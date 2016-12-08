@@ -18,6 +18,11 @@
         controller: "Main",
         controllerAs: "main"
       })
+      .when("/profile", {
+        templateUrl: "/partials/profile.html",
+        controller: "Main",
+        controllerAs: "main"
+      })
       .when("/avatarbuilder", {
         templateUrl: "/partials/main.html",
         controller: "Main",
