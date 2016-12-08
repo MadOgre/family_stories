@@ -61,6 +61,10 @@
             vm.resizeMobile();
           }
         );
+      $(document).on('click', '#avatar_slider .slick-list li', function() {
+        $('#avatar_slider .slick-list li').removeClass('active');
+        $(this).addClass('active');
+      });
 
       vm.loaded = true;    
     }
