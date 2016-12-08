@@ -63,40 +63,21 @@ header {
 
 
 @media (max-width: 749px){
-    header:after,header::after{
-        content:'';
-        clear:both;
-    }
-    .burger-menu-symbol{
-    background-image: url("/img/burger.png");
-    background-repeat: no-repeat;
-    display: block;
-    height: 50px;
-    margin: auto;
-    position: absolute;
-    right: 3%;
-    width: 60px;
-    top:0;
-    bottom:0;
-}
-    .header-info-block {
-        background-color:rgba(69,130,158,0.98);
-        height: 100vh;
-        position: absolute;
-        text-align: center;
-        top: 120px;
-        width: 100%;
-        z-index: 500;
+    header { 
 
-        display:none;
+        .burger-menu-symbol{ 
+            background-image: url("/img/burger.png"); background-repeat: no-repeat; display: block; margin: auto; position: absolute; right: 3%; width: 60px; top:0; bottom:0; height: 30px !important; width: 45px !important; top: -10px !important; background-size: 100% 100%; }
+        .header-info-block { 
+            background-color:rgba(69,130,158,0.98);  height: 100vh; position: absolute; text-align: center; top: 120px; width: 100%; z-index: 500; display:none; }
+        .logo { 
+            display: inline-block; float: none; max-width: 184px; margin: 20px 0; position: relative;
+            img {  width:auto !important; height: 5vh; }
+        }
+        
+
+        &::after, &::after{ content:''; clear:both; }
     }
-    header .logo {
-        display: inline-block;
-        float: none;
-        max-width: 184px;
-        margin: 20px 0;
-        position: relative;
-    }
+    
     .header-right-block{
         float: none;
     width: 100%;

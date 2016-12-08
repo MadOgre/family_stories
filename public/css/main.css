@@ -275,21 +275,21 @@ header {
     margin: 18px 20px 18px 20px; } }
 
 @media (max-width: 749px) {
-  header:after, header::after {
-    content: '';
-    clear: both; }
-  .burger-menu-symbol {
+  header .burger-menu-symbol {
     background-image: url("/img/burger.png");
     background-repeat: no-repeat;
     display: block;
-    height: 50px;
     margin: auto;
     position: absolute;
     right: 3%;
     width: 60px;
     top: 0;
-    bottom: 0; }
-  .header-info-block {
+    bottom: 0;
+    height: 30px !important;
+    width: 45px !important;
+    top: -10px !important;
+    background-size: 100% 100%; }
+  header .header-info-block {
     background-color: rgba(69, 130, 158, 0.98);
     height: 100vh;
     position: absolute;
@@ -304,6 +304,12 @@ header {
     max-width: 184px;
     margin: 20px 0;
     position: relative; }
+    header .logo img {
+      width: auto !important;
+      height: 5vh; }
+  header::after, header::after {
+    content: '';
+    clear: both; }
   .header-right-block {
     float: none;
     width: 100%; }
