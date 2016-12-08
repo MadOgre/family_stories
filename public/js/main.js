@@ -64,17 +64,20 @@
       $(document).on('click', '#avatar_slider .slick-list li', function() {
         $('#avatar_slider .slick-list li').removeClass('active');
         $(this).addClass('active');
+        if ($('#nameGenderTab').hasClass('active')) {
+          $('#slider').addClass('mobile_hide');
+        } else {
+          $('#slider').removeClass('mobile_hide');
+        }
       });
 
       vm.loaded = true;    
     }
 
-    vm.prepAvatar = function() {
-       //prep the slider with accurate info
-       console.log('REMOVING AND PREPENDING...');
-       $('.deleteme').remove();
-       console.log(vm.nameGenderTabInit);
-       
+    vm.shouldShowAvatar = function() {
+      console.log('should show avatar');
+      console.log(($('#nameGenderTab').hasClass('active')));
+       return !($('#nameGenderTab').hasClass('active'));
     }
 
     vm.resizeMobile = function(resyncList) {

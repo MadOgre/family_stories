@@ -1658,6 +1658,8 @@ header .user-avatar img {
   pointer-events: none; }
 
 @media (max-width: 749px) {
+  .mobile_hide {
+    visibility: hidden; }
   .character-wrapper .tab-wrapper #tabs {
     height: 290px;
     overflow: visible; }
