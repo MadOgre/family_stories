@@ -86,6 +86,7 @@
       //Setup changing color on click
       $(document).on('click', '.color-thumbs', function() {
         $(this).siblings('.color_drop').css('background-color', ($(this).find('input:checked').val()));
+        vm.reslicker();
       })
 
     }
@@ -94,6 +95,20 @@
       console.log('should show avatar');
       console.log(($('#nameGenderTab').hasClass('active')));
        return !($('#nameGenderTab').hasClass('active'));
+    }
+
+    vm.reslicker = function() {
+      $('.img_wrapper').each( function() {
+        console.log('unslicking... :' + $(this).parent().attr('id') );
+        $(this).slick('unslick');  
+      }); 
+
+      setTimeout( function() { 
+        $('.img_wrapper').each( function() {
+          console.log('running reslicker for: ' + $(this).parent().attr('id') );
+          $(this).slick(vm.slickSettings);
+        });
+       }, 100);
     }
 
     vm.resizeMobile = function(resyncList) {
@@ -106,7 +121,13 @@
               if ( $('#avatar_slider').hasClass('slick-initialized') ) {
                 $('#avatar_slider').slick('unslick');
               }
+              
+                            
+              
               $('#avatar_slider').slick(vm.slickSettings);
+
+              
+              
             $('#avatar_slider .slick-track').prepend($('#nameGenderTab'));
             $('#avatar_slider .slick-list li').removeClass('active');
             $('#avatar_slider .slick-list li').first().addClass('active');

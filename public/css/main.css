@@ -1627,6 +1627,15 @@ header .user-avatar img {
       color: black;
       opacity: 0.75; }
 
+.proceedBtn {
+  float: left;
+  width: 100%;
+  text-transform: uppercase;
+  color: #3c7c99;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500; }
+
 .promo1 ul li .carousel-demo ul li {
   overflow: hidden; }
   .promo1 ul li .carousel-demo ul li img {
@@ -1691,6 +1700,11 @@ header .user-avatar img {
         width: 70px;
         border-right: 1px solid;
         float: left; }
+      .character-wrapper .tab-wrapper #tabs .tab-content .img_wrapper {
+        width: 50vw;
+        float: left; }
+        .character-wrapper .tab-wrapper #tabs .tab-content .img_wrapper .slick-slide {
+          margin-right: 60px; }
       .character-wrapper .tab-wrapper #tabs .tab-content .ng-scope {
         float: left; }
   #slider {
@@ -2161,7 +2175,7 @@ input#avatar-name-input {
   width: 100%;
   max-width: 430px;
   padding: 0 !important;
-  /*margin-top: 23px !important;*/ }
+  margin-top: 23px !important; }
 
 .avatar-selection > li {
   float: left;
