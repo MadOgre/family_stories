@@ -1657,9 +1657,25 @@ header .user-avatar img {
 .promo1 .slider-txt-container {
   pointer-events: none; }
 
+@media (min-width: 750px) {
+  .desk_hide {
+    display: none; } }
+
 @media (max-width: 749px) {
   .mobile_hide {
     visibility: hidden; }
+  .mobile_display {
+    display: none; }
+  .color_drop {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    margin: 10px; }
+  .color_wrapper {
+    float: left;
+    width: 80px; }
   .character-wrapper .tab-wrapper #tabs {
     height: 290px;
     overflow: visible; }

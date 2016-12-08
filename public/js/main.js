@@ -56,6 +56,7 @@
     }
     vm.runUI = function(){
       vm.resizeMobile();
+      $('.color_drop').css('background-color', $('.color-thumbs').first().css('background-color'));
       $($window).resize(
           function() {
             vm.resizeMobile();
@@ -71,7 +72,22 @@
         }
       });
 
-      vm.loaded = true;    
+      vm.loaded = true; 
+
+      $(document).on('click', '.color_drop', function() { 
+        $('.color-thumbs').slideToggle();
+      });
+
+      //setup initial color thumb for mobile
+      $('.color-thumbs').each( function() {
+        $(this).siblings('.color_drop').css('background-color', ($(this).find('input:checked').val()));
+      })
+
+      //Setup changing color on click
+      $(document).on('click', '.color-thumbs', function() {
+        $(this).siblings('.color_drop').css('background-color', ($(this).find('input:checked').val()));
+      })
+
     }
 
     vm.shouldShowAvatar = function() {
