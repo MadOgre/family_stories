@@ -89,8 +89,12 @@
               }
               $('#avatar_slider').slick(vm.slickSettings);
             $('#avatar_slider .slick-track').prepend($('#nameGenderTab'));
+            $('#avatar_slider .slick-list li').removeClass('active');
+            $('#avatar_slider .slick-list li').first().addClass('active');
           } else {
             $('#avatar_slider').prepend($('#nameGenderTab'));
+            $('#avatar_slider li').removeClass('active');
+            $('#avatar_slider li').first().addClass('active');
           }
         },50);
       }
