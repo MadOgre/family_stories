@@ -21,6 +21,30 @@
     //   console.log('Name changed to ' + newVal);
     // });
 
+    //SLICK SETTINGS
+    vm.slickSettings = {
+      responsive: [
+        {
+          breakpoint: 749,
+          settings: {
+            dots: false,
+            infinite: false,
+            arrows: false,
+            speed: 300,
+            slidesToShow: 3,
+            swipeToSlide: true,
+            centerMode: true,
+            variableWidth: true,
+            touchThreshold: 2
+          }
+        },
+        {
+          breakpoint: 750,
+          settings: "unslick"
+        }
+      ]
+    }
+
     vm.increaseFamily = function() {
       vm.familyType='3'
             setTimeout(function(){
@@ -31,7 +55,6 @@
             }, 200);
     }
     vm.runUI = function(){
-
       vm.resizeMobile();
       $($window).resize(
           function() {
@@ -42,40 +65,49 @@
       vm.loaded = true;    
     }
 
-    vm.resizeMobile = function() {
-      if ($('.slick-initialized').length < 1)  {
-        //Slick Slider settings
-        $('#tabs ul, .img_wrapper').slick({
-          responsive: [
-            {
-              breakpoint: 749,
-              settings: {
-                dots: false,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 3,
-                swipeToSlide: true,
-                centerMode: true,
-                variableWidth: true,
-                touchThreshold: 2
+    vm.prepAvatar = function() {
+       //prep the slider with accurate info
+       console.log('REMOVING AND PREPENDING...');
+       $('.deleteme').remove();
+       console.log(vm.nameGenderTabInit);
+       
+    }
+
+    vm.resizeMobile = function(resyncList) {
+      if (vm.initialLoad == true) {
+        setTimeout(function() {  
+          //vm.prepAvatar();
+
+          if ($(window).width() < 750){
+              console.log('reinitializing avatar slider...');
+              if ( $('#avatar_slider').hasClass('slick-initialized') ) {
+                $('#avatar_slider').slick('unslick');
               }
-            },
-            {
-              breakpoint: 750,
-              settings: "unslick"
-            }
-          ]
-        });
+              $('#avatar_slider').slick(vm.slickSettings);
+            $('#avatar_slider .slick-track').prepend($('#nameGenderTab'));
+          } else {
+            $('#avatar_slider').prepend($('#nameGenderTab'));
+          }
+        },50);
+      }
+
+      if ($('.slick-initialized').length < 1)  {        
+        vm.initialLoad = true;
+        //Slick Slider settings
+        $('#avatar_slider, .img_wrapper').slick(vm.slickSettings);
         $('.tabs-btn-wrapper').insertAfter( $('#slider') );
         $('#slider').insertAfter('.tab-content');
+
       }
-        console.log($(window).width());
+
       if ($(window).width() > 749) {
           $('.slick-initialized').slick('unslick');
-          $('.img_wrapper').slick('unslick');
+          if ($('.img_wrapper').hasClass('slick-initialized'))
+          {
+            $('.img_wrapper').slick('unslick');
+          }
           $('.tabs-btn-wrapper').insertAfter( $('#tabs') )
           $('#slider').insertAfter('.tab-wrapper');
-
       }
     }
 
@@ -287,6 +319,9 @@
     };
 
     vm.switchSchema = function() {
+      if ($('.slick-initialized').length > 0)  {
+        $('#avatar_slider').slick('unslick');
+      }
       if (vm.currentAvatarGender === 'male') {
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
@@ -324,6 +359,15 @@
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
       console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
+
+      //store a copy of first li of $('#tabs ul'), run once ever
+      if (vm.storedNameGender != true) {
+        vm.nameGenderTabInit = $('#nameGenderTab').clone().prop({ id: 'cloned_nameGenderTab' });
+        vm.storedNameGender = true;
+      }
+
+      console.log('resizing sliders...');
+      vm.resizeMobile(true);
     };
 
     vm.loadSavedAvatars = function(retract) {
