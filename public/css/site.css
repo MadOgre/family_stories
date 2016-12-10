@@ -139,7 +139,7 @@ header .lang ul li:hover ul {
     content: '';
     clear: both; }
   .burger-menu-symbol {
-    background-image: url("/img/burger.png");
+    background-image: url("../img/burger.png");
     background-repeat: no-repeat;
     display: block;
     height: 50px;
@@ -534,17 +534,17 @@ footer .contact-info .seperator {
 
 .slider .slider-controls .slider-prev {
   float: left;
-  background-image: url(/img/slider_prev.png); }
+  background-image: url(../img/slider_prev.png); }
 
 .slider .slider-controls .slider-next {
   float: right;
-  background-image: url(/img/slider_next.png); }
+  background-image: url(../img/slider_next.png); }
 
 /*promo2*/
 .promo2 {
   overflow: hidden;
   position: relative;
-  background-image: url(/img/promo2_bg_plain.jpg);
+  background-image: url(../img/promo2_bg_plain.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -691,7 +691,7 @@ footer .contact-info .seperator {
 /*       CONTACT                        */
 /****************************************/
 .contact-page .select-css {
-  background: #fff url("/img/down_arrow.png") no-repeat scroll 95% center;
+  background: #fff url("../img/down_arrow.png") no-repeat scroll 95% center;
   border: 1px solid #c2d5dd;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -730,12 +730,12 @@ footer .contact-info .seperator {
   margin: auto;
   position: absolute;
   padding: 0 10px;
-  background-image: url("/img/faq_lines.png");
+  background-image: url("../img/faq_lines.png");
   background-position: top right;
   background-repeat: no-repeat; }
 
 .faq h2 {
-  background-image: url("/img/faq_h2_bg.png");
+  background-image: url("../img/faq_h2_bg.png");
   background-position: bottom left;
   background-repeat: no-repeat;
   font-weight: 400;
@@ -746,7 +746,7 @@ footer .contact-info .seperator {
   margin: 0; }
 
 .faq .select-css {
-  background-image: url("/img/down_arrow_dark.png");
+  background-image: url("../img/down_arrow_dark.png");
   -webkit-box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.2);
@@ -767,7 +767,7 @@ footer .contact-info .seperator {
     display: none; }
   .faq {
     min-height: 400px;
-    background-image: url("/img/faq_bg_plain.jpg");
+    background-image: url("../img/faq_bg_plain.jpg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover; } }
@@ -786,7 +786,7 @@ footer .contact-info .seperator {
   line-height: 58px; }
 
 .contact .select-css {
-  background: #fff url("/img/down_arrow_dark.png") no-repeat scroll 95% center;
+  background: #fff url("../img/down_arrow_dark.png") no-repeat scroll 95% center;
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   border-left: 0;
@@ -849,7 +849,7 @@ footer .contact-info .seperator {
   width: 100%; }
 
 .about-info-container {
-  background-image: url("/img/about_bg1.jpg");
+  background-image: url("../img/about_bg1.jpg");
   background-repeat: no-repeat;
   background-size: 100% auto;
   margin: 125px auto auto auto;
@@ -929,7 +929,7 @@ footer .contact-info .seperator {
 
 /*about images*/
 .about-images {
-  background-image: url("/img/about_images.jpg");
+  background-image: url("../img/about_images.jpg");
   background-repeat: no-repeat;
   background-size: 100% auto;
   max-width: 980px;
@@ -970,7 +970,7 @@ footer .contact-info .seperator {
   max-width: 1388px;
   margin: auto;
   width: 100%;
-  background-image: url("/img/about_giraffe.png");
+  background-image: url("../img/about_giraffe.png");
   background-repeat: no-repeat;
   background-position: bottom right; }
 
