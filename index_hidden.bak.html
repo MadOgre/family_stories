@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Build a Book</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="libs/angular-carousel/angular-carousel.css">
+	<base href="/">
+  <!-- 	  <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+  <script type="text/javascript">
+    ShopifyApp.init({
+      apiKey: '3476efb4a6d3e512814fed0fed881fc0',
+      shopOrigin: 'https://family-stories.myshopify.com',
+      debug: true,
+      forceRedirect: true
+    });
+  </script> -->
+	<!-- load jQuery 2.2.2 -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<!--
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+	var jQuery_1_7 = $.noConflict(true);
+	</script> -->
+	<script src="https://code.angularjs.org/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+	<script src="js/ui-bootstrap-tpls.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/routes.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/preview.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+  <div class="total-wrapper">
+  		<div class="banner-wrapper">
+  			<div class="banner">
+  					<h1>Build A Book</h1>
+  			</div>
+  		</div>
+      <div id="creationTool">
+
+          <section id="topPartWrapper">
+            <div class="container">
+                <img src="/img/logo.png" class="logo" alt="" />
+                <ul class="header-menu">
+                    <li><a href="javascript:void(0);">Home</a></li>
+                    <li><a href="javascript:void(0);">Profile</a></li>
+                    <li><a href="javascript:void(0);">Settings</a></li>
+                    <li><a href="javascript:void(0);">About</a></li>
+                </ul>
+            </div>
+          </section><!-- end id:topPartWrapper -->
+          <ng-view></ng-view>
+      </div>
+  </div>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="libs/turnjs/turn.min.js"></script>
+  <script type="text/javascript" src="libs/angular-touch/angular-touch.js"></script>
+  <script type="text/javascript" src="libs/angular-carousel/angular-carousel.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+</html>
