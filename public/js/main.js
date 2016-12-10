@@ -10,6 +10,26 @@
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
+
+    $scope.$watch(angular.bind(this, function () {
+      return this.carousel_index;
+    }), function(v){
+      console.log("SPINNING!");
+      vm.postPerson(function(){
+        vm.currentAvatarIndex = v+1;
+        updateCurrentAvatar();       
+      });
+
+    }, true);    
+
+    $scope.$watch(angular.bind(this, function () {
+      return this.currentAvatar;
+    }), function(v){
+      console.log("Current Index: " + vm.currentAvatarIndex);
+      vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
+      //$scope.$apply();
+    }, true);
+
     $scope.$watch(angular.bind(this, function () {
       return this.colorCodes;
     }), function(v){
