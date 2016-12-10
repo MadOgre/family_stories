@@ -8,6 +8,11 @@
         controller: "Main",
         controllerAs: "main"
       })
+      .when("/about", {
+        templateUrl: "/partials/about.html",
+        controller: "Main",
+        controllerAs: "main"
+      })
       .when("/avatarbuilder", {
         templateUrl: "/partials/main.html",
         controller: "Main",
