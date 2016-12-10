@@ -4,6 +4,11 @@
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when("/", {
+        templateUrl: "/partials/landing.html",
+        controller: "Main",
+        controllerAs: "main"
+      })
+      .when("/avatarbuilder", {
         templateUrl: "/partials/main.html",
         controller: "Main",
         controllerAs: "main"
