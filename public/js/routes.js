@@ -13,6 +13,11 @@
         controller: "Main",
         controllerAs: "main"
       })
+      .when("/contact", {
+        templateUrl: "/partials/contact.html",
+        controller: "Main",
+        controllerAs: "main"
+      })
       .when("/avatarbuilder", {
         templateUrl: "/partials/main.html",
         controller: "Main",
