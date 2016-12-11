@@ -114,7 +114,7 @@
     'use strict';
 
     var module = {
-        ratio: 1.38,
+        ratio: 2.83,
         init: function (id) {
             var me = this;
                     // var size = me.resize();
