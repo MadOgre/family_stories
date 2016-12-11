@@ -57,20 +57,18 @@
             </div>
             <div class="clearfix"></div>
         </header>
-
         <!-- login -->
-        <div class="login-window" style="display:none;">
+        <div id="myModal" data-backdrop="static" class="login-window modal fade" id="myModal">
             <div class="close-win">
-                <a href="javascript:void(0);"><img src="../img/modal_close.png" alt="" /></a>
+                <a href="javascript:void(0);" data-dismiss="modal"><img src="../img/modal_close.png" alt="" /></a>
             </div>
             <div class="container">
                 <img src="../img/logo_win.png" class="logo" alt="" />
-                <h1>Create your account</h1>
+                <h1>Log in</h1>
+                <a href="/authfacebook" target="_self" class="full-btn fb-btn"><img src="../img/fb.png" alt="" />Log in with facebook</a>
+                <a href="/authgoogle" target="_self" class="full-btn google-btn"><img src="../img/google.png" alt="" />Log in with google</a>
 
-                <a href="javascript:void(0);" class="full-btn fb-btn"><img src="../img/fb.png" alt="" />sign up with facebook</a>
-                <a href="javascript:void(0);" class="full-btn google-btn"><img src="../img/google.png" alt="" />sign up with google</a>
-
-                <div class="info">You already have an account? <a href="javascript:void(0);">Log in</a></div>
+<!--                 <div class="info">You already have an account? <a href="javascript:void(0);">Log in</a></div> -->
             </div>
         </div><!-- end login -->
 
