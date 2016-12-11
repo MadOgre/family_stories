@@ -615,7 +615,11 @@ footer .contact-info .seperator {
   left: 0;
   right: 0;
   margin: auto;
-  text-align: center; }
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
 
 .promo1 .slider-txt-container h2 {
   font-weight: 300;
@@ -2366,6 +2370,33 @@ input[type="radio"]:checked + label.color-thumb {
   right: -16px;
   top: 200px; }
 
+.rn-carousel-control {
+  z-index: 5000; }
+
+.promo1 .rn-carousel-control.rn-carousel-control-next {
+  display: block;
+  background: url(/img/slider_next.png) no-repeat center;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  right: 106px;
+  top: 200px; }
+
+.promo1 .rn-carousel-control.rn-carousel-control-prev {
+  display: block;
+  background: url(/img/slider_prev.png) no-repeat center;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 106px;
+  top: 200px; }
+
 .carousel3.ng-scope {
   width: 300px;
   height: 500px; }
+
+.slider {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }

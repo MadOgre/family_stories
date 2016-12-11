@@ -4,6 +4,12 @@
   angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', 'preloader', Main]);
 
   function Main($http, $scope, $q, $location, $window, sharedProperties, preloader) {
+    // $('.landing-slider').slick({
+    //     speed: 300,
+    //     slidesToShow: 1,
+    //     useTransform: false
+    // });
+    // $(".slider").slick();
     var vm = this;
     vm.results = [];
     vm.colorCodes = {};
