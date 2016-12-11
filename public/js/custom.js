@@ -9,3 +9,7 @@ $('#myTabs a').click(function (e) {
 // window.onload = function() {
 //   $(".loading-overlay").hide();
 // }
+
+$(document).ready(function(){
+  
+})
