@@ -22,6 +22,7 @@
     <script src="js/services.js"></script>
     <script src="js/preview.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
     <base href="/">
 </head>
 <body>
@@ -31,7 +32,7 @@
 
             <a href="javascript:void(0);" class="logo"><img src="../img/logo_header.png" alt="" /></a>
             <div class="header-info-block">
-                <div class="header-right-block">
+                <div ng-controller="login as lgn" class="header-right-block">
                     <div class="lang">
                         <ul>
                             <li>
@@ -43,7 +44,8 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="javascript:void(0);" class="bordered-btn" data-toggle="modal" data-target="#myModal">LOG IN</a>
+                    <a ng-if="lgn.currentUserProfile" target="_self" href="/logout" class="bordered-btn">LOG OUT</a>
+                    <a ng-if="!lgn.currentUserProfile" href="javascript:void(0);" class="bordered-btn" data-toggle="modal" data-target="#myModal">LOG IN</a>
                     <div class="clearfix"></div>
                 </div>
 
