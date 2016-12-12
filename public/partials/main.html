@@ -78,7 +78,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                         </div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
-                        <input type="text" id="avatar-name-input" placeholder="ex. DADDY" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = 'ex. DADDY'">
+                        <input type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
@@ -89,8 +89,8 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
-                        <h3>KID'S BIRTHDAY</h3>
-                        <input type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+                        <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
+                        <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                     </div>
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">

@@ -17,6 +17,22 @@
     //   console.log('Name changed to ' + newVal);
     // });
 
+    vm.getNamePlaceholder = function() {
+      if (vm.currentAvatarGender === 'male') {
+        if (vm.currentAvatarAge === 'adult') {
+          return 'ex. Daddy';
+        } else {
+          return 'ex. Timmy';
+        }
+      } else {
+        if (vm.currentAvatarAge === 'adult') {
+          return 'ex. Mommy';
+        } else {
+          return 'ex. Annie';
+        }
+      }
+    }
+
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
     }), function(v){
@@ -434,6 +450,7 @@
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         avatar_index: vm.currentAvatarIndex,
         avatar_age: vm.currentAvatarAge,
+        birthday: vm.currentAvatarBirthday,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
       };
       $http({
