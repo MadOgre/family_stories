@@ -7,6 +7,7 @@
     var vm = this;
     vm.results = [];
     vm.colorCodes = {};
+    vm.carousel_index = 0;
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -29,14 +30,40 @@
 
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
-    }), function(v){
+    }), function(v, old){
       console.log("SPINNING!");
-      vm.postPerson(function(){
-        vm.currentAvatarIndex = v+1;
-        updateCurrentAvatar();       
-      });
-
-    }, true);    
+      //alert("spinning, old value: " + old + " new value: " + v);
+      if (v !== old && !vm.avatarNameError) {
+        if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
+          //alert("Error triggered");
+          vm.avatarNameError = true;
+          if (old < v) {
+            alert("trying to retract");
+            setTimeout(function(){
+              alert("trying to spin back");
+              vm.carousel_index--;
+              //$scope.$apply();
+              $scope.$digest();
+            }, 200);
+          } else {
+            alert("trying to retract");
+            setTimeout(function(){
+              alert("trying to spin back");
+              vm.carousel_index++;
+              //$scope.$apply();
+              $scope.$digest();
+            }, 200);
+          }
+        } else {
+          vm.postPerson(function(){
+            vm.currentAvatarIndex = v+1;
+            updateCurrentAvatar();      
+          });        
+        }
+      } else {
+        vm.avatarNameError = false;
+      }
+    }, true);  
 
     $scope.$watch(angular.bind(this, function () {
       return this.currentAvatar;

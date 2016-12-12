@@ -89,6 +89,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
+                        {{main.carousel_index}}
                         <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
                         <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                     </div>
