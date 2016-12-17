@@ -263,7 +263,11 @@
         //set avatar defaults
         vm.totalAvatars = data.data.length || 1;
         console.log("DATA-LENGTH: " + data.data.length);  
-        var i = 0;
+        var i = 1;
+        vm.results[0] = {
+          name: "",
+          images: childMaleAvatarDefaults.slice()
+        };
         for (; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
             name: "",
@@ -278,6 +282,8 @@
               images: data.data[i].image_id_list.split(",")
             };
           }
+        } else {
+          i = 1;
         }
         for (; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
@@ -446,8 +452,12 @@
           //console.log("IMG URLS after !!!: " + JSON.stringify(vm.imageUrls));
         });
 
+        vm.results[0] = {
+          name: "",
+          images: childMaleAvatarDefaults.slice()
+        }
         //set avatar defaults
-        for (var i = 0; i < vm.maxAvatars; ++i) {
+        for (var i = 1; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
             name: "",
             images: adultMaleAvatarDefaults.slice()
