@@ -540,6 +540,7 @@ footer .copyright {
     right: 0;
     margin: auto;
     text-align: center;
+    user-select: none;
 }
 .promo1 .slider-txt-container h2{
     font-weight:300;
@@ -1190,4 +1191,8 @@ footer .copyright {
         display: table-row;
         height: 1px;
     }
+}
+
+#myModal {
+    display: none;
 }

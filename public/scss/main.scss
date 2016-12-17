@@ -49,6 +49,7 @@ $rubik: 'Rubik', sans-serif;
 @import "containers.scss";
 @import "fixes.scss";
 @import "common.scss";
+@import "site.scss";
 
 body{
     background-color:#eceadd;
@@ -661,7 +662,6 @@ input#avatar-name-input {
     box-shadow: 2px 0 3px 0 rgba(0, 0, 0, 0.2);
     height: 99px;
     margin: 0;
-    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #fff;
@@ -1492,7 +1492,39 @@ font-size:20px;
     top: 200px;
 }
 
+.rn-carousel-control {
+    z-index: 5000;
+}
+
+.promo1 .rn-carousel-control.rn-carousel-control-next {
+    display: block;
+    background: url(/img/slider_next.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 106px;
+    top: 200px;
+}
+
+.promo1 .rn-carousel-control.rn-carousel-control-prev {
+    display: block;
+    background:url(/img/slider_prev.png) no-repeat center;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 106px;
+    top: 200px;
+}
+
 .carousel3.ng-scope {
     width: 300px;
     height: 500px;
+}
+
+.slider {
+    user-select: none;
+}
+
+.modal-backdrop {
+    display: none !important;
 }
