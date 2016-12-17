@@ -14,9 +14,19 @@
     vm.results = [];
     vm.colorCodes = {};
     vm.carousel_index = 0;
+    vm.familyType = "3";
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
+
+    vm.getHelperArray = function(qty) {
+      var result = [];
+      var n = +qty;
+      for (var i = 0; i < n; i++) {
+        result.push(i);
+      }
+      return result;
+    }
 
     vm.getNamePlaceholder = function() {
       if (vm.currentAvatarGender === 'male') {
