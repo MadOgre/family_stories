@@ -15,6 +15,7 @@
     vm.colorCodes = {};
     vm.carousel_index = 0;
     vm.familyType = "3";
+    vm.deleting = false;
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -71,10 +72,18 @@
             }, 200);
           }
         } else {
-          vm.postPerson(function(){
-            vm.currentAvatarIndex = v+1;
-            updateCurrentAvatar();      
-          });        
+          if (!vm.deleting) {
+            alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
+            vm.postPerson(function(){
+              vm.currentAvatarIndex = v+1;
+              updateCurrentAvatar();      
+            });
+          } else {
+            alert("DELETING - DID NOT POST");
+              //vm.currentAvatarIndex = v+1;
+              updateCurrentAvatar(); 
+            vm.deleting = false;
+          }       
         }
       } else {
         vm.avatarNameError = false;
@@ -255,7 +264,7 @@
       console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
     };
 
-    vm.loadSavedAvatars = function() {
+    vm.loadSavedAvatars = function(retract) {
       $http({
         method: 'GET',
         url: '/testroute'
@@ -291,7 +300,11 @@
             images: adultMaleAvatarDefaults.slice()
           };
         }
-        vm.currentAvatarIndex = 1;
+        if (retract) {
+          vm.currentAvatarIndex--;
+        } else {
+          vm.currentAvatarIndex = 1;
+        }
         updateCurrentAvatar();
         if (data.data.length > 0) {
           vm.newAvatar = false;
@@ -480,14 +493,15 @@
 
     vm.getSchema(function(){
       vm.getProperties(function(){
-        vm.loadSavedAvatars();
+        vm.loadSavedAvatars(false);
       });
     });
 
     vm.deleteAvatar = function() {
-
+      vm.deleting = true;
+      alert("DELETE TRIGGERED");
       vm.deletePerson(function(){
-        vm.loadSavedAvatars();
+        vm.loadSavedAvatars(true);
             // alert(vm.currentAvatarIndex);
             // if (vm.currentAvatarIndex == 2) {
             //   alert("second avatar - retract");
@@ -616,6 +630,7 @@
     }
 
     function retractAvatar() {
+      alert("should not be called !!!");
       vm.newAvatar = false;
       if (vm.currentAvatarIndex > 1) {
         //if currentAvatar is not first, simply retract
