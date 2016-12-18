@@ -73,13 +73,13 @@
           }
         } else {
           if (!vm.deleting) {
-            alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
+            //alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
             vm.postPerson(function(){
               vm.currentAvatarIndex = v+1;
               updateCurrentAvatar();      
             });
           } else {
-            alert("DELETING - DID NOT POST");
+            //alert("DELETING - DID NOT POST");
               //vm.currentAvatarIndex = v+1;
               updateCurrentAvatar(); 
             vm.deleting = false;
@@ -499,7 +499,7 @@
 
     vm.deleteAvatar = function() {
       vm.deleting = true;
-      alert("DELETE TRIGGERED");
+      //alert("DELETE TRIGGERED");
       vm.deletePerson(function(){
         vm.loadSavedAvatars(true);
             // alert(vm.currentAvatarIndex);
