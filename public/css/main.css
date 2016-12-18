@@ -2403,3 +2403,14 @@ input[type="radio"]:checked + label.color-thumb {
 
 .modal-backdrop {
   display: none !important; }
+
+#slider .q-circle.delete-avatar-button {
+  position: absolute;
+  left: 40px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  top: 100px;
+  cursor: pointer;
+  z-index: 1500; }

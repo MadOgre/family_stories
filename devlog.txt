@@ -1,0 +1,97 @@
+Issues breakdown as of 12/17/16
+
+Refer to powerpoint file Avatar builder_comments_12Dec2016.pptx in email
+
+Slide 1:
+
+This is a pure CSS issue: assign to Mike, Drew, or Timos,
+
+Slide 2:
+Several paragraphs
+
+Color and hair options are database related: refer to Sunjay
+
+Unclear whether to remove the question mark or family name field: this is a simple HTML change, refer to Mike
+
+Crewcut hairstyle: Art and Database issue, refer to Sunjay
+
+To show child first requires restructuring of core code - already in progress, refer to Mike
+
+Slide 3:
+
+Resizing of Art - refer to Art team or Drew
+
+Slide 4:
+
+Creating N/A icon. Refer to Art team, Drew, or Mike (in order of preference)
+
+Slide 5:
+
+As far as blank icon disappearing, cannot replicate issue, discuss with Sunjay
+
+As far as mouth showing up over beard, this has to do with database ordering, refer to Sunjay
+
+Slide 6:
+
+Clearly a database issue, refer to Sunjay
+
+Slide 7:
+
+Database ordering, refer to Sunjay
+
+Slide 8:
+
+This button NOT currenly set up to work. The avatar moves back and forth with arrows, this work is ongoing - refer to Mike. The number is simply debug information put there only in development/testing branch
+
+Slide 9:
+
+Yet another database ordering issue, refer to Sunjay
+
+Slide 10:
+
+Yet another database ordering issue, refer to Sunjay
+
+Slide 11:
+
+This is an art asset related issue, refer to Art team or Drew
+Yet another database ordering issue, refer to Sunjay
+
+Slide 12:
+
+Simple database removal: refer to Sunjay
+
+Slide 13:
+
+Unclear which is preferrable, the look on the picture, or the calendar look. This is not actually styled, each browser has it's own default look for date picker. To make it uniform I will have to install and set up a date picker plugin (jquery UI date picker should do). Discuss with Sunjay, refer to Drew or Mike
+
+Slide 14:
+
+Unclear whether talking about the art asset or CSS positioning.
+
+If CSS refer to Drew or Mike, else refer to Art team
+
+Slide 15:
+
+Art asset and database update: refer to Art team and Sunjay
+
+Slide 16:
+
+Refer to Art team
+
+Slide 17:
+
+Refer to Art team
+
+Slide 18:
+
+Multiple paragraphs:
+
+Regarding the preview loading time - I agreee that it is slow, however not much can be done from the web side. Perhaps the image generation can be sped up from backend, discuss with Sunjay.
+As far as front end possibly I can create a loading screen to mask the loading time to make it appear natural
+
+Regarding the child being too big, this could be changed with Art assets, or simply by scaling in CSS (art assets preferred)
+
+Slide 19:
+
+Art asset issue: refer to Art team
+

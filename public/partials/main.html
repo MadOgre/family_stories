@@ -69,13 +69,13 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     <!-- NAME & GENDER tab -->
                     <div id="nameGender" class="tab-pane tab-pane-style active">
                         <!-- MGS: this selector not implemented yet. Style as desired -->
-                        <h3>CHILD OR ADULT?</h3>
+<!--                         <h3>CHILD OR ADULT?</h3>
                         <div class="select-css">
                             <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
                                 <option value="adult">Adult</option>
                                 <option value="child">Child</option>
                             </select>
-                        </div>
+                        </div> -->
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
                         <input type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
@@ -89,6 +89,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
+                        {{main.carousel_index}}
                         <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
                         <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                     </div>
@@ -139,60 +140,47 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
         <!-- start slider --><!-- in order to stylize the images with absolute position we need to add different class for each element, for example .eyes-img, .body-img, .hair-img etc -->
         <section id="slider">
             <div class="header-info">
-                <a class="pencil" href="javascript:void(0);"></a>
+<!--                 <a class="pencil" href="javascript:void(0);"></a> -->
                 <!-- family's name -->
-                <input type="text" name="" id="" placeholder="FAMILY NAME" value="THE TOKOUSBALIDES" />
+<!--                 <input type="text" name="" id="" placeholder="FAMILY NAME" value="THE TOKOUSBALIDES" /> -->
                 <!-- help button -->
-                <a href="javascript:void(0);" class="q-circle">?</a>
+<!--                 <a href="javascript:void(0);" class="q-circle">?</a> -->
+            <div>
+                <select ng-model="main.familyType" name="family-type">
+                    <option value="3">2 adults and 1 child</option>
+                    <option value="2">1 adult and 1 child</option>
+                </select>
+            </div>
+            <div>
+                This area for debug only
+                {{main.familyType}}
+            </div>
             </div>
             <!-- slides -->
             <div class="carousel-demo" style="width: 100%;">
                 <ul rn-carousel rn-carousel-transition="hexagon" rn-carousel-controls rn-carousel-index="main.carousel_index" class="carousel3">
-                   <li>
+                   <li ng-repeat="index in main.getHelperArray(main.familyType)">
                         <ul>
+                            <li>
+                                <div class="q-circle delete-avatar-button" ng-if="main.familyType==='3' && main.carousel_index !== 0 && $index === main.carousel_index" ng-click="main.deleteAvatar()">x</div>
+                            </li>
                             <li>
                             <!--     <img class="" src="img/background.png"> -->
-                                <img class="" ng-repeat="value in main.results[0].images" ng-src="{{main.imageUrls[value].location}}">
+                                <img class="" ng-repeat="value in main.results[index].images" ng-src="{{main.imageUrls[value].location}}">
                             </li>
                             <!-- new character -->
                             <!-- not implemented yet but will function predictably -->
                             {{main.currentAvatarIndex}}
-                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
-                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
-                                <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
-                            </li>
-                        </ul>
-                   </li> 
-                   <li>
-                        <ul>
                             <li>
-                                <!-- <img class="" src="img/background.png"> -->
-                                <img class="" ng-repeat="value in main.results[1].images" ng-src="{{main.imageUrls[value].location}}">
-                            </li>
-                            <!-- new character -->
-                            <!-- not implemented yet but will function predictably -->
-                            {{main.currentAvatarIndex}}
-                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
-                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
+                                <div class="q-circle big" ng-if="main.familyType==='2' && main.carousel_index === +main.familyType - 1 && $index === +main.familyType - 1" ng-click="main.familyType='3'">+</div>
                                 <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
                             </li>
                         </ul>
+<!--                         <div>{{$index === +main.familyType - 1}}</div>
+                        <div>{{main.carousel_index === +main.familyType - 1}}</div>
+                        <div>{{main.familyType==='2'}}</div> -->
                    </li> 
-                   <li>
-                        <ul>
-                            <li>
-                               <!--  <img class="" src="img/background.png"> -->
-                                <img class="" ng-repeat="value in main.results[2].images" ng-src="{{main.imageUrls[value].location}}">
-                            </li>
-                            <!-- new character -->
-                            <!-- not implemented yet but will function predictably -->
-                            {{main.currentAvatarIndex}}
-                            <li ng-if="main.currentAvatarIndex === main.totalAvatars && main.currentAvatarIndex !== main.maxAvatars">
-                                <div class="q-circle big" ng-click="main.nextAvatar()">+</div>
-                                <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>
-                            </li>
-                        </ul>
-                   </li> 
+                   
                 </ul>
             </div>
 
