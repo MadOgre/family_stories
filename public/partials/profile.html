@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
-    <div class="site-page about-page">
+    <div class="site-page profile-page">
         <header>
             <a href="javascript:void(0);" class="burger-menu-symbol"></a>
 
@@ -32,7 +32,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="javascript:void(0);" class="bordered-btn" data-toggle="modal" data-target="#myModal">LOG IN</a>
+                    <a href="javascript:void(0);" class="user-avatar"><img src="/img/user_avatar.jpg" alt=""></a>
                     <div class="clearfix"></div>
                 </div>
 
@@ -47,51 +47,86 @@
             <div class="clearfix"></div>
         </header>
 
-        <!-- login -->
-        <div class="login-window" style="display:none;">
-            <div class="close-win">
-                <a href="javascript:void(0);"><img src="/img/modal_close.png" alt="" /></a>
-            </div>
-            <div class="container">
-                <img src="/img/logo_win.png" class="logo" alt="" />
-                <h1>Create your account</h1>
-
-                <a href="javascript:void(0);" class="full-btn fb-btn"><img src="/img/fb.png" alt="" />sign up with facebook</a>
-                <a href="javascript:void(0);" class="full-btn google-btn"><img src="/img/google.png" alt="" />sign up with google</a>
-
-                <div class="info">You already have an account? <a href="javascript:void(0);">Log in</a></div>
-            </div>
-        </div><!-- end login -->
-
         <div class="site-container">
-            <section class="about-wrapper">
-                <div class="about-info-container">
-                    <div class="text-container">
-                        <h2>About Us</h2>
-                        <h3>The team behind Family Stories</h3>
-                        <p>Gummies muffin sesame snaps lemon drops cheesecake jelly beans. Wafer ice cream sweet candy canes caramels icing lollipop pie jujubes. Macaroon jelly beans pie powder oat cake sesame snaps jelly beans macaroon pastry. Marzipan cotton candy apple pie. Sweet halvah sweet jujubes oat cake macaroon biscuit. Sugar plum jelly-o gummies soufflé bonbon pastry jelly gummies. Chupa chups soufflé pudding ice cream sweet roll cotton candy dragée jelly sesame snaps. Cake fruitcake bear claw lemon drops marshmallow carrot cake sesame snaps pastry. Tart sesame snaps topping tootsie roll sweet roll cupcake sweet. Danish gingerbread jelly-o soufflé oat cake macaroon bear claw. Danish tiramisu topping soufflé. Icing gummies.</p>
-                    </div>
+            <section class="profile-header">
+                <img src="/img/profile_bg.jpg" alt="" />
+                <div class="container">
+                    <img class="user-avatar" src="/img/user_avatar.jpg" alt="" />
+                    <h2>Hello Claire!</h2>
+                    <h3>claire.underwood@gmail.com</h3>
                 </div>
-                <img src="/img/about_cloud.png" class="cloud" alt="" />
             </section>
 
-            <section class="about-images">
-                <div class="col-1-of-3"><img src="/img/about_images_1.jpg" alt="" /></div>
-                <div class="col-1-of-3"><img src="/img/about_images_2.jpg" alt="" /></div>
-                <div class="col-1-of-3"><img src="/img/about_images_3.jpg" alt="" /></div>
+            <section class="avatars container">
+                <div class="avatars-header">
+                    <h2>Avatars</h2>
+                    <a href="javascript:void(0);" class="edit-btn">EDIT CHARACTERS</a>
+                </div>
+                <div class="avatars-wrapper">
+                    <div class="col-1-of-3">
+                        <img src="/img/avatar1.jpg" alt="" />
+                    </div>
+                    <div class="col-1-of-3">
+                        <img src="/img/avatar2.jpg" alt="" />
+                    </div>
+                    <div class="col-1-of-3">
+                        <img src="/img/avatar3.jpg" alt="" />
+                    </div>
+                </div>
             </section>
 
-            <section class="about-dream-wrapper">
-                <div class="about-dream-container">
-                    <div class="text-container">
-                        <h2>Our Dream</h2>
-                        <h3>There is a story about some awesome…</h3>
-                        <p>Gummies muffin sesame snaps lemon drops cheesecake jelly beans. Wafer ice cream sweet candy canes caramels icing lollipop pie jujubes. Macaroon jelly beans pie powder oat cake sesame snaps jelly beans macaroon pastry. Marzipan cotton candy apple pie. Sweet halvah sweet jujubes oat cake macaroon biscuit. Sugar plum jelly-o gummies soufflé bonbon pastry jelly gummies.</p>
-                        <p>Chupa chups soufflé pudding ice cream sweet roll cotton candy dragée jelly sesame snaps. Cake fruitcake bear claw lemon drops marshmallow carrot cake sesame snaps pastry. Tart sesame snaps topping tootsie roll sweet roll cupcake sweet. Danish gingerbread jelly-o soufflé oat cake macaroon bear claw. Danish tiramisu topping soufflé. Icing gummies jelly beans biscuit marzipan marshmallow jujubes marshmallow. Cake biscuit cake. Candy sugar plum biscuit cake jelly.</p>
-                    </div>
-                    <img src="/img/about_giraffe.png" class="about_giraffe" alt="" />
+            <section class="orders container">
+                <div class="orders-header">
+                    <h2>Orders</h2>
                 </div>
-                <img src="/img/about_cloud2.png" class="about_cloud" alt="" />
+                <div class="orders-wrapper">
+                    <!-- block -->
+                    <div class="order-block">
+                        <div class="img-c"><img src="/img/order_book_cover.jpg" alt="" /></div>
+                        <div class="info">
+                            <h3>A trip around the world <br />for <strong>Eleni</strong></h3>
+
+                            <div class="order-btn">
+                                <a href="javascript:void(0);">PROCEED TO ORDER</a>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <a href="javascript:void(0);" class="delete-order">DELETE</a>
+                        </div>
+                    </div><!-- block -->
+
+                    <!-- block -->
+                    <div class="order-block">
+                        <div class="img-c"><img src="/img/order_book_cover.jpg" alt="" /></div>
+                        <div class="info">
+                            <h3>A trip around the world <br />for <strong>Timos</strong></h3>
+
+                            <div class="order-details">
+                                <h4><strong>Order Number:</strong> 12345678</h4>
+                                <h4><strong>Delivered:</strong> 12 - 18 October 2016</h4>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <span class="on-the-way-order">ON THE WAY</span>
+                        </div>
+                    </div><!-- block -->
+
+                    <!-- block -->
+                    <div class="order-block">
+                        <div class="img-c"><img src="/img/order_book_cover.jpg" alt="" /></div>
+                        <div class="info">
+                            <h3>A trip around the world <br />for <strong>Alexandra</strong></h3>
+
+                            <div class="order-details">
+                                <h4><strong>Order Number:</strong> 12345678</h4>
+                                <h4><strong>Expected delivery:</strong> 28 December 2016 - 2 January 2017</h4>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <span class="delivered-order">DELIVERED</span>
+                        </div>
+                    </div><!-- block -->
+                </div>
             </section>
         </div>
 
