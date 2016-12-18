@@ -204,7 +204,7 @@
     vm.currentAvatarIndex = 1;
     vm.totalAvatars = 1;
     vm.totalChildren = 0;
-    vm.maxAvatars = 2; //must be set to at least 2 to prevent errors
+    vm.maxAvatars = 3; //must be set to at least 2 to prevent errors
     vm.maxChildren = 1;
     vm.newAvatar = true;
     vm.error = "";
@@ -483,8 +483,73 @@
         vm.loadSavedAvatars();
       });
     });
+
+    vm.deleteAvatar = function() {
+
+      vm.deletePerson(function(){
+        vm.loadSavedAvatars();
+            // alert(vm.currentAvatarIndex);
+            // if (vm.currentAvatarIndex == 2) {
+            //   alert("second avatar - retract");
+            //   console.log("LOGGING RESULTS");
+            //   console.log(vm.results);
+            //   vm.results[1].name = vm.results[2].name;
+            //   vm.results[1].images = vm.results[2].images.slice();
+            //   console.log("CHANGES RESULTS");
+            //   console.log(vm.results);
+            // } else {
+            //   alert("third avatar - delete from end");
+            //   vm.results[vm.currentAvatarIndex-1].name = "";
+            //   vm.results[vm.currentAvatarIndex-1].images = vm.adultMaleAvatarDefaults.images.slice();
+            // }
+            vm.carousel_index--;
+            vm.familyType='2';
+      });
+    }
     
-    
+    vm.deletePerson = function(cb) {
+      console.log("delete person called");
+      vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }).join(' ');
+      var response = {
+        user_id: vm.currentUser,
+        avatar_name: vm.currentAvatar.name,
+        image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
+        avatar_index: vm.currentAvatarIndex,
+        avatar_age: vm.currentAvatarAge,
+        birthday: vm.currentAvatarBirthday,
+        replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name,
+        delete: true
+      };
+      $http({
+        method: 'POST',
+        // url: 'http://default-environment.ymuptkfrgv.us-west-2.elasticbeanstalk.com/setUserSelection',
+        //url: 'http://178.62.255.163:8080/FamilyStoryWebService/setUserSelection',
+        url: '/setUserSelection',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: response
+      }).then(function(data){
+        console.log("POST request finished");
+        if (data.data.result === "success") {
+          // vm.results[vm.currentAvatarIndex-1].name = vm.results[vm.currentAvatarIndex].name;
+          // vm.results[vm.currentAvatarIndex-1].images = vm.results[vm.currentAvatarIndex].images.slice();
+          // vm.familyType = '2';
+          if (cb) {
+            cb(null);
+          }
+        } else {
+          if (cb) {
+            cb("Delete Failed");
+          }
+        }
+        console.log(data);
+        console.log(vm.avatarNames);
+        console.log(vm.results);
+      });
+    };    
 
     vm.postPerson = function(cb) {
       console.log("post person called");

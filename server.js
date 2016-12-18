@@ -270,7 +270,8 @@ function setUserSelection(payload, cb) {
     payload.avatar_index + "','" +
     payload.avatar_age + "','" +
     payload.birthday + "'," + // the quote is missing for a reason!!
-    (payload.replace ? "'" + payload.replace + "'" : null) + ")").then(function(){
+    (payload.replace ? "'" + payload.replace + "'" : null) + "," +
+    (payload.delete ? "'D'" : null) + ")").then(function(){
     cb(null, {result: "success"});
   }).catch(function(err){
     cb(err);

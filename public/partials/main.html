@@ -162,7 +162,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                    <li ng-repeat="index in main.getHelperArray(main.familyType)">
                         <ul>
                             <li>
-                                <div class="q-circle delete-avatar-button" ng-if="main.familyType==='3' && main.carousel_index !== 0 && $index === main.carousel_index" ng-click="main.familyType='2'">x</div>
+                                <div class="q-circle delete-avatar-button" ng-if="main.familyType==='3' && main.carousel_index !== 0 && $index === main.carousel_index" ng-click="main.deleteAvatar()">x</div>
                             </li>
                             <li>
                             <!--     <img class="" src="img/background.png"> -->
