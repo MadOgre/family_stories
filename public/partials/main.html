@@ -89,7 +89,6 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
-                        {{main.carousel_index}}
                         <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
                         <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                     </div>
@@ -145,7 +144,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
 <!--                 <input type="text" name="" id="" placeholder="FAMILY NAME" value="THE TOKOUSBALIDES" /> -->
                 <!-- help button -->
 <!--                 <a href="javascript:void(0);" class="q-circle">?</a> -->
-            <div>
+<!--             <div>
                 <select ng-model="main.familyType" name="family-type">
                     <option value="3">2 adults and 1 child</option>
                     <option value="2">1 adult and 1 child</option>
@@ -154,7 +153,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             <div>
                 This area for debug only
                 {{main.familyType}}
-            </div>
+            </div> -->
             </div>
             <!-- slides -->
             <div class="carousel-demo" style="width: 100%;">
@@ -170,7 +169,6 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             </li>
                             <!-- new character -->
                             <!-- not implemented yet but will function predictably -->
-                            {{main.currentAvatarIndex}}
                             <li>
                                 <div class="q-circle big" ng-if="main.familyType==='2' && main.carousel_index === +main.familyType - 1 && $index === +main.familyType - 1" ng-click="main.familyType='3'">+</div>
                                 <div class="new-char-txt">YOU ARE ABOUT TO CREATE A NEW CHARACTER</div>

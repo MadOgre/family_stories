@@ -54,17 +54,17 @@
           //alert("Error triggered");
           vm.avatarNameError = true;
           if (old < v) {
-            alert("trying to retract");
+            //alert("trying to retract");
             setTimeout(function(){
-              alert("trying to spin back");
+              //alert("trying to spin back");
               vm.carousel_index--;
               //$scope.$apply();
               $scope.$digest();
             }, 200);
           } else {
-            alert("trying to retract");
+            //alert("trying to retract");
             setTimeout(function(){
-              alert("trying to spin back");
+              //alert("trying to spin back");
               vm.carousel_index++;
               //$scope.$apply();
               $scope.$digest();
