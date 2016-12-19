@@ -2748,3 +2748,6 @@ input[type="radio"]:checked + label.color-thumb {
   top: 100px;
   cursor: pointer;
   z-index: 1500; }
+
+#tabs input.input-error {
+  border: 2px solid red; }

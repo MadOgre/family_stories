@@ -1540,3 +1540,7 @@ font-size:20px;
     cursor: pointer;
     z-index: 1500;
 }
+
+#tabs input.input-error {
+    border: 2px solid red;
+}

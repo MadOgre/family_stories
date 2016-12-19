@@ -14,8 +14,9 @@
     vm.results = [];
     vm.colorCodes = {};
     vm.carousel_index = 0;
-    vm.familyType = "3";
+    vm.familyType = "2";
     vm.deleting = false;
+    vm.avatarErrorDisplay = false;
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -54,6 +55,7 @@
         if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
           //alert("Error triggered");
           vm.avatarNameError = true;
+          vm.avatarErrorDisplay = true;
           if (old < v) {
             //alert("trying to retract");
             setTimeout(function(){
@@ -566,6 +568,7 @@
     };    
 
     vm.postPerson = function(cb) {
+      vm.avatarErrorDisplay = false;
       console.log("post person called");
       vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
