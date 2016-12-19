@@ -21,6 +21,16 @@
     //   console.log('Name changed to ' + newVal);
     // });
 
+    vm.increaseFamily = function() {
+      vm.familyType='3'
+            setTimeout(function(){
+              //alert("trying to spin back");
+              vm.carousel_index++;
+              //$scope.$apply();
+              $scope.$digest();
+            }, 200);
+    }
+
     vm.getHelperArray = function(qty) {
       var result = [];
       var n = +qty;
