@@ -64,8 +64,10 @@
       if (v !== old && !vm.avatarNameError) {
         if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
           //alert("Error triggered");
-          vm.avatarNameError = true;
-          vm.avatarErrorDisplay = true;
+          if (!vm.deleting) {
+            vm.avatarNameError = true;
+            vm.avatarErrorDisplay = true;
+          }
           if (old < v) {
             //alert("trying to retract");
             setTimeout(function(){
@@ -511,6 +513,8 @@
 
     vm.deleteAvatar = function() {
       vm.deleting = true;
+      vm.avatarNameError = false;
+      vm.avatarErrorDisplay = false;
       //alert("DELETE TRIGGERED");
       vm.deletePerson(function(){
         vm.loadSavedAvatars(true);
