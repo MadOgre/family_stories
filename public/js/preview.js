@@ -194,7 +194,13 @@
       });
     };
 
-    
+    vm.nextPage = function() {
+      $("#flipbook").turn("next");
+    }
+
+    vm.prevPage = function() {
+      $("#flipbook").turn("previous");
+    }
 
     // $http({
     //     method: 'GET',
