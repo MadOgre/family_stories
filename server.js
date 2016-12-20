@@ -128,7 +128,7 @@ function setId(req, res, next){
 }
 
 app.post("/admin_login", function(req, res){
-  if (req.body.password === "warcraft") {
+  if (req.body.password === "skywalker") {
     req.session.admin = true;
     res.sendFile(__dirname + "/index_hidden.html");
   } else {
