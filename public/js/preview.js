@@ -12,6 +12,11 @@
     vm.priceandcurrencyloaded = false;
     vm.maxBookPages = 0;
     vm.currency = "";
+    vm.editingDedication = false;
+
+    vm.editDedication = function() {
+      vm.editingDedication = true;
+    }
         $http({
           method: 'GET',
           url: '/getproperty/MAX_BOOK_PAGES'          
@@ -62,6 +67,24 @@
     //vm.numberOfImages = parseInt(sharedProperties.getMaxBookPages());
         // alert(vm.numberOfImages);
     vm.receipt = null;
+
+    vm.setDedication = function() {
+      var response = {
+        dedication: vm.dedication
+      }
+      console.log("About to send dedication: " + vm.dedication);
+      $http({
+        method: "POST",
+        url: "/setDedication",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: response
+      }).then(function(response){
+        console.log("SENT DEDICATION");
+        vm.editingDedication = false;
+      });
+    }
 
     vm.submitPreview = function() {
       //alert("submitted!");
