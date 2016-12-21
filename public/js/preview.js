@@ -17,6 +17,17 @@
     vm.editDedication = function() {
       vm.editingDedication = true;
     }
+
+    $http({
+      method: 'GET',
+      url: '/getDedication'
+    }).then(function(data){
+      vm.dedication = data.data[0].dedication;
+      console.log("retrieved dedication");
+      console.log(data);
+    });
+
+
         $http({
           method: 'GET',
           url: '/getproperty/MAX_BOOK_PAGES'          

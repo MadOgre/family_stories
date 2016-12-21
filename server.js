@@ -287,6 +287,15 @@ function setDedication(payload, cb) {
   });  
 }
 
+function getDedication(user_id, cb){
+  sequelize.query(
+    "call sp_get_dedication('" + user_id + "')").then(function(data){
+    cb(null, data);
+  }).catch(function(err){
+    cb(err);
+  });   
+}
+
 
 //this calls a stored procedure on successful pay
 function placeOrderStripe(payload, cb) {
@@ -434,6 +443,14 @@ app.post("/setDedication", function(req, res){
       res.json(result);   
   })
 });
+
+app.get("/getDedication", function(req, res){
+  console.log("GETTING DEDICATION");
+  getDedication(req.session.user_id, function(err, result) {
+    if (err) return res.status(500).json({result: "Server Error"});
+      res.json(result);   
+  })
+});  
 
 app.get("/getproperty/:property", function(req, res){
   console.log("GETTING PROPERTY...");
