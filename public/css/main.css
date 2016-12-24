@@ -2334,7 +2334,9 @@ input[type="radio"]:checked + label.color-thumb {
   .character-wrapper.container.pfpreview {
     padding-bottom: 90px; }
   .tab-btn-save > a {
-    width: 57%; } }
+    width: 57%; }
+  .color-thumbs {
+    display: none; } }
 
 @media (max-width: 630px) {
   #bottomPartWrapper .w-col-md-4 {
