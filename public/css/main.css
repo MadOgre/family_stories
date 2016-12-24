@@ -2336,7 +2336,9 @@ input[type="radio"]:checked + label.color-thumb {
   .tab-btn-save > a {
     width: 57%; }
   .color-thumbs {
-    display: none; } }
+    display: none; }
+  .steps-menu {
+    display: none !important; } }
 
 @media (max-width: 630px) {
   #bottomPartWrapper .w-col-md-4 {
