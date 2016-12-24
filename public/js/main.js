@@ -534,7 +534,7 @@
       });
 
       $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
-        //vm.loaded = true;
+        vm.loaded = true;
         cb(null);
       }, function fail(err){
         console.warn(err);

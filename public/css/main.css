@@ -1559,7 +1559,7 @@ header .user-avatar img {
     .character-wrapper .tab-wrapper #tabs ul {
       width: 100% !important; }
       .character-wrapper .tab-wrapper #tabs ul li {
-        min-width: 75px; }
+        float: left; }
     .character-wrapper .tab-wrapper #tabs .tab-pane-style {
       width: 100%; }
     .character-wrapper .tab-wrapper #tabs .tab-content {

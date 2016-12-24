@@ -56,7 +56,7 @@
 					height: 290px; overflow: visible;
 					ul {
 						width: 100% !important; 
-						li { min-width: 75px}
+						li { float: left; }
 					}
 					.tab-pane-style { width: 100%; }
 					.tab-content { 
