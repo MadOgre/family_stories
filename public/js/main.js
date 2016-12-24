@@ -17,6 +17,11 @@
     vm.familyType = "2";
     vm.deleting = false;
     vm.avatarErrorDisplay = false;
+
+    setTimeout(function(){
+
+
+    },3000)
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -499,6 +504,7 @@
 
       $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
         vm.loaded = true;
+
         cb(null);
       }, function fail(err){
         console.warn(err);
@@ -508,6 +514,10 @@
     vm.getSchema(function(){
       vm.getProperties(function(){
         vm.loadSavedAvatars(false);
+                      $(".color_drop").click(function(){
+        var thumbs = $(".color-thumbs");
+        thumbs.slideToggle();
+      });
       });
     });
 
