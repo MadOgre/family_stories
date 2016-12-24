@@ -281,6 +281,13 @@
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
       console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
+      setTimeout(function(){
+      $(".color_drop").off("click");
+      $(".color_drop").click(function(){
+        var thumbs = $(".color-thumbs");
+        thumbs.slideToggle();
+      });
+      }, 1000);
     };
 
     vm.loadSavedAvatars = function(retract) {
