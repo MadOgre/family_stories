@@ -29,7 +29,21 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
         <div class="flipbook-style" ng-show="preview.loaded && preview.folder2loaded">
             <div class="page-wrapper">
                 <div id="flipbook" class="flipbook">
-                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 1) + '.PNG'}}" src="" ng-repeat="image in preview.imageList() track by $index" ng-init="$last && preview.finished()">
+                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/1.PNG'}}" src="">
+                    <div style="background-color: white;">
+
+                        <form>
+                            
+                            <textarea ng-if="preview.editingDedication" maxlength="400" ng-model="preview.dedication" style="width: 100%; height: 50%; padding: 20px;"></textarea>
+                            <button ng-if="!preview.editingDedication" style="float: right;" type="button" ng-click="preview.editDedication()">Edit Dedication</button>
+                            <button ng-if="preview.editingDedication" style="float: right;" type="button" ng-click="preview.setDedication()">Submit Dedication</button>
+                        </form>
+
+                    </div>
+                    <div style="width: 100%; height: 100%; background-color: white;">
+                        <div class="dedication" style="padding: 20px;"><pre style="background-color: white; font-family: inherit; white-space: pre-wrap;">{{preview.dedication}}</pre></div>
+                    </div>
+                    <img ng-src="{{'https://pfstories.com/preview' + '/' + preview.folderName + '/' + ($index + 2) + '.PNG'}}" src="" ng-repeat="image in preview.imageList() track by $index" ng-init="$last && preview.finished()">
                 </div>
 <!--                 <div class="page"><img src="/img/book_page1.png" alt="" /></div>
                 <div class="page"><img src="/img/book_page2.png" alt="" /></div>
@@ -38,12 +52,12 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
 
                 <!-- THIS WAS HIDDEN THROUGH CSS AS IT WAS MAKING THE PAGE TOO LARGE -->
                 <!--Placeholder, required for responsive layout (height). Please do not remove-->
-                <img src="/img/book_page1.png" alt="" class="flipbook-placeholder" />
+<!--                 <img src="/img/book_page1.png" alt="" class="flipbook-placeholder" /> -->
                 <!--Placeholder, required for responsive layout (height). Please do not remove-->
             </div>
             <div class="flipbook-arrows">
-                <a href="javascript:void(0);" class="arrows left inactive"><img src="/img/flip_arrow_left.png" /></a>
-                <a href="javascript:void(0);" class="arrows right"><img src="/img/flip_arrow_right.png" /></a>
+                <a href="javascript:void(0);" ng-click="preview.prevPage()" class="arrows left"><img src="/img/flip_arrow_left.png" /></a>
+                <a href="javascript:void(0);" ng-click="preview.nextPage()" class="arrows right"><img src="/img/flip_arrow_right.png" /></a>
             </div>
         </div>
         <div class="flipbook-info-container">
@@ -94,7 +108,22 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
             </li>
         </ul>
         <div class="w-col-md-4">
-            <a target="_self" href="/dedication" class="footer-btn">Buy the Book</a>
+  <form ng-if="preview.priceandcurrencyloaded" action="/charge" method="POST">
+<script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="pk_test_9ivWptW7MxIEijAidlMGhOta"
+  data-amount="{{preview.price}}"
+  data-currency="{{preview.currency}}"
+  data-name="Family Stories"
+  data-description="Custom Book"
+  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+  data-locale="auto"
+  data-shipping-address="true" 
+  data-billing-address="false"
+  data-label="Buy the Book"
+  data-panel-label="Buy the Book">
+</script>
+</form>
         </div>
     </div>
 </section><!-- end id:bottomPartWrapper -->

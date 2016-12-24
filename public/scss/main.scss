@@ -50,6 +50,7 @@ $rubik: 'Rubik', sans-serif;
 @import "fixes.scss";
 @import "common.scss";
 @import "site.scss";
+@import "kario_css.scss";
 
 body{
     background-color:#eceadd;
@@ -567,7 +568,7 @@ input#avatar-name-input {
     width:100%;
     max-width:430px;
     padding:0 !important;
-    /*margin-top: 23px !important;*/
+    margin-top: 23px !important;
 }
 .avatar-selection > li{
     float:left;
@@ -851,7 +852,7 @@ input[type="radio"]:checked + label.color-thumb {
 /*media queries*/
 @media screen and (max-width: 1000px) , screen and (max-height: 767px) {
     #bottomPartWrapper {
-    position: relative;
+    position: fixed;
     height:auto;
     }
      #bottomPartWrapper > .container {
@@ -1539,4 +1540,8 @@ font-size:20px;
     top: 100px;
     cursor: pointer;
     z-index: 1500;
+}
+
+#tabs input.input-error {
+    border: 2px solid red;
 }

@@ -128,7 +128,7 @@ function setId(req, res, next){
 }
 
 app.post("/admin_login", function(req, res){
-  if (req.body.password === "warcraft") {
+  if (req.body.password === "skywalker") {
     req.session.admin = true;
     res.sendFile(__dirname + "/index_hidden.html");
   } else {
@@ -280,6 +280,25 @@ function setUserSelection(payload, cb) {
   });  
 }
 
+function setDedication(payload, cb) {
+  sequelize.query(
+    "call sp_iu_dedication('" + payload.user_id + "','" + payload.dedication + "')").then(function(){
+    cb(null, {result: "success"});
+  }).catch(function(err){
+    cb(err);
+  });  
+}
+
+function getDedication(user_id, cb){
+  sequelize.query(
+    "call sp_get_dedication('" + user_id + "')").then(function(data){
+    cb(null, data);
+  }).catch(function(err){
+    cb(err);
+  });   
+}
+
+
 //this calls a stored procedure on successful pay
 function placeOrderStripe(payload, cb) {
   sequelize.query(
@@ -416,6 +435,24 @@ app.post("/setUserSelection", function(req, res){
     res.json(result);
   });
 });
+
+app.post("/setDedication", function(req, res){
+  console.log("SENDING DEDICATION");
+  var payload = req.body;
+  payload.user_id = req.session.user_id;
+  setDedication(payload, function(err, result) {
+    if (err) return res.status(500).json({result: "Server Error"});
+      res.json(result);   
+  })
+});
+
+app.get("/getDedication", function(req, res){
+  console.log("GETTING DEDICATION");
+  getDedication(req.session.user_id, function(err, result) {
+    if (err) return res.status(500).json({result: "Server Error"});
+      res.json(result);   
+  })
+});  
 
 app.get("/getproperty/:property", function(req, res){
   console.log("GETTING PROPERTY...");

@@ -14,11 +14,22 @@
     vm.results = [];
     vm.colorCodes = {};
     vm.carousel_index = 0;
-    vm.familyType = "3";
+    vm.familyType = "2";
     vm.deleting = false;
+    vm.avatarErrorDisplay = false;
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
+
+    vm.increaseFamily = function() {
+      vm.familyType='3'
+            setTimeout(function(){
+              //alert("trying to spin back");
+              vm.carousel_index++;
+              //$scope.$apply();
+              $scope.$digest();
+            }, 200);
+    }
 
     vm.getHelperArray = function(qty) {
       var result = [];
@@ -53,19 +64,22 @@
       if (v !== old && !vm.avatarNameError) {
         if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
           //alert("Error triggered");
-          vm.avatarNameError = true;
+          if (!vm.deleting) {
+            vm.avatarNameError = true;
+            vm.avatarErrorDisplay = true;
+          }
           if (old < v) {
-            alert("trying to retract");
+            //alert("trying to retract");
             setTimeout(function(){
-              alert("trying to spin back");
+              //alert("trying to spin back");
               vm.carousel_index--;
               //$scope.$apply();
               $scope.$digest();
             }, 200);
           } else {
-            alert("trying to retract");
+            //alert("trying to retract");
             setTimeout(function(){
-              alert("trying to spin back");
+              //alert("trying to spin back");
               vm.carousel_index++;
               //$scope.$apply();
               $scope.$digest();
@@ -73,13 +87,13 @@
           }
         } else {
           if (!vm.deleting) {
-            alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
+            //alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
             vm.postPerson(function(){
               vm.currentAvatarIndex = v+1;
               updateCurrentAvatar();      
             });
           } else {
-            alert("DELETING - DID NOT POST");
+            //alert("DELETING - DID NOT POST");
               //vm.currentAvatarIndex = v+1;
               updateCurrentAvatar(); 
             vm.deleting = false;
@@ -499,7 +513,9 @@
 
     vm.deleteAvatar = function() {
       vm.deleting = true;
-      alert("DELETE TRIGGERED");
+      vm.avatarNameError = false;
+      vm.avatarErrorDisplay = false;
+      //alert("DELETE TRIGGERED");
       vm.deletePerson(function(){
         vm.loadSavedAvatars(true);
             // alert(vm.currentAvatarIndex);
@@ -566,6 +582,7 @@
     };    
 
     vm.postPerson = function(cb) {
+      vm.avatarErrorDisplay = false;
       console.log("post person called");
       vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();

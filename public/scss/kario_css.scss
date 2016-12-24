@@ -1,0 +1,83 @@
+//CSS style on-demand
+
+
+//Home Promo styles
+    
+	.proceedBtn {   float: left;
+    width: 100%;
+    text-transform: uppercase;
+    color: #3c7c99;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+	.promo1{
+
+		ul {
+
+			li {
+
+				.carousel-demo {
+
+					ul {
+						li {
+							overflow: hidden;
+							img { transform: translate(-50%, 0%); position: absolute; left: 50%; height: 100% !important; max-width: 1179px; }
+						}
+					}
+				}
+			}
+		}
+		.rn-carousel-controls { 
+			width: 100%; height: 100vh; position: absolute; max-width: 1179px; top: 0px; left: 50%; transform: translate(-50%, 0%); 
+			.rn-carousel-control-prev { left: 0px !important; }
+			.rn-carousel-control-next { right: 0px !important; }
+		}
+		.slider-txt-container { pointer-events: none; }
+	}
+
+	@media (min-width: 750px) {
+		.desk_hide { display: none; }
+	}
+
+
+	//Character Tab Styles
+	@media (max-width: 749px){ 
+		.mobile_hide { visibility: hidden; }
+		.mobile_display { display: none; }
+		.color_drop {  cursor: pointer; width: 50px; height: 50px; border-radius: 50%; margin: 10px; }
+		.color_wrapper { float: left; width: 80px; }
+		.character-wrapper {
+
+			.tab-wrapper {
+			
+				#tabs {
+					height: 290px; overflow: visible;
+					ul {
+						width: 100% !important; 
+						li { float: left; }
+					}
+					.tab-pane-style { width: 100%; }
+					.tab-content { 
+						width: 100% !important; float: left; 
+						.color-thumbs { width: 70px; border-right: 1px solid; float: left; }
+						.img_wrapper { 
+							width: 50vw; float: left; 
+							.slick-slide { margin-right: 60px; }
+						}
+						.ng-scope { float: left;  }
+					}
+				}
+			}
+		}	
+		#slider {
+			margin-top: 130px !important; pointer-events: none;
+			img:first-child {
+	  		position: absolute !important;
+	  	}
+	  	.rn-carousel-control { pointer-events: all; }
+  	}
+	}
+
+
