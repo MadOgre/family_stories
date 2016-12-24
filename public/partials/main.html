@@ -103,7 +103,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                         <h3 class="property-label">{{property.image_type_label}}</h3>
                         <div class="color_wrapper">
                             <div class="desk_hide color_drop">&nbsp;</div>
-                            <div class="color-thumbs mobile_display" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
+                            <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
                                 <div ng-repeat="value in property.values | unique: 'color_code'">
                                     <input id="radio_btn_color_{{value.image_id}}_{{value.color_name}}" type="radio" ng-value="value.color_code" name="radio_color_{{property.image_type}}" ng-bind="main.imageUrls[main.currentAvatar.images[$parent.$index]].color_code" ng-model="main.colorCodes[property.image_type]"></input>
                                     <label class="color-thumb" ng-style="{'background-color': value.color_code}" for="radio_btn_color_{{value.image_id}}_{{value.color_name}}"></label>
