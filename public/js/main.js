@@ -21,30 +21,6 @@
     //   console.log('Name changed to ' + newVal);
     // });
 
-    //SLICK SETTINGS
-    vm.slickSettings = {
-      responsive: [
-        {
-          breakpoint: 749,
-          settings: {
-            dots: false,
-            infinite: false,
-            arrows: false,
-            speed: 300,
-            slidesToShow: 3,
-            swipeToSlide: true,
-            centerMode: true,
-            variableWidth: true,
-            touchThreshold: 2
-          }
-        },
-        {
-          breakpoint: 750,
-          settings: "unslick"
-        }
-      ]
-    }
-
     vm.increaseFamily = function() {
       vm.familyType='3'
             setTimeout(function(){
@@ -263,9 +239,6 @@
     };
 
     vm.switchSchema = function() {
-      if ($('.slick-initialized').length > 0)  {
-        $('#avatar_slider').slick('unslick');
-      }
       if (vm.currentAvatarGender === 'male') {
         if (vm.currentAvatarAge === 'adult') {
           vm.schema = vm.adultMaleSchema;
@@ -303,15 +276,6 @@
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
       console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
-
-      //store a copy of first li of $('#tabs ul'), run once ever
-      if (vm.storedNameGender != true) {
-        vm.nameGenderTabInit = $('#nameGenderTab').clone().prop({ id: 'cloned_nameGenderTab' });
-        vm.storedNameGender = true;
-      }
-
-      console.log('resizing sliders...');
-      vm.resizeMobile(true);
     };
 
     vm.loadSavedAvatars = function(retract) {
