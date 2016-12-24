@@ -54,110 +54,6 @@
               $scope.$digest();
             }, 200);
     }
-    vm.runUI = function(){
-      vm.resizeMobile();
-      $('.color_drop').css('background-color', $('.color-thumbs').first().css('background-color'));
-      $($window).resize(
-          function() {
-            vm.resizeMobile();
-          }
-        );
-      $(document).on('click', '#avatar_slider .slick-list li', function() {
-        $('#avatar_slider .slick-list li').removeClass('active');
-        $(this).addClass('active');
-        if ($('#nameGenderTab').hasClass('active')) {
-          $('#slider').addClass('mobile_hide');
-        } else {
-          $('#slider').removeClass('mobile_hide');
-        }
-      });
-
-      vm.loaded = true; 
-
-      $(document).on('click', '.color_drop', function() { 
-        $('.color-thumbs').slideToggle();
-      });
-
-      //setup initial color thumb for mobile
-      $('.color-thumbs').each( function() {
-        $(this).siblings('.color_drop').css('background-color', ($(this).find('input:checked').val()));
-      })
-
-      //Setup changing color on click
-      $(document).on('click', '.color-thumbs', function() {
-        $(this).siblings('.color_drop').css('background-color', ($(this).find('input:checked').val()));
-        vm.reslicker();
-      })
-
-    }
-
-    vm.shouldShowAvatar = function() {
-      console.log('should show avatar');
-      console.log(($('#nameGenderTab').hasClass('active')));
-       return !($('#nameGenderTab').hasClass('active'));
-    }
-
-    vm.reslicker = function() {
-      $('.img_wrapper').each( function() {
-        console.log('unslicking... :' + $(this).parent().attr('id') );
-        $(this).slick('unslick');  
-      }); 
-
-      setTimeout( function() { 
-        $('.img_wrapper').each( function() {
-          console.log('running reslicker for: ' + $(this).parent().attr('id') );
-          $(this).slick(vm.slickSettings);
-        });
-       }, 100);
-    }
-
-    vm.resizeMobile = function(resyncList) {
-      if (vm.initialLoad == true) {
-        setTimeout(function() {  
-          //vm.prepAvatar();
-
-          if ($(window).width() < 750){
-              console.log('reinitializing avatar slider...');
-              if ( $('#avatar_slider').hasClass('slick-initialized') ) {
-                $('#avatar_slider').slick('unslick');
-              }
-              
-                            
-              
-              $('#avatar_slider').slick(vm.slickSettings);
-
-              
-              
-            $('#avatar_slider .slick-track').prepend($('#nameGenderTab'));
-            $('#avatar_slider .slick-list li').removeClass('active');
-            $('#avatar_slider .slick-list li').first().addClass('active');
-          } else {
-            $('#avatar_slider').prepend($('#nameGenderTab'));
-            $('#avatar_slider li').removeClass('active');
-            $('#avatar_slider li').first().addClass('active');
-          }
-        },50);
-      }
-
-      if ($('.slick-initialized').length < 1)  {        
-        vm.initialLoad = true;
-        //Slick Slider settings
-        $('#avatar_slider, .img_wrapper').slick(vm.slickSettings);
-        $('.tabs-btn-wrapper').insertAfter( $('#slider') );
-        $('#slider').insertAfter('.tab-content');
-
-      }
-
-      if ($(window).width() > 749) {
-          $('.slick-initialized').slick('unslick');
-          if ($('.img_wrapper').hasClass('slick-initialized'))
-          {
-            $('.img_wrapper').slick('unslick');
-          }
-          $('.tabs-btn-wrapper').insertAfter( $('#tabs') )
-          $('#slider').insertAfter('.tab-wrapper');
-      }
-    }
 
     vm.getHelperArray = function(qty) {
       var result = [];
@@ -648,7 +544,6 @@
     vm.getSchema(function(){
       vm.getProperties(function(){
         vm.loadSavedAvatars(false);
-        vm.runUI();
       });
     });
 
