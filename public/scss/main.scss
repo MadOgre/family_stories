@@ -939,6 +939,9 @@ input[type="radio"]:checked + label.color-thumb {
     .color-thumbs {
         display: none;
     }
+    .steps-menu {
+        display: none !important;
+    }
 }
 
 @media (max-width: 630px){
