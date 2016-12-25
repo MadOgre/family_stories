@@ -10,6 +10,8 @@
     //     useTransform: false
     // });
     // $(".slider").slick();
+    window.MYSCOPE = $scope;
+    window.CTRL = this;
     var vm = this;
     vm.results = [];
     vm.colorCodes = {};
@@ -18,10 +20,49 @@
     vm.deleting = false;
     vm.avatarErrorDisplay = false;
 
-    setTimeout(function(){
+    vm.breakpoints =  [{           
+                breakpoint: 1024,
+                settings: 'unslick'
+            }];
+
+    vm.slickConfig = {
+        enabled: true,
+    }
+
+    vm.toggleSlick = function() {
+      vm.slickConfig.enabled = !vm.slickConfig.enabled;
+    }
+
+    vm.reslick = function() {
+      alert("reslick activated");
+      $scope.$digest();
+    }
 
 
-    },3000)
+
+    vm.showSlick = true;
+
+    vm.slickUpdate = function(){
+      //alert("triggered reslick");
+        // vm.showSlick = true;
+        // vm.slickConfig.enabled = true;
+        // $scope.$digest();
+    };
+
+          //     //vm.showSlick = false; // disable slick
+          // setTimeout(function(){
+          // //vm.showSlick = true; // enable slick
+          // }, 1000);
+
+    // angular.element($window).on('resize', function(){
+    //   var width = angular.element($window).width();
+    //   if (width < 700) {
+    //     vm.slickConfig.enabled = true;
+    //   } else {
+    //     vm.slickConfig.enabled = false;
+    //   }
+    // });
+
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -60,6 +101,22 @@
         }
       }
     }
+
+    $scope.$watch(angular.bind(this, function(){
+      return this.colorCodes;
+    }), function(v, old){
+      if (JSON.stringify(old) !== '{}') {
+        //alert(JSON.stringify(old));
+        //alert("triggered");
+        // vm.slickConfig.enabled = false;
+        // $scope.$digest();
+      }
+
+    }, true);
+
+        // alert("killed");
+        // vm.slickConfig.enabled = false;
+
 
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
@@ -285,6 +342,8 @@
       $(".color_drop").off("click");
       $(".color_drop").click(function(){
         var thumbs = $(".color-thumbs");
+
+        $scope.$digest();
         thumbs.slideToggle();
       });
       }, 1000);
@@ -522,6 +581,7 @@
       vm.getProperties(function(){
         vm.loadSavedAvatars(false);
                       $(".color_drop").click(function(){
+                      vm.slickConfig.enabled = false;
         var thumbs = $(".color-thumbs");
         thumbs.slideToggle();
       });
