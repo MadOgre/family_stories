@@ -55,7 +55,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     <li class="active"><a target="_self" href="#nameGender" data-toggle="tab">Name and Gender</a></li>
 
                     <!-- MGS: the tab li elements (or whatever element they will get changed to will dynamically repeat based on the information retrieved from the database). I have commented out all but the first LI to demonstrate that -->
-                    <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
+                    <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab"  ng-click="main.refreshSlick()">{{property.image_type_label}}</a></li>
                     <!--<li class="active"><a data-toggle="tab" href="#nameGender">NAME & GENDER</a></li>
                     <li><a href="#skin">SKIN</a></li>
                     <li><a href="#hair">HAIR</a></li>
@@ -96,7 +96,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     </div>
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
-                        <h3>{{property.image_type_label}}</h3>
+                        <h3 id="property-placeholder-label">{{property.image_type_label}}</h3>
                         <div class="color_wrapper">
                             <div class="desk_hide color_drop">&nbsp;</div>
                             <div class="color-thumbs" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
@@ -113,11 +113,11 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             </div>
                         </div>
 
-                        <div class="img_wrapper" style="width: 100%;">
-                            <slick ng-if="main.showSlick" infinite="true" slides-to-show="1" slides-to-scroll="3" touch-threshold="12" settings="main.slickConfig" arrows="false" variable-width="true">
-                                <div class="body-part-icons" ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}">
+                        <div class="img_wrapper" style="width: 100px @important;">
+                            <slick ng-if="main.showSlick" infinite="true" slides-to-show="3" slides-to-scroll="1" touch-threshold="5" settings="main.slickConfig" arrows="false" style="width: 350px; height: 100px;" variable-width="false">
+                                <div class="body-part-icons" ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}" on-finish-render="ngLoopFinished" >
                                     <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{property.image_type}}" ng-model="main.currentAvatar.images[$parent.$index]"></input>
-                                    <label for="radio_btn_{{value.image_id}}" class="body-part-label">
+                                    <label style="width: 100px;" for="radio_btn_{{value.image_id}}" class="body-part-label">
                                         <img height="" ng-src="{{value.icon_location}}">
                                     </label>
                                 </div>

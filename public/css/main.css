@@ -2839,3 +2839,10 @@ input[type="radio"]:checked + label.color-thumb {
 @media (min-width: 700px) {
   #tabs .body-part-label {
     width: initial !important; } }
+
+#property-placeholder-label {
+  visibility: hidden; }
+
+@media (max-width: 600px) {
+  #property-placeholder-label {
+    display: none; } }
