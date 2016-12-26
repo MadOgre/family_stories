@@ -1,6 +1,19 @@
 /*global angular, $*/
 (function() {
   'use strict';
+  angular.module('app')
+    .directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+  });
   angular.module('app').controller('Main', ['$http', '$scope', '$q', '$location', '$window', 'sharedProperties', 'preloader', Main]);
 
   function Main($http, $scope, $q, $location, $window, sharedProperties, preloader) {
@@ -20,23 +33,81 @@
     vm.deleting = false;
     vm.avatarErrorDisplay = false;
 
-    vm.breakpoints =  [{           
-                breakpoint: 1024,
-                settings: 'unslick'
-            }];
+    // vm.breakpoints =  [{           
+    //             breakpoint: 1024,
+    //             settings: 'unslick'
+    //         }];
+
+    vm.isMobile = function() {
+      var width = angular.element($window).width();
+      // alert(angular.element($window).width());
+      return (width < 600);
+    };
 
     vm.slickConfig = {
-        enabled: true,
+      enabled: true
+    };  
+
+    // if (!vm.isMobile()) {
+      //alert("setting slick to false");
+      // setTimeout(function(){
+      //   //alert("timeout called");
+      //   if (!vm.isMobile()) {
+      //     vm.slickConfig.enabled = true;
+      //     // $scope.$digest();
+      //     vm.slickConfig.enabled = false;
+      //     $scope.$digest();
+      //   }
+      // }, 1000);
+      // vm.slickConfig = {
+      //     enabled: false
+      // };
+      //$scope.$digest();
+    // }
+
+
+// $(window).trigger('resize');
+    vm.finishedLoop = function() {
+
+      if (!vm.isMobile()) {
+        // alert("we are not mobile");
+        setTimeout(function(){
+          vm.slickConfig.enabled = false;
+          $scope.$digest();
+          setTimeout(function() {
+              vm.slickConfig.enabled = true;
+              $scope.$digest();             
+              setTimeout(function(){
+                vm.slickConfig.enabled = false;
+                $scope.$digest();
+              },200);
+            },200);
+        },200);
+      }
+      // setTimeout(function(){
+      //   // vm.slickConfig.enabled = true;
+      //   // $scope.$digest();
+      //         alert("refreshing slick");
+      //         $(".slick-slider").slick("refresh");
+
+      // }, 1000);
+ 
+      // // alert("done!");
+      
     }
 
-    vm.toggleSlick = function() {
-      vm.slickConfig.enabled = !vm.slickConfig.enabled;
-    }
+    $scope.$on('ngLoopFinished', function(ngRepeatFinishedEvent) {
+      vm.finishedLoop();
+    });
 
-    vm.reslick = function() {
-      alert("reslick activated");
-      $scope.$digest();
-    }
+    // vm.toggleSlick = function() {
+    //   vm.slickConfig.enabled = !vm.slickConfig.enabled;
+    // }
+
+    // vm.reslick = function() {
+    //   alert("reslick activated");
+    //   $scope.$digest();
+    // }
 
 
 
@@ -45,8 +116,42 @@
     vm.slickUpdate = function(){
       //alert("triggered reslick");
         // vm.showSlick = true;
-        // vm.slickConfig.enabled = true;
-        // $scope.$digest();
+        
+        if (vm.isMobile()) {
+          vm.slickConfig.enabled = false;
+          //$scope.$digest();
+
+
+          setTimeout(function(){
+            //alert("reslicking");
+            vm.slickConfig.enabled = true;
+
+            $scope.$digest();
+            // $(".slick-slider").slick("setPosition");
+          }, 100);
+        }
+
+    };
+
+
+
+
+
+    // if (!vm.isMobile()) {
+    //   setTimeout(function(){
+    //     vm.slickConfig.enabled = false;
+    //   }, 200);
+    // }
+
+    vm.refreshSlick = function() {
+      // $(".slick-slider").slick("refresh");
+      // if (vm.isMobile()) {
+        setTimeout(function(){
+          $(".slick-slider").slick("setPosition");
+        },200);
+      // }
+      //$(".slick-slider").slick("setPosition");
+      //alert("here");
     };
 
           //     //vm.showSlick = false; // disable slick
@@ -54,14 +159,15 @@
           // //vm.showSlick = true; // enable slick
           // }, 1000);
 
-    // angular.element($window).on('resize', function(){
-    //   var width = angular.element($window).width();
-    //   if (width < 700) {
-    //     vm.slickConfig.enabled = true;
-    //   } else {
-    //     vm.slickConfig.enabled = false;
-    //   }
-    // });
+    angular.element($window).on('resize', function(){
+      // var width = angular.element($window).width();
+      // if (width < 700) {
+      if (vm.isMobile()) {
+        vm.slickConfig.enabled = true;
+      } else {
+        vm.slickConfig.enabled = false;
+      }
+    });
 
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
@@ -110,6 +216,10 @@
         //alert("triggered");
         // vm.slickConfig.enabled = false;
         // $scope.$digest();
+        // vm.slickConfig.enabled = true;
+        // $scope.$digest();
+        // $(".slick-slider").slick("setPosition");
+        // $(".slick-slider").slick("refresh")
       }
 
     }, true);

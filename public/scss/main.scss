@@ -1574,3 +1574,13 @@ font-size:20px;
         width: initial !important;
     }
 }
+
+#property-placeholder-label {
+    visibility: hidden;
+}
+
+@media (max-width: 600px) {
+    #property-placeholder-label {
+        display: none;
+    }
+}
