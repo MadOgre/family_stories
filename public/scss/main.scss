@@ -201,11 +201,11 @@ body{
     height: 535px;
 }
 
-#tabs > ul,#tabs > .tab-pane-style {
+#tabs > div > div > ul,#tabs > .tab-pane-style {
     float: left;
     width:80%;
 }
-#tabs > ul {
+#tabs > div > div > ul {
     width: 132px;
     margin: 0;
     padding: 15px 0 0 0;
@@ -866,7 +866,7 @@ input[type="radio"]:checked + label.color-thumb {
     width:50%;
     }
 
-    #tabs > ul, .tabs-btn-wrapper .tab-btn-clear {
+    #tabs > div > div > ul, .tabs-btn-wrapper .tab-btn-clear {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
@@ -1032,7 +1032,7 @@ input[type="radio"]:checked + label.color-thumb {
     }
 }
 @media (max-width: 395px){
-    #tabs > ul {
+    #tabs > div > div > ul {
     width: 100%;
     padding:15px 0;
 }

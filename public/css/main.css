@@ -1556,8 +1556,19 @@ header .user-avatar img {
   .character-wrapper .tab-wrapper #tabs {
     height: 290px;
     overflow: visible; }
+    .character-wrapper .tab-wrapper #tabs .property-scroller-outer {
+      display: block;
+      position: relative;
+      width: 480px;
+      height: 83px;
+      overflow: hidden; }
+      .character-wrapper .tab-wrapper #tabs .property-scroller-outer .property-scroller-inner {
+        position: absolute;
+        width: 480px;
+        overflow-x: scroll;
+        overflow-y: hidden; }
     .character-wrapper .tab-wrapper #tabs ul {
-      width: 100% !important; }
+      width: 220%; }
       .character-wrapper .tab-wrapper #tabs ul li {
         float: left; }
     .character-wrapper .tab-wrapper #tabs .tab-pane-style {
@@ -1720,11 +1731,11 @@ body {
   max-height: 535px;
   height: 535px; }
 
-#tabs > ul, #tabs > .tab-pane-style {
+#tabs > div > div > ul, #tabs > .tab-pane-style {
   float: left;
   width: 80%; }
 
-#tabs > ul {
+#tabs > div > div > ul {
   width: 132px;
   margin: 0;
   padding: 15px 0 0 0;
@@ -2287,7 +2298,7 @@ input[type="radio"]:checked + label.color-thumb {
   .tab-wrapper, #slider {
     max-width: 480px;
     width: 50%; }
-  #tabs > ul, .tabs-btn-wrapper .tab-btn-clear {
+  #tabs > div > div > ul, .tabs-btn-wrapper .tab-btn-clear {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 40%; }
@@ -2405,7 +2416,7 @@ input[type="radio"]:checked + label.color-thumb {
     top: 23px; } }
 
 @media (max-width: 395px) {
-  #tabs > ul {
+  #tabs > div > div > ul {
     width: 100%;
     padding: 15px 0; }
   #tabs li {

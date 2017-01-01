@@ -54,8 +54,21 @@
 			
 				#tabs {
 					height: 290px; overflow: visible;
+					.property-scroller-outer {
+						  display: block;
+    					position: relative;
+    					width: 480px;
+    					height: 83px;
+    					overflow: hidden;
+						.property-scroller-inner {
+							position: absolute;
+    					width: 480px;
+    					overflow-x: scroll;
+    					overflow-y: hidden;
+						}
+					}
 					ul {
-						width: 100% !important; 
+						width: 220%; 
 						li { float: left; }
 					}
 					.tab-pane-style { width: 100%; }
