@@ -53,7 +53,7 @@
 			.tab-wrapper {
 			
 				#tabs {
-					height: 290px; overflow: visible;
+					overflow: visible;
 					.property-scroller-outer {
 						  display: block;
     					position: relative;
@@ -81,16 +81,20 @@
 					}
 					.tab-content { 
 						width: 100% !important; float: left; 
+						.property-label {
+							display: none;
+						}
 						.color-thumbs { width: 70px; border-right: 1px solid; float: left; }
 						.icon-scroller-outer {
 							display: block;
     					position: relative;
-    					width: 480px;
+    					width: 310px;
     					height: 83px;
     					overflow: hidden;
+    					float: left;
 							.icon-scroller-inner {
 								position: absolute;
-	    					width: 480px;
+	    					width: 310px;
 	    					overflow-x: scroll;
 	    					overflow-y: hidden;
 							}

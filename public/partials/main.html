@@ -100,7 +100,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     </div>
                     <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
                     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
-                        <h3>{{property.image_type_label}}</h3>
+                        <h3 class="property-label">{{property.image_type_label}}</h3>
                         <div class="color_wrapper">
                             <div class="desk_hide color_drop">&nbsp;</div>
                             <div class="color-thumbs mobile_display" ng-show="!property.image_type.endsWith('nose') && !property.image_type.endsWith('glasses')">
