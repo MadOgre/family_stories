@@ -117,4 +117,13 @@
   	}
 	}
 
+	@media (max-width: 500px) {
+		.icon-scroller-outer {
+			width: 200px !important;
+			.icon-scroller-inner {
+				width: 200px !important;
+			}
+		}
+	}
+
 

@@ -1612,6 +1612,12 @@ header .user-avatar img {
     #slider .rn-carousel-control {
       pointer-events: all; } }
 
+@media (max-width: 500px) {
+  .icon-scroller-outer {
+    width: 200px !important; }
+    .icon-scroller-outer .icon-scroller-inner {
+      width: 200px !important; } }
+
 body {
   background-color: #eceadd; }
 
