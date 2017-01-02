@@ -46,7 +46,15 @@
 	@media (max-width: 749px){ 
 		.mobile_hide { visibility: hidden; }
 		.mobile_display { display: none; }
-		.color_drop {  cursor: pointer; width: 50px; height: 50px; border-radius: 50%; margin: 10px; }
+		.color_drop {
+			cursor: pointer;
+			width: 50px;
+			height: 50px;
+			border-radius:
+			50%; margin: 10px;
+			background-image: url("../img/paintbrush_icon.png");
+			background-size: 50px 50px;
+		}
 		.color_wrapper { float: left; width: 80px; }
 		.character-wrapper {
 
@@ -84,7 +92,14 @@
 						.property-label {
 							display: none;
 						}
-						.color-thumbs { width: 70px; border-right: 1px solid; float: left; }
+						.color-thumbs {
+							width: 70px;
+							float: left;
+							.color-thumb {
+								width: 40px;
+								height: 40px;
+							} 
+						}
 						.icon-scroller-outer {
 							display: block;
     					position: relative;

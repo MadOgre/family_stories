@@ -1549,7 +1549,9 @@ header .user-avatar img {
     height: 50px;
     -webkit-border-radius: 50%;
             border-radius: 50%;
-    margin: 10px; }
+    margin: 10px;
+    background-image: url("../img/paintbrush_icon.png");
+    background-size: 50px 50px; }
   .color_wrapper {
     float: left;
     width: 80px; }
@@ -1583,8 +1585,10 @@ header .user-avatar img {
         display: none; }
       .character-wrapper .tab-wrapper #tabs .tab-content .color-thumbs {
         width: 70px;
-        border-right: 1px solid;
         float: left; }
+        .character-wrapper .tab-wrapper #tabs .tab-content .color-thumbs .color-thumb {
+          width: 40px;
+          height: 40px; }
       .character-wrapper .tab-wrapper #tabs .tab-content .icon-scroller-outer {
         display: block;
         position: relative;
