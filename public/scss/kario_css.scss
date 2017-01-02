@@ -50,8 +50,7 @@
 			cursor: pointer;
 			width: 50px;
 			height: 50px;
-			border-radius:
-			50%; margin: 10px;
+			border-radius: 50%; margin: 10px 10px 10px 0px;
 			background-image: url("../img/paintbrush_icon.png");
 			background-size: 50px 50px;
 		}
@@ -68,6 +67,7 @@
     					width: 480px;
     					height: 83px;
     					overflow: hidden;
+    					background-color: #ECEADD;
 						.property-scroller-inner {
 							position: absolute;
     					width: 480px;
@@ -80,7 +80,10 @@
 						li { float: left; }
 					}
 					.tab-pane-style {
-						width: 100%; 
+						width: 100%;
+						height: 100px; 
+						overflow: visible;
+						background-color: #ECEADD;
 						label {
 							height: 75px;
 							width: 75px;
@@ -89,6 +92,7 @@
 					}
 					.tab-content { 
 						width: 100% !important; float: left; 
+						background-color: #ECEADD;
 						.property-label {
 							display: none;
 						}
@@ -102,14 +106,16 @@
 						}
 						.icon-scroller-outer {
 							display: block;
-    					position: relative;
-    					width: 310px;
+    					position: absolute;
+    					top: 0px;
+    					left: 90px;
+    					width: 480px;
     					height: 83px;
     					overflow: hidden;
     					float: left;
 							.icon-scroller-inner {
 								position: absolute;
-	    					width: 310px;
+	    					width: 480px;
 	    					overflow-x: scroll;
 	    					overflow-y: hidden;
 							}
@@ -132,13 +138,16 @@
   	}
 	}
 
-	@media (max-width: 500px) {
-		.icon-scroller-outer {
-			width: 200px !important;
-			.icon-scroller-inner {
-				width: 200px !important;
-			}
-		}
-	}
+	// @media (max-width: 460px) {
+	// 	// .icon-scroller-outer {
+	// 	// 	width: 250px !important;
+	// 	// 	.icon-scroller-inner {
+	// 	// 		width: 250px !important;
+	// 	// 	}
+	// 	// }
+	// 	.property-scroller-outer {
+	// 		height: 50px !important;
+	// 	}
+	// }
 
 

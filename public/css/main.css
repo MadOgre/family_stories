@@ -1549,7 +1549,7 @@ header .user-avatar img {
     height: 50px;
     -webkit-border-radius: 50%;
             border-radius: 50%;
-    margin: 10px;
+    margin: 10px 10px 10px 0px;
     background-image: url("../img/paintbrush_icon.png");
     background-size: 50px 50px; }
   .color_wrapper {
@@ -1562,7 +1562,8 @@ header .user-avatar img {
       position: relative;
       width: 480px;
       height: 83px;
-      overflow: hidden; }
+      overflow: hidden;
+      background-color: #ECEADD; }
       .character-wrapper .tab-wrapper #tabs .property-scroller-outer .property-scroller-inner {
         position: absolute;
         width: 480px;
@@ -1573,14 +1574,18 @@ header .user-avatar img {
       .character-wrapper .tab-wrapper #tabs ul li {
         float: left; }
     .character-wrapper .tab-wrapper #tabs .tab-pane-style {
-      width: 100%; }
+      width: 100%;
+      height: 100px;
+      overflow: visible;
+      background-color: #ECEADD; }
       .character-wrapper .tab-wrapper #tabs .tab-pane-style label {
         height: 75px;
         width: 75px;
         margin-right: 20px !important; }
     .character-wrapper .tab-wrapper #tabs .tab-content {
       width: 100% !important;
-      float: left; }
+      float: left;
+      background-color: #ECEADD; }
       .character-wrapper .tab-wrapper #tabs .tab-content .property-label {
         display: none; }
       .character-wrapper .tab-wrapper #tabs .tab-content .color-thumbs {
@@ -1591,14 +1596,16 @@ header .user-avatar img {
           height: 40px; }
       .character-wrapper .tab-wrapper #tabs .tab-content .icon-scroller-outer {
         display: block;
-        position: relative;
-        width: 310px;
+        position: absolute;
+        top: 0px;
+        left: 90px;
+        width: 480px;
         height: 83px;
         overflow: hidden;
         float: left; }
         .character-wrapper .tab-wrapper #tabs .tab-content .icon-scroller-outer .icon-scroller-inner {
           position: absolute;
-          width: 310px;
+          width: 480px;
           overflow-x: scroll;
           overflow-y: hidden; }
       .character-wrapper .tab-wrapper #tabs .tab-content .img_wrapper {
@@ -1615,12 +1622,6 @@ header .user-avatar img {
       position: absolute !important; }
     #slider .rn-carousel-control {
       pointer-events: all; } }
-
-@media (max-width: 500px) {
-  .icon-scroller-outer {
-    width: 200px !important; }
-    .icon-scroller-outer .icon-scroller-inner {
-      width: 200px !important; } }
 
 body {
   background-color: #eceadd; }
