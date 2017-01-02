@@ -1539,6 +1539,9 @@ header .user-avatar img {
     display: none; } }
 
 @media (max-width: 749px) {
+  #nameGender {
+    z-index: 1000;
+    height: 372px !important; }
   .mobile_hide {
     visibility: hidden; }
   .mobile_display {
@@ -1599,13 +1602,13 @@ header .user-avatar img {
         position: absolute;
         top: 0px;
         left: 90px;
-        width: 480px;
+        width: 400px;
         height: 83px;
         overflow: hidden;
         float: left; }
         .character-wrapper .tab-wrapper #tabs .tab-content .icon-scroller-outer .icon-scroller-inner {
           position: absolute;
-          width: 480px;
+          width: 400px;
           overflow-x: scroll;
           overflow-y: hidden; }
       .character-wrapper .tab-wrapper #tabs .tab-content .img_wrapper {
@@ -1616,6 +1619,13 @@ header .user-avatar img {
       .character-wrapper .tab-wrapper #tabs .tab-content .ng-scope {
         float: left; }
   #slider {
+    position: relative;
+    top: -700px;
+    left: -100px;
+    -webkit-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+    z-index: 1000px;
     margin-top: 130px !important;
     pointer-events: none; }
     #slider img:first-child {
@@ -1632,7 +1642,7 @@ body {
   height: 100%;
   left: 0px;
   top: 0px;
-  z-index: 550;
+  z-index: 2000;
   background-color: lime; }
 
 .loading-message {
@@ -2391,7 +2401,6 @@ input[type="radio"]:checked + label.color-thumb {
     clear: both;
     height: 0; }
   #bottomPartWrapper .w-col-md-4:last-child {
-    width: 100%;
     float: none;
     overflow: hidden; }
   .steps-menu {
