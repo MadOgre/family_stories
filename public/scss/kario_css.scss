@@ -44,10 +44,6 @@
 
 	//Character Tab Styles
 	@media (max-width: 749px){ 
-		#nameGender {
-			z-index: 1000;
-			height: 372px !important;
-		}
 		.mobile_hide { visibility: hidden; }
 		.mobile_display { display: none; }
 		.color_drop {
@@ -113,13 +109,13 @@
     					position: absolute;
     					top: 0px;
     					left: 90px;
-    					width: 400px;
+    					width: 480px;
     					height: 83px;
     					overflow: hidden;
     					float: left;
 							.icon-scroller-inner {
 								position: absolute;
-	    					width: 400px;
+	    					width: 480px;
 	    					overflow-x: scroll;
 	    					overflow-y: hidden;
 							}
@@ -134,11 +130,6 @@
 			}
 		}	
 		#slider {
-			position: relative;
-			top: -700px;
-			left: -100px;
-			transform: scale(.8);
-			z-index: 1000px;
 			margin-top: 130px !important; pointer-events: none;
 			img:first-child {
 	  		position: absolute !important;

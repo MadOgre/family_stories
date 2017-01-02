@@ -62,7 +62,7 @@ body{
     height: 100%;
     left: 0px;
     top: 0px;
-    z-index: 2000;
+    z-index: 550;
     background-color: rgba(0,255,0,1);
 }
 
@@ -958,7 +958,7 @@ input[type="radio"]:checked + label.color-thumb {
      height: 0;
     }
     #bottomPartWrapper .w-col-md-4:last-child {
-    //width:100%;
+    width:100%;
     float:none;
     overflow:hidden;
     }
