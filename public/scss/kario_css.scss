@@ -44,6 +44,24 @@
 
 	//Character Tab Styles
 	@media (max-width: 749px){ 
+		#nameGender {
+			z-index: 150;
+			position: relative;
+			opacity: 1;
+			height: 100% !important;
+		}
+		.transparent-input-field {
+			position: relative;
+			z-index: 100;
+			opacity: .7;
+		}
+		#slider {
+			left: 0px;
+			top: -700px;
+			height: 300px;
+			width: 300px !important;
+			transform: scale(.5);
+		}
 		.mobile_hide { visibility: hidden; }
 		.mobile_display { display: none; }
 		.color_drop {

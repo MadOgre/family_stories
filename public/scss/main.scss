@@ -409,6 +409,7 @@ input#avatar-name-input {
     line-height: 36px;
     text-align: center;
     width: 36px;
+    pointer-events: all;
 }
 .i-circle {
     background: #3d7d99 none repeat scroll 0 0;
@@ -493,6 +494,10 @@ input#avatar-name-input {
 .date-input {
     background: #fff url("/img/down_arrow.png") no-repeat scroll 95% center;
     padding:10px 47px 10px 20px;
+}
+
+.carousel-demo {
+    pointer-events: all;
 }
 
 /*SLIDER*/

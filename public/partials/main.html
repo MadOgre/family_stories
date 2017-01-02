@@ -82,7 +82,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                         </div> -->
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
-                        <input ng-class="{'input-error': main.avatarErrorDisplay}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
+                        <input ng-class="{'input-error': main.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
                         <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
@@ -128,6 +128,8 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
 
 
@@ -151,7 +153,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
 
         <!-- MGS: The slider is tricky. Each li will actually contain several layered images, the transparency as well as each of the body parts overlaying one another (position-absolute), you can style them as if they were one image -->
         <!-- start slider --><!-- in order to stylize the images with absolute position we need to add different class for each element, for example .eyes-img, .body-img, .hair-img etc -->
-        <section  class="mobile_hide" id="slider">
+        <section  class="" id="slider">
             <div class="header-info">
 <!--                 <a class="pencil" href="javascript:void(0);"></a> -->
                 <!-- family's name -->

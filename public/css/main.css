@@ -1539,6 +1539,23 @@ header .user-avatar img {
     display: none; } }
 
 @media (max-width: 749px) {
+  #nameGender {
+    z-index: 150;
+    position: relative;
+    opacity: 1;
+    height: 100% !important; }
+  .transparent-input-field {
+    position: relative;
+    z-index: 100;
+    opacity: .7; }
+  #slider {
+    left: 0px;
+    top: -700px;
+    height: 300px;
+    width: 300px !important;
+    -webkit-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+            transform: scale(0.5); }
   .mobile_hide {
     visibility: hidden; }
   .mobile_display {
@@ -1937,7 +1954,8 @@ input#avatar-name-input {
   height: 36px;
   line-height: 36px;
   text-align: center;
-  width: 36px; }
+  width: 36px;
+  pointer-events: all; }
 
 .i-circle {
   background: #3d7d99 none repeat scroll 0 0;
@@ -2015,6 +2033,9 @@ input#avatar-name-input {
 .date-input {
   background: #fff url("/img/down_arrow.png") no-repeat scroll 95% center;
   padding: 10px 47px 10px 20px; }
+
+.carousel-demo {
+  pointer-events: all; }
 
 /*SLIDER*/
 #slider {
