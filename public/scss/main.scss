@@ -642,6 +642,7 @@ input#avatar-name-input {
     padding-top: 10px;
 }
 
+
 .salutation-wrapper .name-salutation{
     font-weight:700;
     text-decoration:underline;
@@ -1555,4 +1556,8 @@ font-size:20px;
 
 #tabs input.input-error {
     border: 2px solid red;
+}
+
+.icon-scroller-inner .img_wrapper label {
+    background-color: transparent !important;
 }

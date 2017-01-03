@@ -54,7 +54,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                 <div class="property-scroller-outer">
                     <div class="property-scroller-inner">
                         <ul>
-                            <li class="active"><a target="_self" href="#nameGender" data-toggle="tab">Name and Gender</a></li>
+                            <li class="name-gender-tab-control" class="active"><a target="_self" href="#nameGender" data-toggle="tab">Name and Gender</a></li>
 
                             <!-- MGS: the tab li elements (or whatever element they will get changed to will dynamically repeat based on the information retrieved from the database). I have commented out all but the first LI to demonstrate that -->
                             <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
@@ -129,7 +129,36 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             </div>
                         </div>
 
-
+                        <div id="nameGender-mobile" class="tab-pane-style">
+                        <!-- MGS: this selector not implemented yet. Style as desired -->
+<!--                         <h3>CHILD OR ADULT?</h3>
+                        <div class="select-css">
+                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
+                                <option value="adult">Adult</option>
+                                <option value="child">Child</option>
+                            </select>
+                        </div> -->
+                        <div class="form-section-mobile name-form-section">
+                            <h3>NAME</h3>
+                            <!-- MGS: this input field was bound to angular -->
+                            <input ng-class="{'input-error': main.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
+                        </div>
+                        <div class="error-msg">Error message</div>
+                        <div class="form-section-mobile gender-form-section">
+                            <h3>GENDER</h3>
+                            <!-- MGS: this selector not implemented yet. Style as desired -->
+                            <div class="select-css">
+                                <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
+                                    <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
+                                    <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-section-mobile birthday-form-section">
+                            <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
+                            <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+                        </div>
+                    </div>
                     </div>
 
 
