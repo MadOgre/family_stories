@@ -45,21 +45,21 @@
       return result;
     }
 
-    vm.getNamePlaceholder = function() {
-      if (vm.currentAvatar.gender === 'male') {
-        if (vm.currentAvatar.age === 'adult') {
-          return 'ex. Daddy';
-        } else {
-          return 'ex. Timmy';
-        }
-      } else {
-        if (vm.currentAvatar.age === 'adult') {
-          return 'ex. Mommy';
-        } else {
-          return 'ex. Annie';
-        }
-      }
-    }
+    // vm.getNamePlaceholder = function() {
+    //   if (vm.currentAvatar.gender === 'male') {
+    //     if (vm.currentAvatar.age === 'adult') {
+    //       return 'ex. Daddy';
+    //     } else {
+    //       return 'ex. Timmy';
+    //     }
+    //   } else {
+    //     if (vm.currentAvatar.age === 'adult') {
+    //       return 'ex. Mommy';
+    //     } else {
+    //       return 'ex. Annie';
+    //     }
+    //   }
+    // }
 
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
@@ -210,7 +210,7 @@
     vm.adultFemaleSchema = [];
     vm.childFemaleSchema = [];
     vm.childMaleSchema = [];
-    vm.isPristine = true;
+    // vm.isPristine = true;
     var adultMaleAvatarDefaults = [];
     var adultFemaleAvatarDefaults = [];
     var childMaleAvatarDefaults = [];
@@ -592,7 +592,7 @@
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         avatar_index: vm.currentAvatarIndex,
         avatar_age: vm.currentAvatar.age,
-        birthday: vm.currentAvatarBirthday,
+        birthday: vm.currentAvatar.birthday,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name,
         delete: true
       };
@@ -625,12 +625,16 @@
       });
     };
 
-    $scope.$on("error:name:on", function(){
-      vm.avatarErrorDisplay = true;
-    });
+    // $scope.$on("error:name:on", function(){
+    //   vm.avatarErrorDisplay = true;
+    // });
 
-    $scope.$on("error:name:off", function(){
-      vm.avatarErrorDisplay = false;
+    // $scope.$on("error:name:off", function(){
+    //   vm.avatarErrorDisplay = false;
+    // })
+
+    $scope.$on("change:schema", function(){
+      vm.switchSchema();
     })
 
     vm.postPerson = function(cb) {
@@ -646,7 +650,7 @@
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         avatar_index: vm.currentAvatarIndex,
         avatar_age: vm.currentAvatar.age,
-        birthday: vm.currentAvatarBirthday,
+        birthday: vm.currentAvatar.birthday,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
       };
       $http({

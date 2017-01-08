@@ -69,81 +69,8 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                 </div>
                 <!-- MGS: the tabs will dynamically repeat as their data is pulled from database, similar to tab headings (see comment at line 31). The first tab - Name ang Gender is special and does not repeat, because every avatar will have a name and gender, but the rest will be dynamic. -->
                 <!-- tab content -->
-                <div class="tab-content">
-                    <!-- NAME & GENDER tab -->
-                    <div id="nameGender" class="tab-pane tab-pane-style active">
-                        <!-- MGS: this selector not implemented yet. Style as desired -->
-<!--                         <h3>CHILD OR ADULT?</h3>
-                        <div class="select-css">
-                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
-                                <option value="adult">Adult</option>
-                                <option value="child">Child</option>
-                            </select>
-                        </div> -->
-                        <h3>{{main.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
-                        <!-- MGS: this input field was bound to angular -->
-                        <input ng-class="{'input-error': main.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
-                        <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
-                        <div class="error-msg">Error message</div>
-                        <h3>{{main.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
-                        <!-- MGS: this selector not implemented yet. Style as desired -->
-                        <div class="select-css">
-                            <select ng-model="main.currentAvatar.gender" ng-change="main.switchSchema(); main.isPristine = false">
-                                <option value="male">{{main.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
-                                <option value="female">{{main.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
-                            </select>
-                        </div>
-                        <h3 ng-if="main.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
-                        <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
-
-                        <div class="proceedBtn">Proceed to the Body when ready!</div>
-                    </div>
-                    <!-- MGS: The way my selector works currently is thas they clickable choices are actually hidden radio buttons with a styled label which contains a preview image. The buttons themselves can be hidden using css. I wrote a sample repeatable tab to reflect that. If you think that is too difficult to work around, please leave a comment and we can rethink the approach -->
-<!--                     <avatar-part-selector-panes schema="main.schema" color-codes="main.colorCodes" current-avatar="main.currentAvatar"></avatar-part-selector-panes> -->
-                    <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in main.schema">
-                        <h3 class="property-label">{{property.image_type_label}}</h3>
-
-                        <body-property-colors property="property" color-codes="main.colorCodes">
-                        </body-property-colors>
-
-                        <body-property-options property="property" color-codes="main.colorCodes" current-image-id="main.currentAvatar.images[$index]">
-                        </body-property-options>
-
-                        <div id="nameGender-mobile" class="tab-pane-style">
-                        <!-- MGS: this selector not implemented yet. Style as desired -->
-<!--                         <h3>CHILD OR ADULT?</h3>
-                        <div class="select-css">
-                            <select ng-model="main.currentAvatarAge" ng-change="main.switchSchema(); main.isPristine = false">
-                                <option value="adult">Adult</option>
-                                <option value="child">Child</option>
-                            </select>
-                        </div> -->
-                        <div class="form-section-mobile name-form-section">
-                            <h3>NAME</h3>
-                            <!-- MGS: this input field was bound to angular -->
-                            <input ng-class="{'input-error': main.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
-                        </div>
-                        <div class="error-msg">Error message</div>
-                        <div class="form-section-mobile gender-form-section">
-                            <h3>GENDER</h3>
-                            <!-- MGS: this selector not implemented yet. Style as desired -->
-                            <div class="select-css">
-                                <select ng-model="main.currentAvatar.gender" ng-change="main.switchSchema(); main.isPristine = false">
-                                    <option value="male">{{main.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
-                                    <option value="female">{{main.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-section-mobile birthday-form-section">
-                            <h3 ng-if="main.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
-                            <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
-                        </div>
-                    </div>
-                    </div>
-
-
-
-                </div> <!-- tab content -->
+                <avatar-part-selector-panes schema="main.schema" color-codes="main.colorCodes" current-avatar="main.currentAvatar"></avatar-part-selector-panes>
+                
                 <!-- bottom buttons -->
                 <!-- MGS: The buttons are not implemented yet, in the future the submit button will redirect to the "preview" view -->
 

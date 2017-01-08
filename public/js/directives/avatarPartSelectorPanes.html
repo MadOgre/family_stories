@@ -1,0 +1,51 @@
+<div class="tab-content">
+    <div id="nameGender" class="tab-pane tab-pane-style active">
+        <h3>{{ctrl.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
+        <!-- MGS: this input field was bound to angular -->
+        <input ng-class="{'input-error': ctrl.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{ctrl.getNamePlaceholder()}}" ng-model="ctrl.currentAvatar.name" ng-change="ctrl.isPristine = false" required onfocus="this.placeholder = ''" ng-blur="this.placeholder = ctrl.getNamePlaceh()">
+        <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
+        <div class="error-msg">Error message</div>
+        <h3>{{ctrl.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
+        <!-- MGS: this selector not implemented yet. Style as desired -->
+        <div class="select-css">
+            <select ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false">
+                <option value="male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
+                <option value="female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
+            </select>
+        </div>
+        <h3 ng-if="ctrl.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
+        <input ng-model="ctrl.currentAvatar.birthday" ng-if="ctrl.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+
+        <div class="proceedBtn">Proceed to the Body when ready!</div>
+    </div>
+    <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in ctrl.schema">
+        <h3 class="property-label">{{property.image_type_label}}</h3>
+
+        <body-property-colors property="property" color-codes="ctrl.colorCodes">
+        </body-property-colors>
+
+        <body-property-options property="property" color-codes="ctrl.colorCodes" current-image-id="ctrl.currentAvatar.images[$index]">
+        </body-property-options>
+
+        <div id="nameGender-mobile" class="tab-pane-style">
+        <div class="form-section-mobile name-form-section">
+            <h3>NAME</h3>
+            <input ng-class="{'input-error': ctrl.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{ctrl.getNamePlaceholder()}}" ng-model="ctrl.currentAvatar.name" ng-change="ctrl.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = ctrl.getNamePlaceholder()">
+        </div>
+        <div class="error-msg">Error message</div>
+        <div class="form-section-mobile gender-form-section">
+            <h3>GENDER</h3>
+            <div class="select-css">
+                <select ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false">
+                    <option value="male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
+                    <option value="female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-section-mobile birthday-form-section">
+            <h3 ng-if="ctrl.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
+            <input ng-model="ctrl.currentAvatar.birthday" ng-if="ctrl.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+        </div>
+    </div>
+    </div>
+</div> <!-- tab content -->
