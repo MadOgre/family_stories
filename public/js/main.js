@@ -324,6 +324,7 @@
         //set avatar defaults
         vm.totalAvatars = data.data.length || 1;
         console.log("DATA-LENGTH: " + data.data.length);  
+        vm.familyType = '3';
         var i = 1;
         vm.results[0] = {
           name: "",
@@ -547,10 +548,10 @@
     vm.getSchema(function(){
       vm.getProperties(function(){
         vm.loadSavedAvatars(false);
-                      $(".color_drop").click(function(){
-        var thumbs = $(".color-thumbs");
-        thumbs.slideToggle();
-      });
+        $(".color_drop").click(function(){
+          var thumbs = $(".color-thumbs");
+          thumbs.slideToggle();
+        });
       });
     });
 
