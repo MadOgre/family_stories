@@ -116,7 +116,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 {{JSON.stringify(main.colorCodes)}}
                             </div>
                         </div>
-                        <div class="icon-scroller-outer">
+<!--                         <div class="icon-scroller-outer">
                             <div class="icon-scroller-inner">
                                 <div class="img_wrapper">
                                     <div ng-repeat="value in property.values | filter:{color_code: main.colorCodes[property.image_type]}">
@@ -127,7 +127,9 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <body-property-options property="property" color-codes="main.colorCodes" image-list="main.currentAvatar.images[$index]"">
+                        </body-property-options>
 
                         <div id="nameGender-mobile" class="tab-pane-style">
                         <!-- MGS: this selector not implemented yet. Style as desired -->

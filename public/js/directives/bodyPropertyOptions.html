@@ -1,0 +1,13 @@
+<div class="icon-scroller-outer">
+    <div class="icon-scroller-inner">
+        <div class="img_wrapper">
+            <div ng-repeat="value in ctrl.property.values | filter:{color_code: ctrl.colorCodes[ctrl.property.image_type]}">
+                <input id="radio_btn_{{value.image_id}}" type="radio" value="{{value.image_id}}" name="radio_{{ctrl.property.image_type}}" ng-model="ctrl.imageList"></input>
+                <label for="radio_btn_{{value.image_id}}" class="body-part-label">
+                    <img height="" ng-src="{{value.icon_location}}">
+                </label>
+            </div>
+            {{ctrl.imageList}}
+        </div>
+    </div>
+</div>
