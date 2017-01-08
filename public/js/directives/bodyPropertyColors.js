@@ -1,18 +1,17 @@
 (function(){
 	"use strict";
 	angular.module("app")
-	.directive("bodyPropertyOptions", function(){
+	.directive("bodyPropertyColors", function(){
 		return {
 			restrict: "E",
 			bindToController: {
 				property: "=",
-				colorCodes: "=",
-				currentImageId: "="
+				colorCodes: "="
 			},
 			scope: {},
 			controller: function(){},
 			controllerAs: "ctrl",
-			templateUrl: "js/directives/bodyPropertyOptions.html"
+			templateUrl: "js/directives/bodyPropertyColors.html"
 		};
-	})
+	});
 })();

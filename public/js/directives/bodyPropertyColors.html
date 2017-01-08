@@ -1,0 +1,10 @@
+<div class="color_wrapper">
+    <div class="desk_hide color_drop">&nbsp;</div>
+    <div class="color-thumbs" ng-show="!ctrl.property.image_type.endsWith('nose') && !ctrl.property.image_type.endsWith('glasses')">
+        <div ng-repeat="value in ctrl.property.values | unique: 'color_code'">
+            <input id="radio_btn_color_{{value.image_id}}_{{value.color_name}}" type="radio" ng-value="value.color_code" name="radio_color_{{ctrl.property.image_type}}" ng-model="ctrl.colorCodes[ctrl.property.image_type]"></input>
+            <label class="color-thumb" ng-style="{'background-color': value.color_code}" for="radio_btn_color_{{value.image_id}}_{{value.color_name}}"></label>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
