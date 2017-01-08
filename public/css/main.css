@@ -2922,3 +2922,10 @@ input[type="radio"]:checked + label.color-thumb {
 
 .icon-scroller-inner .img_wrapper label {
   background-color: transparent !important; }
+
+.select-css label {
+  height: auto !important;
+  margin: 0 !important; }
+
+.select-css input:checked + label {
+  border: 1px solid red !important; }

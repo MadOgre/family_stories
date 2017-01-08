@@ -8,10 +8,11 @@
         <h3>{{ctrl.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
         <!-- MGS: this selector not implemented yet. Style as desired -->
         <div class="select-css">
-            <select ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false">
-                <option value="male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
-                <option value="female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
-            </select>
+            <input id="input-desktop-gender-male" type="radio" name="gender" ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false" value="male">
+            <label for="input-desktop-gender-male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</label>
+            <input id="input-desktop-gender-female" type="radio" name="gender" ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false" value="female">
+            <label for="input-desktop-gender-female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</label>
+
         </div>
         <h3 ng-if="ctrl.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
         <input ng-model="ctrl.currentAvatar.birthday" ng-if="ctrl.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
@@ -36,10 +37,13 @@
         <div class="form-section-mobile gender-form-section">
             <h3>GENDER</h3>
             <div class="select-css">
-                <select ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false">
-                    <option value="male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
-                    <option value="female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
-                </select>
+                <div class="select-css">
+                    <input id="input-mobile-gender-male" type="radio" ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false" value="male">
+                    <label for="input-mobile-gender-male">{{ctrl.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</label>
+                    <input id="input-mobile-gender-female" type="radio" ng-model="ctrl.currentAvatar.gender" ng-change="ctrl.signalSchemaChange(); ctrl.isPristine = false" value="female">
+                    <label for="input-mobile-gender-female">{{ctrl.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</label>
+
+                </div>
             </div>
         </div>
         <div class="form-section-mobile birthday-form-section">
