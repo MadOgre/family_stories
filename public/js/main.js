@@ -323,8 +323,10 @@
       }).then(function(data){
         //set avatar defaults
         vm.totalAvatars = data.data.length || 1;
-        console.log("DATA-LENGTH: " + data.data.length);  
-        vm.familyType = '3';
+        console.log("DATA-LENGTH: " + data.data.length);
+        if (data.data.length > 2) {
+          vm.familyType = '3';
+        }
         var i = 1;
         vm.results[0] = {
           name: "",
@@ -808,6 +810,7 @@
         if (al === 'alert') {
           alert("Changes saved!");
         }
+        $location.path("/previewfamily");
       });
     };
 
