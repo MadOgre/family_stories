@@ -71,7 +71,8 @@
           //alert("Error triggered");
           if (!vm.deleting) {
             vm.avatarNameError = true;
-            vm.avatarErrorDisplay = true;
+            //vm.avatarErrorDisplay = true;
+            $scope.$broadcast("error:name:on");
           $(".tab-pane").removeClass("active");
           $("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
@@ -556,7 +557,8 @@
     vm.deleteAvatar = function() {
       vm.deleting = true;
       vm.avatarNameError = false;
-      vm.avatarErrorDisplay = false;
+      //vm.avatarErrorDisplay = false;
+      $scope.$broadcast("error:name:off");
       //alert("DELETE TRIGGERED");
       vm.deletePerson(function(){
         vm.loadSavedAvatars(true);
@@ -621,10 +623,19 @@
         console.log(vm.avatarNames);
         console.log(vm.results);
       });
-    };    
+    };
+
+    $scope.$on("error:name:on", function(){
+      vm.avatarErrorDisplay = true;
+    });
+
+    $scope.$on("error:name:off", function(){
+      vm.avatarErrorDisplay = false;
+    })
 
     vm.postPerson = function(cb) {
-      vm.avatarErrorDisplay = false;
+      //vm.avatarErrorDisplay = false;
+      $scope.$broadcast("error:name:off");
       console.log("post person called");
       vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
