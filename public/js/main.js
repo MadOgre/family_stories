@@ -811,6 +811,7 @@
           alert("Changes saved!");
         }
         $location.path("/previewfamily");
+        
       });
     };
 
