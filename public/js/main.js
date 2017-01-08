@@ -18,10 +18,6 @@
     vm.deleting = false;
     vm.avatarErrorDisplay = false;
 
-    setTimeout(function(){
-
-
-    },3000)
     // $scope.$watch(, function (newVal) {
     //   console.log('Name changed to ' + newVal);
     // });
@@ -35,6 +31,14 @@
               $scope.$digest();
             }, 200);
     }
+
+    vm.selectFirstTab = function() {
+      setTimeout(function(){
+        $("#tabs>div>div>ul>li:first-child>a").trigger("click");
+      }, 200)
+    };
+
+    vm.selectFirstTab();
 
     vm.getHelperArray = function(qty) {
       var result = [];
@@ -64,6 +68,7 @@
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
     }), function(v, old){
+      vm.selectFirstTab();
       console.log("SPINNING!");
       //alert("spinning, old value: " + old + " new value: " + v);
       if (v !== old && !vm.avatarNameError) {
@@ -73,10 +78,10 @@
             vm.avatarNameError = true;
             //vm.avatarErrorDisplay = true;
             $scope.$broadcast("error:name:on");
-          $(".tab-pane").removeClass("active");
-          $("#tabs>ul>li").removeClass("active");
+          //$(".tab-pane").removeClass("active");
+          //$("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
-          $("#tabs>ul>li:nth-child(2)").addClass("active");
+          //$("#tabs>ul>li:nth-child(2)").addClass("active");
           }
           if (old < v) {
             //alert("trying to retract");
@@ -256,51 +261,51 @@
         if (vm.currentAvatar.age === 'adult') {
           vm.schema = vm.adultMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
-          $(".tab-pane").removeClass("active");
-          $("#tabs>ul>li").removeClass("active");
+          //$(".tab-pane").removeClass("active");
+          //$("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
           //$("#child_body, #adult_body").addClass("active");
-          setTimeout(function(){
-            $(".tab-content div:nth-child(2)").addClass("active");
-          }, 200);
+          // setTimeout(function(){
+          //   $(".tab-content div:nth-child(2)").addClass("active");
+          // }, 200);
           
-          $("#tabs>ul>li:first-child").addClass("active");
+          //$("#tabs>ul>li:first-child").addClass("active");
           //alert("switched to adult male");
         } else {
           vm.schema = vm.childMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childMaleAvatarDefaults.slice();
-          $(".tab-pane").removeClass("active");
-          $("#tabs>ul>li").removeClass("active");
+          //$(".tab-pane").removeClass("active");
+          //$("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
           //$("#child-body, #adult-body").addClass("active");
-          setTimeout(function(){
-            $(".tab-content div:nth-child(2)").addClass("active");
-          }, 200);
-          $("#tabs>ul>li:first-child").addClass("active");
+          // setTimeout(function(){
+          //   $(".tab-content div:nth-child(2)").addClass("active");
+          // }, 200);
+          // $("#tabs>ul>li:first-child").addClass("active");
         }
       } else {
         if (vm.currentAvatar.age === 'adult') {
           vm.schema = vm.adultFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
-          $(".tab-pane").removeClass("active");
-          $("#tabs>ul>li").removeClass("active");
+          //$(".tab-pane").removeClass("active");
+          //$("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
           //$("#child-body, #adult-body").addClass("active");
-          setTimeout(function(){
-            $(".tab-content div:nth-child(2)").addClass("active");
-          }, 200);
-          $("#tabs>ul>li:first-child").addClass("active");
+          // setTimeout(function(){
+          //   $(".tab-content div:nth-child(2)").addClass("active");
+          // }, 200);
+          // $("#tabs>ul>li:first-child").addClass("active");
         } else {
           vm.schema = vm.childFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = childFemaleAvatarDefaults.slice();
-          $(".tab-pane").removeClass("active");
-          $("#tabs>ul>li").removeClass("active");
+          //$(".tab-pane").removeClass("active");
+          //$("#tabs>ul>li").removeClass("active");
           //$('#nameGender').addClass("active");
           //$("#child-body, #adult-body").addClass("active");
-          setTimeout(function(){
-            $(".tab-content div:nth-child(2)").addClass("active");
-          }, 200);
-          $("#tabs>ul>li:first-child").addClass("active");
+          // setTimeout(function(){
+          //   $(".tab-content div:nth-child(2)").addClass("active");
+          // }, 200);
+          // $("#tabs>ul>li:first-child").addClass("active");
         }
       }
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
