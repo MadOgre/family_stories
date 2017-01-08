@@ -30,7 +30,7 @@
         <div id="nameGender-mobile" class="tab-pane-style">
         <div class="form-section-mobile name-form-section">
             <h3>NAME</h3>
-            <input ng-class="{'input-error': ctrl.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{ctrl.getNamePlaceholder()}}" ng-model="ctrl.currentAvatar.name" ng-change="ctrl.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = ctrl.getNamePlaceholder()">
+            <input ng-class="{'input-error': ctrl.avatarErrorDisplay, 'transparent-input-field': true}" type="text" class="avatar-name-input" placeholder="{{ctrl.getNamePlaceholder()}}" ng-model="ctrl.currentAvatar.name" ng-change="ctrl.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = ctrl.getNamePlaceholder()">
         </div>
         <div class="error-msg">Error message</div>
         <div class="form-section-mobile gender-form-section">
