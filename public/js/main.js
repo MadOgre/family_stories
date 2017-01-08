@@ -46,14 +46,14 @@
     }
 
     vm.getNamePlaceholder = function() {
-      if (vm.currentAvatarGender === 'male') {
-        if (vm.currentAvatarAge === 'adult') {
+      if (vm.currentAvatar.gender === 'male') {
+        if (vm.currentAvatar.age === 'adult') {
           return 'ex. Daddy';
         } else {
           return 'ex. Timmy';
         }
       } else {
-        if (vm.currentAvatarAge === 'adult') {
+        if (vm.currentAvatar.age === 'adult') {
           return 'ex. Mommy';
         } else {
           return 'ex. Annie';
@@ -189,8 +189,8 @@
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
-      vm.currentAvatarGender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
-      vm.currentAvatarAge = vm.imageUrls[vm.currentAvatar.images[0]].age;
+      vm.currentAvatar.gender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
+      vm.currentAvatar.age = vm.imageUrls[vm.currentAvatar.images[0]].age;
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
         console.log("CHANGE TRIGGERED!");
         console.log(vm.imageUrls[vm.currentAvatar.images[i_img]].color_code);
@@ -224,12 +224,14 @@
         female: '/getFemaleChildParts'
       }
     };
-    vm.currentAvatarAge = 'adult';
-    vm.currentAvatarGender = 'male';
+    //vm.currentAvatarAge = 'adult';
+    //vm.currentAvatarGender = 'male';
 
     vm.currentAvatar = {
       name: "",
-      images: []
+      images: [],
+      age: "adult",
+      gender: "male"
     };
     vm.imageUrls = {};
     vm.currentUser = "TestUser01"; //change this for production
@@ -249,8 +251,8 @@
 
     vm.switchSchema = function() {
       //alert("triggered");
-      if (vm.currentAvatarGender === 'male') {
-        if (vm.currentAvatarAge === 'adult') {
+      if (vm.currentAvatar.gender === 'male') {
+        if (vm.currentAvatar.age === 'adult') {
           vm.schema = vm.adultMaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultMaleAvatarDefaults.slice();
           $(".tab-pane").removeClass("active");
@@ -276,7 +278,7 @@
           $("#tabs>ul>li:first-child").addClass("active");
         }
       } else {
-        if (vm.currentAvatarAge === 'adult') {
+        if (vm.currentAvatar.age === 'adult') {
           vm.schema = vm.adultFemaleSchema;
           if (!arguments[0]) vm.currentAvatar.images = adultFemaleAvatarDefaults.slice();
           $(".tab-pane").removeClass("active");
@@ -587,7 +589,7 @@
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         avatar_index: vm.currentAvatarIndex,
-        avatar_age: vm.currentAvatarAge,
+        avatar_age: vm.currentAvatar.age,
         birthday: vm.currentAvatarBirthday,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name,
         delete: true
@@ -632,7 +634,7 @@
         avatar_name: vm.currentAvatar.name,
         image_id_list: vm.currentAvatar.images.map(function(item){return parseInt(item);}),
         avatar_index: vm.currentAvatarIndex,
-        avatar_age: vm.currentAvatarAge,
+        avatar_age: vm.currentAvatar.age,
         birthday: vm.currentAvatarBirthday,
         replace: vm.newAvatar ? null : vm.results[vm.currentAvatarIndex-1].name
       };

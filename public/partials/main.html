@@ -80,21 +80,21 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                                 <option value="child">Child</option>
                             </select>
                         </div> -->
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
+                        <h3>{{main.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S NAME</h3>
                         <!-- MGS: this input field was bound to angular -->
                         <input ng-class="{'input-error': main.avatarErrorDisplay, 'transparent-input-field': true}" type="text" id="avatar-name-input" placeholder="{{main.getNamePlaceholder()}}" ng-model="main.currentAvatar.name" ng-change="main.isPristine = false" required onfocus="this.placeholder = ''" onblur="this.placeholder = main.getNamePlaceholder()">
                         <a href="javascript:void(0);" class="i-circle small"><img src="/img/i_symbol.png" alt="" /></a>
                         <div class="error-msg">Error message</div>
-                        <h3>{{main.currentAvatarAge === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
+                        <h3>{{main.currentAvatar.age === 'adult' ? 'ADULT' : 'CHILD'}}'S GENDER</h3>
                         <!-- MGS: this selector not implemented yet. Style as desired -->
                         <div class="select-css">
-                            <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
-                                <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
-                                <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
+                            <select ng-model="main.currentAvatar.gender" ng-change="main.switchSchema(); main.isPristine = false">
+                                <option value="male">{{main.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
+                                <option value="female">{{main.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
                             </select>
                         </div>
-                        <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
-                        <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+                        <h3 ng-if="main.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
+                        <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
 
                         <div class="proceedBtn">Proceed to the Body when ready!</div>
                     </div>
@@ -128,15 +128,15 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             <h3>GENDER</h3>
                             <!-- MGS: this selector not implemented yet. Style as desired -->
                             <div class="select-css">
-                                <select ng-model="main.currentAvatarGender" ng-change="main.switchSchema(); main.isPristine = false">
-                                    <option value="male">{{main.currentAvatarAge === 'adult' ? 'Man' : 'Boy'}}</option>
-                                    <option value="female">{{main.currentAvatarAge === 'adult' ? 'Woman' : 'Girl'}}</option>
+                                <select ng-model="main.currentAvatar.gender" ng-change="main.switchSchema(); main.isPristine = false">
+                                    <option value="male">{{main.currentAvatar.age === 'adult' ? 'Man' : 'Boy'}}</option>
+                                    <option value="female">{{main.currentAvatar.age === 'adult' ? 'Woman' : 'Girl'}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-section-mobile birthday-form-section">
-                            <h3 ng-if="main.currentAvatarAge === 'child'">KID'S BIRTHDAY</h3>
-                            <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatarAge === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
+                            <h3 ng-if="main.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
+                            <input ng-model="main.currentAvatarBirthday" ng-if="main.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
                         </div>
                     </div>
                     </div>
