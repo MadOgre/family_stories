@@ -12,6 +12,7 @@
 			scope: {},
 			controller: ["$scope", function($scope){
 				var self = this;
+				$scope.$emit("activate:first:tab");
 				this.avatarErrorDisplay = false;
 				this.isPristine = true;
 				this.getNamePlaceholder = function() {
@@ -31,6 +32,7 @@
     			};
     			this.signalSchemaChange = function() {
     				$scope.$emit("change:schema");
+    				$scope.$emit("activate:first:tab");
     			}
 			    $scope.$on("error:name:on", function(){
 			      self.avatarErrorDisplay = true;

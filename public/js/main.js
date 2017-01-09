@@ -34,11 +34,26 @@
 
     vm.selectFirstTab = function() {
       setTimeout(function(){
-        $("#tabs>div>div>ul>li:first-child>a").trigger("click");
+        if (vm.isMobile()) {
+          $("#tabs>div>div>ul>li:nth-child(2)>a").trigger("click");
+          // alert($("#tabs>div>div>ul>li:nth-child(2)>a").html());
+        } else {
+          $("#tabs>div>div>ul>li:first-child>a").trigger("click");
+        }
       }, 200)
     };
 
-    vm.selectFirstTab();
+    vm.isMobile = function() {
+      return ($("#mobile-hook").css("display") === "none");
+    };
+
+    // alert(vm.isMobile());
+
+    $scope.$on("activate:first:tab", function(){
+      //alert("received signal to activate tab");
+      vm.selectFirstTab();
+    })
+
 
     vm.getHelperArray = function(qty) {
       var result = [];
@@ -68,10 +83,11 @@
     $scope.$watch(angular.bind(this, function () {
       return this.carousel_index;
     }), function(v, old){
-      vm.selectFirstTab();
+      $scope.$emit("activate:first:tab");
       console.log("SPINNING!");
       //alert("spinning, old value: " + old + " new value: " + v);
       if (v !== old && !vm.avatarNameError) {
+
         if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
           //alert("Error triggered");
           if (!vm.deleting) {
@@ -98,6 +114,7 @@
               vm.carousel_index++;
               //$scope.$apply();
               $scope.$digest();
+
             }, 200);
           }
         } else {
@@ -105,7 +122,8 @@
             //alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
             vm.postPerson(function(){
               vm.currentAvatarIndex = v+1;
-              updateCurrentAvatar();      
+              updateCurrentAvatar(); 
+              $scope.$emit("activate:first:tab");     
             });
           } else {
             //alert("DELETING - DID NOT POST");

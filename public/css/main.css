@@ -1542,6 +1542,8 @@ header .user-avatar img {
   display: none; }
 
 @media (max-width: 749px) {
+  #mobile-hook {
+    display: none; }
   .name-gender-tab-control {
     display: none; }
   .salutation-wrapper {

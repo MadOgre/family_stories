@@ -49,6 +49,10 @@
 	//Character Tab Styles
 	@media (max-width: 749px){ 
 
+	#mobile-hook {
+		display: none;
+	}
+	
 	.name-gender-tab-control {
 		display: none;
 	}	
