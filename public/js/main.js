@@ -418,6 +418,8 @@
         vm.currentUserProfile = data.data;
       });
 
+      var urlListForPreload = [];
+
       var loadAdultFemaleSchema = $http({
         method: 'GET',
         url: bodyPartUrls.adult.female
@@ -429,7 +431,8 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
-            preloader.preloadImages([value.image_location]);
+            urlListForPreload.push(value.image_location);
+            //preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -459,7 +462,8 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
-            preloader.preloadImages([value.image_location]);
+            urlListForPreload.push(value.image_location);
+            //preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -488,7 +492,8 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
-            preloader.preloadImages([value.image_location]);
+            urlListForPreload.push(value.image_location);
+            //preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -528,7 +533,8 @@
           //vm.imageUrls = {};
           //console.log("IMG URLS before !!!: " + JSON.stringify(vm.imageUrls));
           item.values.forEach(function(value){
-            preloader.preloadImages([value.image_location]);
+            urlListForPreload.push(value.image_location);
+            //preloader.preloadImages([value.image_location]);
             vm.imageUrls[value.image_id] = {
               location: value.image_location,
               image_x: value.image_x,
@@ -563,7 +569,11 @@
 
       $q.all([loadAdultFemaleSchema, loadAdultMaleSchema, loadChildFemaleSchema, loadChildMaleSchema]).then(function success(){
         vm.loaded = true;
-
+        preloader.preloadImages(urlListForPreload)
+        .then(function(){
+          //alert("all images loaded");
+          vm.loaded = true;
+        });
         cb(null);
       }, function fail(err){
         console.warn(err);
