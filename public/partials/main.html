@@ -57,7 +57,7 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                             <li class="name-gender-tab-control" class="active"><a target="_self" href="#nameGender" data-toggle="tab">Name and Gender</a></li>
 
                             <!-- MGS: the tab li elements (or whatever element they will get changed to will dynamically repeat based on the information retrieved from the database). I have commented out all but the first LI to demonstrate that -->
-                            <li ng-repeat="property in main.schema"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
+                            <li ng-repeat="property in main.schema" ng-hide="property.image_type.endsWith('mouth')"><a target="_self" ng-href="{{'#' + property.image_type}}" data-toggle="tab">{{property.image_type_label}}</a></li>
                             <!--<li class="active"><a data-toggle="tab" href="#nameGender">NAME & GENDER</a></li>
                             <li><a href="#skin">SKIN</a></li>
                             <li><a href="#hair">HAIR</a></li>
