@@ -45,6 +45,12 @@
 		display: none;
 	}
 
+
+
+
+	//Character Tab Styles
+	@media (max-width: 749px){ 
+
 	.left-mobile-button {
 		width: 45% !important;
 		float: left !important;
@@ -54,10 +60,6 @@
 		width: 45% !important;
 		float: right !important;
 	}
-
-
-	//Character Tab Styles
-	@media (max-width: 749px){ 
 
 	#mobile-hook {
 		display: none;
