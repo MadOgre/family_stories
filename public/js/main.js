@@ -14,7 +14,7 @@
     vm.results = [];
     vm.colorCodes = {};
     vm.carousel_index = 0;
-    vm.familyType = "2";
+    vm.familyType = "3";
     vm.deleting = false;
     vm.avatarErrorDisplay = false;
 
