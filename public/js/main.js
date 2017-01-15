@@ -354,13 +354,34 @@
         vm.results[0] = {
           name: "",
           images: childMaleAvatarDefaults.slice()
-        };
-        for (; i < vm.maxAvatars; ++i) {
+        }
+
+        vm.results[1] = {
+          name: "",
+          images: adultMaleAvatarDefaults.slice()
+        }
+
+        vm.results[2] = {
+          name: "",
+          images: adultFemaleAvatarDefaults.slice()
+        }
+        //set avatar defaults
+        for (i = 3; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
             name: "",
             images: adultMaleAvatarDefaults.slice()
           };
         }
+        // vm.results[0] = {
+        //   name: "",
+        //   images: childMaleAvatarDefaults.slice()
+        // };
+        // for (; i < vm.maxAvatars; ++i) {
+        //   vm.results[i] = {
+        //     name: "",
+        //     images: adultMaleAvatarDefaults.slice()
+        //   };
+        // }
         i = 0;
         if (data.data.length !== 0) {
           for (; i < vm.totalAvatars; ++i) {
@@ -370,7 +391,7 @@
             };
           }
         } else {
-          i = 1;
+          i = 3;
         }
         for (; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
@@ -553,8 +574,18 @@
           name: "",
           images: childMaleAvatarDefaults.slice()
         }
+
+        vm.results[1] = {
+          name: "",
+          images: adultMaleAvatarDefaults.slice()
+        }
+
+        vm.results[2] = {
+          name: "",
+          images: adultFemaleAvatarDefaults.slice()
+        }
         //set avatar defaults
-        for (var i = 1; i < vm.maxAvatars; ++i) {
+        for (var i = 3; i < vm.maxAvatars; ++i) {
           vm.results[i] = {
             name: "",
             images: adultMaleAvatarDefaults.slice()

@@ -18,13 +18,13 @@
 				this.getNamePlaceholder = function() {
 			      if (self.currentAvatar.gender === 'male') {
 			        if (self.currentAvatar.age === 'adult') {
-			          return 'ex. Daddy';
+			          return 'ex. Daddy/Mommy';
 			        } else {
 			          return 'ex. Timmy';
 			        }
 			      } else {
 			        if (self.currentAvatar.age === 'adult') {
-			          return 'ex. Mommy';
+			          return 'ex. Mommy/Daddy';
 			        } else {
 			          return 'ex. Annie';
 			        }
