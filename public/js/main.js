@@ -103,7 +103,11 @@
             //alert("trying to retract");
             setTimeout(function(){
               //alert("trying to spin back");
-              vm.carousel_index--;
+              if (v - old == 2) {
+                vm.carousel_index-=2;
+              } else {
+                vm.carousel_index--;
+              }
               //$scope.$apply();
               $scope.$digest();
             }, 200);

@@ -17,7 +17,7 @@
         <h3 ng-if="ctrl.currentAvatar.age === 'child'">KID'S BIRTHDAY</h3>
         <input ng-model="ctrl.currentAvatar.birthday" ng-if="ctrl.currentAvatar.age === 'child'" type="date" name="childDate" placeholder="MM/DD/YYYY" class="date-input">
 
-        <div class="proceedBtn">Proceed to the Body when ready!</div>
+        <div style="display: none;" class="proceedBtn">Proceed to the Body when ready!</div>
     </div>
     <div id="{{property.image_type}}" class="tab-pane tab-pane-style" ng-repeat="property in ctrl.schema">
         <h3 class="property-label">{{property.image_type_label}}</h3>
