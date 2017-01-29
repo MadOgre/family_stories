@@ -145,7 +145,7 @@
       return this.currentAvatar;
     }), function(v){
       console.log("Current Index: " + vm.currentAvatarIndex);
-      vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
+      if (vm.results[vm.currentAvatarIndex-1]) vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
       //$scope.$apply();
     }, true);
 
