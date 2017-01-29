@@ -217,7 +217,7 @@
     function updateCurrentAvatar() {
       vm.currentAvatar.images = vm.results[vm.currentAvatarIndex-1].images.slice();
       vm.currentAvatar.name = vm.results[vm.currentAvatarIndex-1].name;
-      vm.currentAvatar.gender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
+      vm.currentAvatar.gender = (vm.imageUrls[vm.currentAvatar.images[0]]) ? vm.imageUrls[vm.currentAvatar.images[0]].gender : 'male';
       vm.currentAvatar.age = vm.imageUrls[vm.currentAvatar.images[0]].age;
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
         ////console.log("CHANGE TRIGGERED!");

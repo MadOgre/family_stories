@@ -355,7 +355,7 @@ app.get("/getFolderName", function(req, res){
 });
 
 app.get("/deleteUserAvatars", function(req, res){
-  deleteUserAvatars(req.session.user_id, function(data){
+  deleteUserAvatars(req.session.user_id, function(){
     res.json({result: "success"});
   });
 });
@@ -377,7 +377,7 @@ app.post("/setDedication", function(req, res){
   setDedication(payload, function(err, result) {
     if (err) return res.status(500).json({result: "Server Error"});
       res.json(result);   
-  })
+  });
 });
 
 app.get("/getDedication", function(req, res){
@@ -385,7 +385,7 @@ app.get("/getDedication", function(req, res){
   getDedication(req.session.user_id, function(err, result) {
     if (err) return res.status(500).json({result: "Server Error"});
       res.json(result);   
-  })
+  });
 });  
 
 app.get("/getproperty/:property", function(req, res){
