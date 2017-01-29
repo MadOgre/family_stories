@@ -12,23 +12,23 @@ var GoogleStrategy = require("passport-google-openidconnect").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
 var request = require("request");
 var qs = require("querystring");
-let stripe = require("stripe")("sk_test_eExGRjpjgm5wzQFl3WMno3e8");
-let geoip = require("geoip-lite");
+//let stripe = require("stripe")("sk_test_eExGRjpjgm5wzQFl3WMno3e8");
+//let geoip = require("geoip-lite");
 
 var config = require("./config.js");
 
 //var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
 
-var paypal = require('paypal-rest-sdk');
+//var paypal = require('paypal-rest-sdk');
 
-paypal.configure({
-  'mode': 'sandbox', //sandbox or live
-  'client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
-  'client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
-  'openid_client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
-  'openid_client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
-  'openid_redirect_uri': config.base_url + '/auth/callback'
-});
+// paypal.configure({
+//   'mode': 'sandbox', //sandbox or live
+//   'client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
+//   'client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
+//   'openid_client_id': 'AXuDrSL5vYOdb9v_jbN3k5M7N5kI9rs-9oZhQBlBYRl2DOrvN6PbFDhNAJcl78anX88BPX1ZAo8tf-gi',
+//   'openid_client_secret': 'EEb9YEw2w5T91b7d6Cqqr3HsrQGp3wYabNWOIeZTM65g9tFK2KwwN2W71ssPQgpTFlhgM6CRUYRHz3Au',
+//   'openid_redirect_uri': config.base_url + '/auth/callback'
+// });
 
 // sequelize.authenticate().then(function(){
 //   console.log("SUCCESS");
@@ -148,76 +148,21 @@ app.post("/admin_login", function(req, res){
     // payload.user_country + "','" +
     // payload.user_order_id + "','" +
 
-app.post("/charge", (req, res, next) => {
-  let token = req.body.stripeToken;
-  console.log("ABOUT TO CHARGE!");
-  console.log("Currency: " + req.session.currency);
-  console.log("Price: " + req.session.price); 
-  console.log("admin: " + req.session.admin);
-  let geo = geoip.lookup(req.ip);
-  //console.log(req.ip);
-  //console.log(geo.country);
-  getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
-    if (err) next(err);
-    req.session.currency = data[0].currency_code;
-    req.session.price = data[0].price;
-    stripe.charges.create({
-      amount: req.session.price, // Amount in cents HAS TO BE SET MANUALLY!
-      currency: req.session.currency.toLowerCase(),
-      source: token,
-      description: "Book purchase",
-      receipt_email: req.body.stripeEmail
-    }, function(err, charge) {
-      if (err && err.type === 'StripeCardError') {
-        return next(new Error("the card has been declined"));
-      }
-      var payload = {
-        user_id: req.session.user_id,
-        user_email: charge.receipt_email,
-        user_addr_ln_1: charge.source.address_line1,
-        user_addr_ln_2: charge.source.address_line2,
-        user_city: charge.source.address_city,
-        user_zip: charge.source.address_zip,
-        user_province: charge.source.address_state,
-        user_country: charge.source.address_country,
-        user_order_id: charge.id
-      };
-      placeOrderStripe(payload, function(err, data){
-        if (err) throw(new Error("Failed to save order"));
-        if (data.result === "success") {
-          res.sendFile(__dirname + "/checkout_complete.html");
-        } else {
-          res.send("Something went wrong check the code");
-        }
-      });
-    });
-  });
-});
 
-app.get("/getCurrencyAndPrice", function(req, res, next){
-  console.log("CURRENCY ROUTE HIT!");
-  let geo = geoip.lookup(req.ip);
-  getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
-    if (err) next(err);
-    req.session.currency = data[0].currency_code;
-    req.session.price = data[0].price;
-    console.log("Currency: " + req.session.currency);
-    console.log("Price: " + req.session.price);
-    console.log("admin: " + req.session.admin);
-    res.json(data);
-  });
-});
 
-function getCurrencyAndPrice(countryCode, cb) {
-  sequelize.query(
-    "call sp_get_currency_price('" +
-    countryCode + "')"
-    ).then(function(data){
-    cb(null, data);
-  }).catch(function(err){
-    cb(err);
-  });    
-}
+// app.get("/getCurrencyAndPrice", function(req, res, next){
+//   console.log("CURRENCY ROUTE HIT!");
+//   let geo = geoip.lookup(req.ip);
+//   getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
+//     if (err) next(err);
+//     req.session.currency = data[0].currency_code;
+//     req.session.price = data[0].price;
+//     console.log("Currency: " + req.session.currency);
+//     console.log("Price: " + req.session.price);
+//     console.log("admin: " + req.session.admin);
+//     res.json(data);
+//   });
+// });
 
 app.get("/admin_login", function(req, res){
   if (req.session.admin === true) {
@@ -264,28 +209,6 @@ function getDedication(user_id, cb){
   }).catch(function(err){
     cb(err);
   });   
-}
-
-
-//this calls a stored procedure on successful pay
-function placeOrderStripe(payload, cb) {
-  sequelize.query(
-    "call sp_iu_order('" +
-    payload.user_id + "','" + 
-    payload.user_email + "','" +
-    payload.user_addr_ln_1 + "','" +
-    payload.user_addr_ln_2 + "','" +
-    payload.user_city + "','" +
-    payload.user_zip + "','" +
-    payload.user_province + "','" +
-    payload.user_country + "','" +
-    payload.user_order_id + "','" +
-    "stripe')"
-    ).then(function(){
-    cb(null, {result: "success"});
-  }).catch(function(err){
-    cb(err);
-  });  
 }
 
 function getSystemProperty(property, cb) {
@@ -420,83 +343,83 @@ app.get("/getCurrentProfile", function(req, res) {
 //   next();
 // });
 
-app.get("/buy", function(req, res){
-  var payload = {
-    METHOD: "SetExpressCheckout",
-    PAYMENTREQUEST_0_CURRENCYCODE: "USD",
-    USER: "msemko-facilitator_api1.gmail.com",
-    PWD: "YEGHAJV6CYCVWV3S",
-    PAYMENTREQUEST_0_AMT: 10,
-    RETURNURL: config.base_url + "/confirmpurchase",
-    SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
-    VERSION: "106.0",
-    PAYMENTREQUEST_0_PAYMENTACTION: "Sale",
-    CANCELURL: config.base_url,
-    SOLUTIONTYPE: "Sole"
-  };
-  request('https://api-3t.sandbox.paypal.com/nvp?' + qs.stringify(payload), function (error, response, body) {
-    if (error) res.json(error);
-    if (!error && response.statusCode == 200) {
-      res.redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=" + qs.parse(body).TOKEN);
-    }
-  });
-});
+// app.get("/buy", function(req, res){
+//   var payload = {
+//     METHOD: "SetExpressCheckout",
+//     PAYMENTREQUEST_0_CURRENCYCODE: "USD",
+//     USER: "msemko-facilitator_api1.gmail.com",
+//     PWD: "YEGHAJV6CYCVWV3S",
+//     PAYMENTREQUEST_0_AMT: 10,
+//     RETURNURL: config.base_url + "/confirmpurchase",
+//     SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
+//     VERSION: "106.0",
+//     PAYMENTREQUEST_0_PAYMENTACTION: "Sale",
+//     CANCELURL: config.base_url,
+//     SOLUTIONTYPE: "Sole"
+//   };
+//   request('https://api-3t.sandbox.paypal.com/nvp?' + qs.stringify(payload), function (error, response, body) {
+//     if (error) res.json(error);
+//     if (!error && response.statusCode == 200) {
+//       res.redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=" + qs.parse(body).TOKEN);
+//     }
+//   });
+// });
 
-app.get("/confirmpurchase", function(req, res){
-  var payload = {
-    METHOD: "GetExpressCheckoutDetails",
-    USER: "msemko-facilitator_api1.gmail.com",
-    PWD: "YEGHAJV6CYCVWV3S",
-    SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
-    VERSION: "106.0",
-    TOKEN: req.query.token
-  };
-  request("https://api-3t.sandbox.paypal.com/nvp?" + qs.stringify(payload), function(error, response, body){
-    req.session.paymentinfo = qs.parse(body);
-    res.redirect("/getpreview");
-  });  
-});
+// app.get("/confirmpurchase", function(req, res){
+//   var payload = {
+//     METHOD: "GetExpressCheckoutDetails",
+//     USER: "msemko-facilitator_api1.gmail.com",
+//     PWD: "YEGHAJV6CYCVWV3S",
+//     SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
+//     VERSION: "106.0",
+//     TOKEN: req.query.token
+//   };
+//   request("https://api-3t.sandbox.paypal.com/nvp?" + qs.stringify(payload), function(error, response, body){
+//     req.session.paymentinfo = qs.parse(body);
+//     res.redirect("/getpreview");
+//   });  
+// });
 
-app.get("/getPaymentInfo", function(req, res){
-  if (req.session.paymentinfo) {
-    res.json(req.session.paymentinfo);
-  } else {
-    res.json(null);
-  }
-});
+// app.get("/getPaymentInfo", function(req, res){
+//   if (req.session.paymentinfo) {
+//     res.json(req.session.paymentinfo);
+//   } else {
+//     res.json(null);
+//   }
+// });
 
-app.get("/finalizetransaction", function(req, res){
-  var payload = {
-    METHOD: "DoExpressCheckoutPayment",
-    USER: "msemko-facilitator_api1.gmail.com",
-    PWD: "YEGHAJV6CYCVWV3S",
-    SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
-    VERSION: "106.0",
-    TOKEN: req.session.paymentinfo.TOKEN,
-    PAYMENTREQUEST_0_PAYMENTACTION: req.session.paymentinfo.PAYMENTREQUEST_0_PAYMENTACTION,
-    PAYERID: req.session.paymentinfo.PAYERID,
-    PAYMENTREQUEST_0_AMT: req.session.paymentinfo.PAYMENTREQUEST_0_AMT,
-    PAYMENTREQUEST_0_ITEMAMT: req.session.paymentinfo.PAYMENTREQUEST_0_ITEMAMT,
-    PAYMENTREQUEST_0_SHIPPINGAMT: req.session.paymentinfo.PAYMENTREQUEST_0_SHIPPINGAMT,
-    PAYMENTREQUEST_0_TAXAMT: req.session.paymentinfo.PAYMENTREQUEST_0_TAXAMT,
-    PAYMENTREQUEST_0_CURRENCYCODE: req.session.paymentinfo.PAYMENTREQUEST_0_CURRENCYCODE,
-    PAYMENTREQUEST_0_DESC: req.session.paymentinfo.PAYMENTREQUEST_0_DESC,
-    L_PAYMENTREQUEST_0_NAME0: req.session.paymentinfo.L_PAYMENTREQUEST_0_NAME0,
-    L_PAYMENTREQUEST_0_AMT0: req.session.paymentinfo.L_PAYMENTREQUEST_0_AMT0,
-    L_PAYMENTREQUEST_0_NUMBER0: req.session.paymentinfo.L_PAYMENTREQUEST_0_NUMBER0,
-    L_PAYMENTREQUEST_0_QTY0: req.session.paymentinfo.L_PAYMENTREQUEST_0_QTY0,
-    L_PAYMENTREQUEST_0_NAME1: req.session.paymentinfo.L_PAYMENTREQUEST_0_NAME1,
-    L_PAYMENTREQUEST_0_AMT1: req.session.paymentinfo.L_PAYMENTREQUEST_0_AMT1,
-    L_PAYMENTREQUEST_0_NUMBER1: req.session.paymentinfo.L_PAYMENTREQUEST_0_NUMBER1,
-    L_PAYMENTREQUEST_0_QTY1: req.session.paymentinfo.L_PAYMENTREQUEST_0_QTY1
+// app.get("/finalizetransaction", function(req, res){
+//   var payload = {
+//     METHOD: "DoExpressCheckoutPayment",
+//     USER: "msemko-facilitator_api1.gmail.com",
+//     PWD: "YEGHAJV6CYCVWV3S",
+//     SIGNATURE: "ASfrEla.u88dRza2.YeVJFSJFgEeA0cnEQhJjG6zzU7GlMvnGX6K4tc7",
+//     VERSION: "106.0",
+//     TOKEN: req.session.paymentinfo.TOKEN,
+//     PAYMENTREQUEST_0_PAYMENTACTION: req.session.paymentinfo.PAYMENTREQUEST_0_PAYMENTACTION,
+//     PAYERID: req.session.paymentinfo.PAYERID,
+//     PAYMENTREQUEST_0_AMT: req.session.paymentinfo.PAYMENTREQUEST_0_AMT,
+//     PAYMENTREQUEST_0_ITEMAMT: req.session.paymentinfo.PAYMENTREQUEST_0_ITEMAMT,
+//     PAYMENTREQUEST_0_SHIPPINGAMT: req.session.paymentinfo.PAYMENTREQUEST_0_SHIPPINGAMT,
+//     PAYMENTREQUEST_0_TAXAMT: req.session.paymentinfo.PAYMENTREQUEST_0_TAXAMT,
+//     PAYMENTREQUEST_0_CURRENCYCODE: req.session.paymentinfo.PAYMENTREQUEST_0_CURRENCYCODE,
+//     PAYMENTREQUEST_0_DESC: req.session.paymentinfo.PAYMENTREQUEST_0_DESC,
+//     L_PAYMENTREQUEST_0_NAME0: req.session.paymentinfo.L_PAYMENTREQUEST_0_NAME0,
+//     L_PAYMENTREQUEST_0_AMT0: req.session.paymentinfo.L_PAYMENTREQUEST_0_AMT0,
+//     L_PAYMENTREQUEST_0_NUMBER0: req.session.paymentinfo.L_PAYMENTREQUEST_0_NUMBER0,
+//     L_PAYMENTREQUEST_0_QTY0: req.session.paymentinfo.L_PAYMENTREQUEST_0_QTY0,
+//     L_PAYMENTREQUEST_0_NAME1: req.session.paymentinfo.L_PAYMENTREQUEST_0_NAME1,
+//     L_PAYMENTREQUEST_0_AMT1: req.session.paymentinfo.L_PAYMENTREQUEST_0_AMT1,
+//     L_PAYMENTREQUEST_0_NUMBER1: req.session.paymentinfo.L_PAYMENTREQUEST_0_NUMBER1,
+//     L_PAYMENTREQUEST_0_QTY1: req.session.paymentinfo.L_PAYMENTREQUEST_0_QTY1
 
-  };
-  request("https://api-3t.sandbox.paypal.com/nvp?" + qs.stringify(payload), function(error, response, body){
-    req.session.paymentinfo = null;
-    res.json(qs.parse(body));
-    //res.redirect("http://localhost:3000/getpreview");
-  });   
-});
+//   };
+//   request("https://api-3t.sandbox.paypal.com/nvp?" + qs.stringify(payload), function(error, response, body){
+//     req.session.paymentinfo = null;
+//     res.json(qs.parse(body));
+//     //res.redirect("http://localhost:3000/getpreview");
+//   });   
+// });
 
 app.get('/authfacebook',
   passport.authenticate('facebook', { scope: ['email']}));
