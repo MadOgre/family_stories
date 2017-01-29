@@ -84,7 +84,7 @@
       return this.carousel_index;
     }), function(v, old){
       $scope.$emit("activate:first:tab");
-      console.log("SPINNING!");
+      ////console.log("SPINNING!");
       //alert("spinning, old value: " + old + " new value: " + v);
       if (v !== old && !vm.avatarNameError) {
 
@@ -144,7 +144,7 @@
     $scope.$watch(angular.bind(this, function () {
       return this.currentAvatar;
     }), function(v){
-      console.log("Current Index: " + vm.currentAvatarIndex);
+      ////console.log("Current Index: " + vm.currentAvatarIndex);
       if (vm.results[vm.currentAvatarIndex-1]) vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
       //$scope.$apply();
     }, true);
@@ -220,8 +220,8 @@
       vm.currentAvatar.gender = vm.imageUrls[vm.currentAvatar.images[0]].gender;
       vm.currentAvatar.age = vm.imageUrls[vm.currentAvatar.images[0]].age;
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
-        console.log("CHANGE TRIGGERED!");
-        console.log(vm.imageUrls[vm.currentAvatar.images[i_img]].color_code);
+        ////console.log("CHANGE TRIGGERED!");
+        ////console.log(vm.imageUrls[vm.currentAvatar.images[i_img]].color_code);
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
       vm.switchSchema("noreset");
@@ -333,7 +333,7 @@
       for (var i_img = 0; i_img < vm.currentAvatar.images.length; ++i_img) {
         vm.colorCodes[vm.imageUrls[vm.currentAvatar.images[i_img]].image_type] = vm.imageUrls[vm.currentAvatar.images[i_img]].color_code;
       }
-      console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
+      ////console.log("COLOR-CODES-ARRAY: " + JSON.stringify(vm.colorCodes));
       setTimeout(function(){
       $(".color_drop").off("click");
       $(".color_drop").click(function(){
@@ -350,7 +350,7 @@
       }).then(function(data){
         //set avatar defaults
         vm.totalAvatars = data.data.length || 1;
-        console.log("DATA-LENGTH: " + data.data.length);
+        ////console.log("DATA-LENGTH: " + data.data.length);
         if (data.data.length > 2) {
           vm.familyType = '3';
         }
@@ -420,7 +420,7 @@
         method: 'GET',
         url: '/getproperty/MAX_AVATARS'
       }).then(function(data){
-        console.log(JSON.stringify(data.data));
+        ////console.log(JSON.stringify(data.data));
         vm.maxAvatars = +(data.data[0].property_value);
         sharedProperties.setMaxAvatars(data.data[0].property_value);
         $http({
@@ -653,7 +653,7 @@
     }
     
     vm.deletePerson = function(cb) {
-      console.log("delete person called");
+      ////console.log("delete person called");
       vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }).join(' ');
@@ -677,7 +677,7 @@
         },
         data: response
       }).then(function(data){
-        console.log("POST request finished");
+        ////console.log("POST request finished");
         if (data.data.result === "success") {
           // vm.results[vm.currentAvatarIndex-1].name = vm.results[vm.currentAvatarIndex].name;
           // vm.results[vm.currentAvatarIndex-1].images = vm.results[vm.currentAvatarIndex].images.slice();
@@ -690,9 +690,9 @@
             cb("Delete Failed");
           }
         }
-        console.log(data);
-        console.log(vm.avatarNames);
-        console.log(vm.results);
+        ////console.log(data);
+        ////console.log(vm.avatarNames);
+        ////console.log(vm.results);
       });
     };
 
@@ -711,7 +711,7 @@
     vm.postPerson = function(cb) {
       //vm.avatarErrorDisplay = false;
       $scope.$broadcast("error:name:off");
-      console.log("post person called");
+      ////console.log("post person called");
       vm.currentAvatar.name = vm.currentAvatar.name.split(' ').map(function(word){
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }).join(' ');
@@ -734,7 +734,7 @@
         },
         data: response
       }).then(function(data){
-        console.log("POST request finished");
+        ////console.log("POST request finished");
         if (data.data.result === "success") {
           vm.results[vm.currentAvatarIndex-1].name = vm.currentAvatar.name;
           vm.results[vm.currentAvatarIndex-1].images = vm.currentAvatar.images.slice();
@@ -746,9 +746,9 @@
             cb("Save Failed");
           }
         }
-        console.log(data);
-        console.log(vm.avatarNames);
-        console.log(vm.results);
+        ////console.log(data);
+        ////console.log(vm.avatarNames);
+        ////console.log(vm.results);
       });
     };
 
@@ -791,7 +791,7 @@
     };
 
     vm.nextAvatar = function() {
-      console.log("FIRED RIGHT!");
+      ////console.log("FIRED RIGHT!");
       if (vm.currentAvatarIndex === vm.totalAvatars) {
         $("#avatar-name-input").focus();
       }
@@ -810,7 +810,7 @@
     };
 
     vm.prevAvatar = function() {
-      console.log("FIRED LEFT!");
+      ////console.log("FIRED LEFT!");
       vm.error = "";
       if (vm.newAvatar) {
         if (vm.currentAvatar.name !== "") {
@@ -825,12 +825,12 @@
           retractAvatar();
         }
       } else {
-        console.log("test1");
+        ////console.log("test1");
         if (avatarModified()) {
-          console.log("test2");
+          ////console.log("test2");
           console.log("Current Avatar Name: " + vm.currentAvatar.name); 
           if (vm.currentAvatar.name === undefined) {
-            console.log("test3");
+            ////console.log("test3");
             vm.error = "Avatar name may not be blank";
             return;
           }
