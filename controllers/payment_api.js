@@ -10,8 +10,8 @@ var geoip = require("geoip-lite");
 router.post("/charge", (req, res, next) => {
   var token = req.body.stripeToken;
   console.log("ABOUT TO CHARGE!");
-  console.log("Currency: " + req.session.currency);
-  console.log("Price: " + req.session.price); 
+  //console.log("Currency: " + req.session.currency);
+  //console.log("Price: " + req.session.price); 
   console.log("admin: " + req.session.admin);
   var geo = geoip.lookup(req.ip);
   //console.log(req.ip);
@@ -50,6 +50,20 @@ router.post("/charge", (req, res, next) => {
         }
       });
     });
+  });
+});
+
+router.get("/getCurrencyAndPrice", function(req, res, next){
+  console.log("CURRENCY ROUTE HIT!");
+  let geo = geoip.lookup(req.ip);
+  getCurrencyAndPrice(geo ? geo.country : "US", function(err, data){
+    if (err) next(err);
+    req.session.currency = data[0].currency_code;
+    req.session.price = data[0].price;
+    console.log("Currency: " + req.session.currency);
+    console.log("Price: " + req.session.price);
+    console.log("admin: " + req.session.admin);
+    res.json(data);
   });
 });
 
