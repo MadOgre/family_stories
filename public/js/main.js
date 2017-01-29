@@ -43,6 +43,8 @@
       }, 200)
     };
 
+    vm.selectFirstTab();
+
     vm.isMobile = function() {
       return ($("#mobile-hook").css("display") === "none");
     };
