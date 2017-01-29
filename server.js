@@ -1,6 +1,7 @@
 "use strict";
 var express = require("express");
-var Sequelize = require("sequelize");
+//var Sequelize = require("sequelize");
+var sequelize = require("./db");
 var cors = require("cors");
 var bp = require("body-parser");
 var session = require("express-session");
@@ -16,7 +17,7 @@ let geoip = require("geoip-lite");
 
 var config = require("./config.js");
 
-var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
+//var sequelize = new Sequelize("mysql://sunjay:bluejeans@familystories.crz3gl4roidf.us-west-2.rds.amazonaws.com/familystories");
 
 var paypal = require('paypal-rest-sdk');
 
@@ -29,11 +30,11 @@ paypal.configure({
   'openid_redirect_uri': config.base_url + '/auth/callback'
 });
 
-sequelize.authenticate().then(function(){
-  console.log("SUCCESS");
-}).catch(function(err){
-  console.log(err.name);
-});
+// sequelize.authenticate().then(function(){
+//   console.log("SUCCESS");
+// }).catch(function(err){
+//   console.log(err.name);
+// });
 
 var app = express();
 
@@ -230,37 +231,6 @@ app.use("/", setId, express.static(__dirname + "/public"));
 
 app.use("/preview", express.static("/var/www/familystories/book_output"));
 
-function getBodyParts(which, cb) {
-  sequelize.query("call sp_default_body_parts('" + which + "')").then(function(data){
-    var result = [];
-    data.forEach(function(item){
-      if (result.findIndex(function(queryitem){
-        return queryitem.image_type === item.image_type;
-      }) === -1) {
-        result.push({
-          image_type: item.image_type,
-          image_type_label: item.image_type_label,
-          values: []
-        });
-      }
-      result[result.length-1].values.push({
-        image_name: item.image_name,
-        image_id: item.image_id,
-        image_location: item.image_location,
-        image_category: item.image_category,
-        image_x: item.image_x,
-        image_y: item.image_y,
-        color_name: item.color_name,
-        color_code: item.color_code,
-        icon_location: item.icon_location
-      });
-    });
-    cb(null, result);
-  }).catch(function(err){
-    cb(err);
-  });  
-}
-
 function setUserSelection(payload, cb) {
   sequelize.query(
     "call sp_iu_user_default_images('" +
@@ -348,14 +318,7 @@ function getUserSavedAvatars(user_id, cb) {
   });
 }
 
-app.get("/getAdultMaleParts", function(req, res){
-  getBodyParts("ADULT_MALE", function(err, result){
-    if (err) {
-      return res.status(500).send("<h1>Server Error</h1>");
-    }
-    res.json(result);
-  });
-});
+require("./controllers")(app);
 
 app.get("/saveuser", function(req, res){
   saveUserProfile(req.query.email, req.query.source, req.query.userName, req.query.external_id, req.session.user_id || null, function(data){
@@ -389,33 +352,6 @@ app.get("/setPreviewFolderName", function(req, res, next){
 
 app.get("/getFolderName", function(req, res){
   res.json(req.session.foldername);
-});
-
-app.get("/getAdultfemaleParts", function(req, res){
-  getBodyParts("ADULT_FEMALE", function(err, result){
-    if (err) {
-      return res.status(500).send("<h1>Server Error</h1>");
-    }
-    res.json(result);
-  });
-});
-
-app.get("/getMaleChildParts", function(req, res){
-  getBodyParts("CHILD_MALE", function(err, result){
-    if (err) {
-      return res.status(500).send("<h1>Server Error</h1>");
-    }
-    res.json(result);
-  });
-});
-
-app.get("/getFemaleChildParts", function(req, res){
-  getBodyParts("CHILD_FEMALE", function(err, result){
-    if (err) {
-      return res.status(500).send("<h1>Server Error</h1>");
-    }
-    res.json(result);
-  });
 });
 
 app.get("/deleteUserAvatars", function(req, res){
