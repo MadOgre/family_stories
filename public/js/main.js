@@ -33,14 +33,16 @@
     }
 
     vm.selectFirstTab = function() {
+      //console.log("checking for mobile");
       setTimeout(function(){
         if (vm.isMobile()) {
+          //alert("is mobile");
           $("#tabs>div>div>ul>li:nth-child(2)>a").trigger("click");
           // alert($("#tabs>div>div>ul>li:nth-child(2)>a").html());
         } else {
           $("#tabs>div>div>ul>li:first-child>a").trigger("click");
         }
-      }, 200)
+      }, 1000);
     };
 
     vm.selectFirstTab();
