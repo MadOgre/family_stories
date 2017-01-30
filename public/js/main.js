@@ -360,17 +360,17 @@
         }
         var i = 1;
         vm.results[0] = {
-          name: "",
+          name: "Timmy",
           images: childMaleAvatarDefaults.slice()
         }
 
         vm.results[1] = {
-          name: "",
+          name: "Daddy",
           images: adultMaleAvatarDefaults.slice()
         }
 
         vm.results[2] = {
-          name: "",
+          name: "Mommy",
           images: adultFemaleAvatarDefaults.slice()
         }
         //set avatar defaults
@@ -791,6 +791,12 @@
     vm.rightArrowClick = function() {
       if (vm.currentAvatarIndex !== vm.totalAvatars) {
         vm.nextAvatar();
+      }
+    };
+
+    vm.advanceToNextAvatar = function() {
+      if (vm.carousel_index < 2) {
+        vm.carousel_index++;
       }
     };
 
