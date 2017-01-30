@@ -1571,3 +1571,27 @@ font-size:20px;
         border: 1px solid red !important;
     }
 }
+
+.prev-next-buttons {
+    width: 100%;
+    position: relative;
+    left: 80px;
+    .prev-avatar-button {
+        border: 1px solid red;
+        border-radius: 30px;
+        width: 100px;
+        float: left;
+        cursor: pointer;
+        user-select: none;
+        pointer-events: all;
+    }
+    .next-avatar-button {
+        border: 1px solid red;
+        border-radius: 30px;
+        width: 100px;
+        float: right;
+        cursor: pointer;
+        user-select: none;
+        pointer-events: all;
+    }
+}

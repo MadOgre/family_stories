@@ -147,6 +147,11 @@ src="https://www.facebook.com/tr?id=181237689004618&ev=PageView&noscript=1"
                     <!-- MGS: Input was connected to angular -->
                     <input style="display:none;" type="text" class="" id="avatar-name-input" placeholder="TIMOS" ng-model="main.currentAvatar.name" required autofocus="true">
                     <div style="display:block;" class="salutation-wrapper" ng-class="{ghost: !main.currentAvatar.name || main.currentAvatar.name === ''}">Hey <span ng-bind="main.currentAvatar.name" name="salutation">Timos!</span><a href="javascript:void(0);" class="pencil"></a></div>
+                    <div class="prev-next-buttons">
+                        <div ng-click="main.returnToPrevAvatar()" class="prev-avatar-button">Previous Character</div>
+                        <div ng-click="main.advanceToNextAvatar()" class="next-avatar-button">Next Character</div>
+                    </div>
+                    
                 </li>
                 <li style="visibility: hidden; display: none;">
                     <a class="next-btn" ng-class="{inactive: main.currentAvatar.name === '' || main.currentAvatar.name === undefined || main.currentAvatarIndex === main.totalAvatars}" href="" ng-click="main.rightArrowClick()"></a><!--added class-->

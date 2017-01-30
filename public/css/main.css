@@ -1542,6 +1542,8 @@ header .user-avatar img {
   display: none; }
 
 @media (max-width: 749px) {
+  .prev-next-buttons {
+    left: 40px !important; }
   .left-mobile-button {
     width: 45% !important;
     float: left !important; }
@@ -2937,3 +2939,32 @@ input[type="radio"]:checked + label.color-thumb {
 
 .select-css input:checked + label {
   border: 1px solid red !important; }
+
+.prev-next-buttons {
+  width: 100%;
+  position: relative;
+  left: 80px; }
+  .prev-next-buttons .prev-avatar-button {
+    border: 1px solid red;
+    -webkit-border-radius: 30px;
+            border-radius: 30px;
+    width: 100px;
+    float: left;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: all; }
+  .prev-next-buttons .next-avatar-button {
+    border: 1px solid red;
+    -webkit-border-radius: 30px;
+            border-radius: 30px;
+    width: 100px;
+    float: right;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: all; }

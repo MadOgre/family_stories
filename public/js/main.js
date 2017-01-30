@@ -93,39 +93,49 @@
       if (v !== old && !vm.avatarNameError) {
 
         if (vm.currentAvatar.name === '' || !vm.currentAvatar.name) {
-          //alert("Error triggered");
-          if (!vm.deleting) {
-            vm.avatarNameError = true;
-            //vm.avatarErrorDisplay = true;
-            $scope.$broadcast("error:name:on");
-          //$(".tab-pane").removeClass("active");
-          //$("#tabs>ul>li").removeClass("active");
-          //$('#nameGender').addClass("active");
-          //$("#tabs>ul>li:nth-child(2)").addClass("active");
+          switch(vm.currentAvatarIndex) {
+            case 1:
+              vm.currentAvatar.name = 'Timmy';
+              break;
+            case 2:
+              vm.currentAvatar.name = 'Daddy';
+              break;
+            case 3:
+              vm.currentAvatar.name = 'Mommy';
           }
-          if (old < v) {
-            //alert("trying to retract");
-            setTimeout(function(){
-              //alert("trying to spin back");
-              if (v - old == 2) {
-                vm.carousel_index-=2;
-              } else {
-                vm.carousel_index--;
-              }
-              //$scope.$apply();
-              $scope.$digest();
-            }, 200);
-          } else {
-            //alert("trying to retract");
-            setTimeout(function(){
-              //alert("trying to spin back");
-              vm.carousel_index++;
-              //$scope.$apply();
-              $scope.$digest();
+          // //alert("Error triggered");
+          // if (!vm.deleting) {
+          //   vm.avatarNameError = true;
+          //   //vm.avatarErrorDisplay = true;
+          //   $scope.$broadcast("error:name:on");
+          // //$(".tab-pane").removeClass("active");
+          // //$("#tabs>ul>li").removeClass("active");
+          // //$('#nameGender').addClass("active");
+          // //$("#tabs>ul>li:nth-child(2)").addClass("active");
+          // }
+          // if (old < v) {
+          //   //alert("trying to retract");
+          //   setTimeout(function(){
+          //     //alert("trying to spin back");
+          //     if (v - old == 2) {
+          //       vm.carousel_index-=2;
+          //     } else {
+          //       vm.carousel_index--;
+          //     }
+          //     //$scope.$apply();
+          //     $scope.$digest();
+          //   }, 200);
+          // } else {
+          //   //alert("trying to retract");
+          //   setTimeout(function(){
+          //     //alert("trying to spin back");
+          //     vm.carousel_index++;
+          //     //$scope.$apply();
+          //     $scope.$digest();
 
-            }, 200);
-          }
-        } else {
+          //   }, 200);
+          // }
+        } //else {
           if (!vm.deleting) {
             //alert("THIS SHOULD NOT HAPPEN WHEN DELETING");
             vm.postPerson(function(){
@@ -139,7 +149,7 @@
               updateCurrentAvatar(); 
             vm.deleting = false;
           }       
-        }
+        //}
       } else {
         vm.avatarNameError = false;
       }
@@ -360,17 +370,17 @@
         }
         var i = 1;
         vm.results[0] = {
-          name: "Timmy",
+          name: "",
           images: childMaleAvatarDefaults.slice()
         }
 
         vm.results[1] = {
-          name: "Daddy",
+          name: "",
           images: adultMaleAvatarDefaults.slice()
         }
 
         vm.results[2] = {
-          name: "Mommy",
+          name: "",
           images: adultFemaleAvatarDefaults.slice()
         }
         //set avatar defaults
@@ -797,6 +807,12 @@
     vm.advanceToNextAvatar = function() {
       if (vm.carousel_index < 2) {
         vm.carousel_index++;
+      }
+    };
+
+    vm.returnToPrevAvatar = function() {
+      if (vm.carousel_index > 0) {
+        vm.carousel_index--;
       }
     };
 
