@@ -2968,3 +2968,9 @@ input[type="radio"]:checked + label.color-thumb {
         -ms-user-select: none;
             user-select: none;
     pointer-events: all; }
+  .prev-next-buttons .ddd {
+    cursor: default;
+    background-color: gray; }
+  .prev-next-buttons .ddd {
+    cursor: default;
+    background-color: gray; }
