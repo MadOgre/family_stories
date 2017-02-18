@@ -184,6 +184,7 @@ function setUserSelection(payload, cb) {
     payload.image_id_list + "','" +
     payload.avatar_index + "','" +
     payload.avatar_age + "','" +
+    payload.avatar_gender + "','" +
     payload.birthday + "'," + // the quote is missing for a reason!!
     (payload.replace ? "'" + payload.replace + "'" : null) + "," +
     (payload.delete ? "'D'" : null) + ")").then(function(){
