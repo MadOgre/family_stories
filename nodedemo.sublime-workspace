@@ -1,0 +1,519 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"no",
+				"noHumpVoltages"
+			],
+			[
+				"beat5",
+				"beat5Trace"
+			],
+			[
+				"Vali",
+				"ValidatorHelper"
+			],
+			[
+				"seco",
+				"secondPeakReached"
+			],
+			[
+				"retri",
+				"retrieve"
+			],
+			[
+				"pre",
+				"preHumpVoltages"
+			],
+			[
+				"curre",
+				"currentAvatarIndex"
+			],
+			[
+				"con",
+				"console.log"
+			],
+			[
+				"brows",
+				"browserifyBower"
+			],
+			[
+				"browser",
+				"browserSync"
+			],
+			[
+				"bro",
+				"browserSync"
+			],
+			[
+				"bor",
+				"browserSync"
+			],
+			[
+				"brow",
+				"brower-sync"
+			],
+			[
+				"prim",
+				"primesFound"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"bckgrou",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 750.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 836.0
+	},
+	"console":
+	{
+		"height": 246.0,
+		"history":
+		[
+			"view.settings().get('font_face')",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/msemk/node_playground/nodedemo"
+	],
+	"file_history":
+	[
+		"/C/Users/msemk/node_playground/angular-rest/public/libs/summernote/summernote.js",
+		"/C/Users/msemk/node_playground/angular-rest/test/spec.js",
+		"/C/Users/msemk/node_playground/angular-rest/test/conf.js",
+		"/C/Users/msemk/node_playground/angular-rest/test/articles.test.js",
+		"/C/Users/msemk/node_playground/angular-rest/test/server",
+		"/C/Users/msemk/node_playground/angular-rest/server.js",
+		"/C/Users/msemk/node_playground/angular-rest/package.json",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/editArticleFormComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/directives/htmlEditorDirective.js",
+		"/C/Program Files (x86)/TechSmith/Camtasia Studio 8/CamRecorder.exe.manifest",
+		"/C/Program Files (x86)/TechSmith/Camtasia Studio 8/CamtasiaStudio.exe.manifest",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/newArticleFormComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/libs/ckeditor/config.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/singleArticleComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/index.html",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteFooterComponent.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteHeaderComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteFooterComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/app.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/states.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/articlesComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/articlesComponent.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteHeaderComponent.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/scss/header.scss",
+		"/C/Users/msemk/node_playground/angular-rest/public/libs/htmlEditorDirective.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteHeader.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/rootComponent.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/css/main.css",
+		"/C/Users/msemk/node_playground/angular-rest/public/scss/main.scss",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/newarticleform.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/footer.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/scss/articles.scss",
+		"/C/Users/msemk/node_playground/angular-rest/public/scss/footer.scss",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/articles.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/siteHeader.js",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/validator.tgen.log.txt",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/single_beat_post_hump.dat",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/single_beat_pre_hump.dat",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/single_beat.dat",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/hump_voltages.dat",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/single_beat_new.dat",
+		"/C/Users/msemk/node_playground/angular-rest/public/scss/mainsection.scss",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/content.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/content.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/test.tpl",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/editarticleform.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/rootComponent.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/mainview.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/article.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/services/articles.js",
+		"/C/Users/msemk/node_playground/angular-rest/gulpfile.js",
+		"/C/Users/msemk/node_playground/angular-rest/bower.json",
+		"/C/Users/msemk/node_playground/angular-rest/routes/articles.js",
+		"/C/Users/msemk/node_playground/angular-rest/models/article.js",
+		"/C/Users/msemk/node_playground/angular-rest/routes/index.js",
+		"/C/Users/msemk/node_playground/angular-rest/public/js/components/articleform.js",
+		"/C/Users/msemk/node_playground/angular-rest/bower_components/angular-ui-router/.bower.json",
+		"/C/Users/msemk/node_playground/angular-rest/bower_components/angular/angular.min.js.map",
+		"/C/Users/msemk/node_playground/angular-rest/models/index.js",
+		"/C/Users/msemk/node_playground/angular-rest/db.js",
+		"/C/Users/msemk/node_playground/angular-rest/.gitignore",
+		"/C/Users/msemk/node_playground/angular-rest/readme.MD",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/resistances.dat",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/Unified_GA_Runner/Resistance_Validation_Algorithm/validator.h",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/Unified_GA_Runner/Resistance_Validation_Algorithm/resistance_validator.h",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/trace_generator/Makefile",
+		"/C/Users/msemk/Documents/cpp/Jay/FaberRudy2000_GA_Fitting.git/analysis/Unified_GA_Runner/Makefile",
+		"/C/Users/msemk/node_playground/nodedemo/public/js/main.js",
+		"/C/Users/msemk/node_playground/nodedemo/server.js",
+		"/C/Users/msemk/node_playground/nodedemo/public/partials/main.html",
+		"/C/Users/msemk/node_playground/nodedemo/public/scss/main.scss",
+		"/C/Users/msemk/node_playground/nodedemo/public/css/main.css",
+		"/C/Users/msemk/node_playground/nodedemo/public/scss/kario_css.scss",
+		"/C/Users/msemk/node_playground/nodedemo/controllers/payment_api.js",
+		"/C/Users/msemk/node_playground/nodedemo/db.js",
+		"/C/Users/msemk/node_playground/nodedemo/controllers/index.js",
+		"/C/Users/msemk/node_playground/nodedemo/controllers/schema_api.js",
+		"/C/Users/msemk/node_playground/node_tutorial2/views/layouts/main.ejs",
+		"/C/Users/msemk/node_playground/node_tutorial2/views/main/index.ejs",
+		"/C/Users/msemk/node_playground/node_tutorial2/views/main",
+		"/C/Users/msemk/node_playground/node_tutorial2/public/test.html",
+		"/C/Users/msemk/node_playground/node_tutorial2/public/css/style.css",
+		"/C/Users/msemk/AppData/Roaming/Sublime Text 3/Packages/JSHint Gutter/.jshintrc",
+		"/C/Users/msemk/node_playground/dev-env3/gulpfile.js",
+		"/C/Users/msemk/node_playground/dev-env3/gulptasks/js.js",
+		"/C/Users/msemk/node_playground/dev-env3/server.js",
+		"/C/Users/msemk/node_playground/nodedemo/public/js/directives/avatarPartSelectorPanes.html",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/src/main.js",
+		"/C/Users/msemk/node_playground/dev-env3/gulptasks/watch.js",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/src/app.js",
+		"/C/Users/msemk/node_playground/dev-env3/gulptasks/serve.js",
+		"/C/Users/msemk/node_playground/dev-env3/bower_components/jquery/bower.json",
+		"/C/Users/msemk/node_playground/dev-env3/bower_components/jquery/dist/jquery.min.js",
+		"/C/Users/msemk/node_playground/dev-env3/bower_components/jquery/dist/jquery.js",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/bundle.js.map",
+		"/C/Users/msemk/node_playground/dev-env3/bower.json",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/bundle.js",
+		"/C/Users/msemk/node_playground/dev-env3/views/index/index.ejs",
+		"/C/Users/msemk/node_playground/dev-env3/views/layouts/main.ejs",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/src/mainctrl.js",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/src/app.j",
+		"/C/Users/msemk/node_playground/dev-env3/gulptasks/index.js",
+		"/C/Users/msemk/node_playground/dev-env3/package.json",
+		"/C/Users/msemk/node_playground/dev-env3/public/scripts/src/otherfile.js",
+		"/C/Users/msemk/node_playground/dev-env3/gulptasks/css.js",
+		"/C/Users/msemk/node_playground/dev-env3/db.js",
+		"/C/Users/msemk/node_playground/dev-env3/routes/index.js",
+		"/C/Users/msemk/node_playground/dev-env3/configure.js",
+		"/C/Users/msemk/node_playground/dev-env3/.gitignore",
+		"/C/Users/msemk/node_playground/dev-env3/models/index.js",
+		"/C/Users/msemk/node_playground/dev-env3/views/errors/500.ejs",
+		"/C/Users/msemk/node_playground/dev-env3/views/errors/500dev.ejs",
+		"/C/Users/msemk/node_playground/dev-env3/views/errors/404.ejs",
+		"/C/Users/msemk/node_playground/dev-env3/public/stylesheets/main.css",
+		"/C/Users/msemk/node_playground/dev-env3/routes/root.js",
+		"/C/Users/msemk/node_playground/dev-env3/public/images/.keep",
+		"/C/Users/msemk/node_playground/dev-env3/middleware/global/index.js",
+		"/C/Users/msemk/AppData/Roaming/Sublime Text 3/Packages/GitGutter/GitGutter.sublime-settings",
+		"/C/Users/msemk/node_playground/dev-environment-demo/db.js",
+		"/C/Users/msemk/node_playground/dev-environment-demo/middleware/index.js",
+		"/C/Users/msemk/node_playground/dev-environment-demo/views/500dev.ejs",
+		"/C/Users/msemk/node_playground/dev-environment-demo/views/500.ejs",
+		"/C/Users/msemk/node_playground/dev-environment-demo/views/404.ejs",
+		"/C/Users/msemk/node_playground/dev-environment-demo/models/index.js",
+		"/C/Users/msemk/node_playground/dev-environment-demo/public/index.html",
+		"/C/Users/msemk/node_playground/dev-environment-demo/public/css/main.css.map",
+		"/C/Users/msemk/node_playground/dev-environment-demo/.gitignore",
+		"/C/Users/msemk/node_playground/dev-environment-demo/public/scss/main.scss"
+	],
+	"find":
+	{
+		"height": 78.0
+	},
+	"find_in_files":
+	{
+		"height": 191.0,
+		"where_history":
+		[
+			"C:\\Users\\msemk\\node_playground\\dev-env3"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"issues",
+			"help",
+			"options",
+			"#FFFF00",
+			"color",
+			"upload",
+			"height",
+			"plugins",
+			"color",
+			"red",
+			"resistance",
+			"resistances",
+			"text-align",
+			"bclCounter",
+			"warcraft",
+			"vholdtime",
+			"debug",
+			"resistance",
+			"beatcounter",
+			"runres",
+			"DT",
+			"runstead",
+			"basepara",
+			"btn",
+			"salutation-wrapper",
+			"default",
+			"rightArrowClick",
+			"nextAvatar",
+			"activate:first:tab",
+			"selectFirstTab",
+			"body",
+			"<<<<",
+			"qs",
+			"geoip",
+			"paymentinfo",
+			"vm.results",
+			"console",
+			"logger",
+			"save",
+			"runres",
+			"get",
+			"runstead",
+			"runv",
+			"THIS SHOULD NOT",
+			"this should not",
+			"W",
+			"$watch",
+			"currentAva",
+			"vm.results",
+			"currentAvatar",
+			"colorCodes",
+			"colorSync",
+			"getIdOfColor",
+			"colorCodes",
+			"getidofcolor",
+			"schema",
+			"imageurls",
+			"vm.schema",
+			"switch",
+			"adultFemaleSchema",
+			"getsch",
+			"currentuserprof",
+			"currentuserpr",
+			"angular",
+			"jquery-br",
+			"masonry",
+			"angular",
+			"function",
+			"reload",
+			"reload\\",
+			"reload",
+			"bower",
+			"/jpg",
+			"$on",
+			"switch",
+			"$on",
+			"selectFirstTab",
+			"alert",
+			"trigger",
+			"window",
+			"removecla",
+			"addclass",
+			"id=",
+			"location.path",
+			"familyType",
+			"increAS",
+			"savedava",
+			"preloader",
+			"removeclass",
+			"removecla",
+			"addClass",
+			"carouse",
+			"vm",
+			"change",
+			"schema",
+			"main",
+			"property",
+			"main",
+			"currentavatarbir",
+			"currentavatarbur",
+			"currentavatarb",
+			"schema",
+			"main",
+			"switchsch",
+			"main",
+			"birthday",
+			"currentAvatarGen",
+			"currentAvatarAg",
+			"main",
+			"avatarerr",
+			"avatarErrorDisplay",
+			"avatarErr",
+			"avatarErrorDis",
+			"avatarErrordis",
+			"avatarName",
+			"avatarerrordis",
+			"avatarnameerr",
+			"avatarError",
+			"currentAvatarGender",
+			"currentAvatarAge",
+			"currentAvatarGender",
+			"currentAvatarAge",
+			"currentAvatar",
+			"currentAvatarGen",
+			"currentAvatar",
+			"ispr",
+			"isPristine",
+			"getSche"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 58.0
+	},
+	"input":
+	{
+		"height": 69.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 59.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "nodedemo.sublime-project",
+	"replace":
+	{
+		"height": 112.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 1000.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\msemk\\node_playground\\angular-rest\\angular-rest.sublime-project"
+			]
+		],
+		"width": 760.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 892.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
